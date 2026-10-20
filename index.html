@@ -1,0 +1,2259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- ===================== SEO ===================== -->
+  <title>Next Step | Sua jornada começa aqui. Cursos, Marketing e Processos</title>
+  <meta name="description" content="A Next Step ajuda empresas a crescer com cursos de capacitação para equipes e líderes, marketing focado em vendas e organização de processos. Faça um diagnóstico gratuito.">
+  <meta name="theme-color" content="#111111">
+  <link rel="canonical" href="https://www.seudominio.com.br/"> <!-- [EDITAR] seu domínio -->
+
+  <!-- Open Graph (compartilhamento). Troque pela URL ABSOLUTA da imagem depois de publicar. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Next Step">
+  <meta property="og:title" content="Next Step | Sua jornada começa aqui.">
+  <meta property="og:description" content="Cursos de capacitação, marketing que vende e processos que funcionam. Faça seu diagnóstico gratuito em 1 minuto.">
+  <meta property="og:image" content="imagens/logo.png"> <!-- [EDITAR] ex.: https://www.seudominio.com.br/imagens/logo.png -->
+  <meta property="og:image:width" content="635">
+  <meta property="og:image:height" content="300">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon: símbolo "N" + seta do logo em SVG inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23FF8A1F'/%3E%3Cstop offset='1' stop-color='%23EF6C22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M6 58V18h14l24 24V30h14v28H44L20 34v24z' fill='%23111111'/%3E%3Cpath d='M36 26h8v-9l16-13v26z' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="imagens/logo.png">
+
+  <!-- ===================== Fontes ===================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- ===================== Tailwind (CDN) ===================== -->
+  <!-- Tailwind fica sem defer de propósito: ele precisa gerar o CSS antes da página aparecer. -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ns: { navy: '#111111', deep: '#0A0A0A', gold: '#FF8A1F', orange: '#EF6C22', light: '#F5F5F5' }
+          },
+          fontFamily: {
+            display: ['Nunito', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- ===================== Bibliotecas (defer) ===================== -->
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script defer src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* ==========================================================
+       BASE E TOKENS
+       ========================================================== */
+    :root {
+      --navy: #111111;
+      --deep: #0A0A0A;
+      --gold: #FF8A1F;
+      --orange: #EF6C22;
+      --light: #F5F5F5;
+      --grad: linear-gradient(135deg, #FF8A1F 0%, #EF6C22 100%);
+      --header-h: 80px;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px; line-height: 1.65;
+      color: #334155; background: #FFFFFF;
+      overflow-x: hidden; overflow-x: clip;
+      padding-top: var(--header-h);
+    }
+    h1, h2, h3, h4, .font-display { font-family: 'Nunito', system-ui, sans-serif; letter-spacing: -0.01em; }
+    img { max-width: 100%; }
+    section[id], footer[id] { scroll-margin-top: 72px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* Foco visível dourado (acessibilidade) */
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+    .container-ns { width: 100%; max-width: 1240px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+    @media (min-width: 640px) { .container-ns { padding-left: 24px; padding-right: 24px; } }
+    .section { padding: 72px 0; }
+    @media (min-width: 1024px) { .section { padding: 104px 0; } }
+
+    /* Títulos em duas cores */
+    .h2 { font-weight: 800; font-size: clamp(1.85rem, 1.3rem + 2.2vw, 2.75rem); line-height: 1.15; }
+    .gold-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    /* Em fundo claro usamos tons mais fechados do mesmo degradê para manter contraste AA em títulos */
+    .gold-text-light { background: linear-gradient(90deg, #EA580C, #C2410C); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: #C2410C; margin-bottom: .75rem; }
+    .eyebrow-dark { color: var(--gold); }
+    .lead { font-size: 1.075rem; margin-top: 1rem; }
+
+    /* ==========================================================
+       BOTÕES
+       ========================================================== */
+    .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      min-height: 48px; padding: .75rem 1.5rem; border-radius: 999px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+      line-height: 1.2; text-align: center; transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease, filter .25s ease; cursor: pointer; }
+    .btn-primary { background: var(--grad); color: var(--deep); box-shadow: 0 10px 24px -10px rgba(239,108,34,.7); }
+    .btn-primary::after { content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+      background: linear-gradient(110deg, transparent, rgba(255,255,255,.55), transparent); transform: skewX(-20deg); transition: left .6s ease; }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.05); box-shadow: 0 16px 30px -12px rgba(239,108,34,.8); }
+    .btn-primary:hover::after { left: 140%; }
+    .btn-outline-light { border: 2px solid rgba(255,255,255,.85); color: #fff; }
+    .btn-outline-light:hover { background: #fff; color: var(--deep); transform: translateY(-2px); }
+    .btn-outline-navy { border: 2px solid var(--navy); color: var(--navy); }
+    .btn-outline-navy:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+    .btn-lg { min-height: 56px; padding: 1rem 2rem; font-size: 1.1rem; }
+    .btn[disabled] { opacity: .75; cursor: progress; }
+
+    /* Links com sublinhado dourado animado */
+    .link-gold { background-image: linear-gradient(var(--gold), var(--gold)); background-size: 0% 2px; background-position: 0 100%;
+      background-repeat: no-repeat; transition: background-size .3s ease, color .2s; padding-bottom: 2px; }
+    .link-gold:hover, .link-gold.is-active { background-size: 100% 2px; }
+
+    /* ==========================================================
+       CARDS
+       ========================================================== */
+    .card { background: #fff; border-radius: 16px; border: 1px solid #E6EAF0; box-shadow: 0 10px 30px -14px rgba(10,10,10,.18);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+    .card-hover:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 22px 40px -18px rgba(10,10,10,.32); }
+    .chip { display: inline-flex; align-items: center; gap: .35rem; padding: .3rem .75rem; border-radius: 999px; font-size: .8rem; font-weight: 700; }
+    .chip-gold { background: var(--grad); color: var(--deep); }
+    .chip-soft { background: #FFF4E0; color: #8A4B05; }
+    .chip-navy { background: #EEEEEE; color: var(--navy); }
+    .icon-badge { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 14px; background: #FFF4E0; color: #D46A0F; flex-shrink: 0; }
+    .icon-badge-dark { background: rgba(255,138,31,.14); color: var(--gold); }
+
+    /* Marcadores de lista em forma de degrau/seta (do logo) */
+    .step-list li { position: relative; padding-left: 2rem; margin-bottom: .6rem; }
+    .step-list li::before { content: ''; position: absolute; left: 0; top: .2rem; width: 22px; height: 22px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='7' fill='%23FFF4E0'/%3E%3Cpath d='M5.5 17.5h4v-4h4v-4h4' fill='none' stroke='%23EF6C22' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M14.5 6.5h3v3' fill='none' stroke='%23EF6C22' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; }
+
+    /* Divisor de seção em degrau */
+    .step-divider { display: flex; justify-content: center; color: var(--gold); padding: 0 16px; }
+    .step-divider svg { width: min(420px, 100%); height: 28px; }
+
+    /* ==========================================================
+       ANIMAÇÕES DE ENTRADA
+       ========================================================== */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; transition-delay: var(--d, 0ms); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* ==========================================================
+       HEADER
+       ========================================================== */
+    #siteHeader { position: fixed; inset: 0 0 auto 0; z-index: 50; background: #fff; height: var(--header-h); transition: height .3s ease, box-shadow .3s ease; }
+    #siteHeader.is-scrolled { height: 64px; box-shadow: 0 8px 24px -12px rgba(10,10,10,.25); }
+    #siteHeader .logo-img { height: 56px; width: auto; transition: height .3s ease; }
+    #siteHeader.is-scrolled .logo-img { height: 46px; }
+    .nav-link { font-weight: 600; font-size: .95rem; color: var(--navy); padding: .5rem .1rem; }
+    .nav-link.is-active { color: #C2410C; }
+
+    /* Menu lateral (celular) */
+    .mnav-overlay { position: fixed; inset: 0; background: rgba(10,10,10,.55); z-index: 70; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+    .mnav { position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh; width: min(86vw, 360px); background: #fff; z-index: 71;
+      transform: translateX(100%); transition: transform .35s cubic-bezier(.2,.8,.2,1); display: flex; flex-direction: column; overflow-y: auto; }
+    .mnav.is-open { transform: none; }
+    .mnav-overlay.is-open { opacity: 1; visibility: visible; }
+    .mnav a.mnav-link { display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 4px; border-bottom: 1px solid #EEF1F5; font-weight: 700; color: var(--navy); font-family: 'Nunito', sans-serif; font-size: 1.1rem; }
+
+    /* ==========================================================
+       HERO
+       ========================================================== */
+    .hero { position: relative; height: calc(100svh - var(--header-h)); min-height: 560px; max-height: 820px; overflow: hidden; background: var(--deep); }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility .9s; }
+    .hero-slide.is-active { opacity: 1; visibility: visible; }
+    .hero-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 7s ease; }
+    .hero-slide.is-active img { transform: scale(1); }
+    .hero-slide .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.80) 0%, rgba(10,10,10,.88) 100%); }
+    @media (min-width: 768px) { .hero-slide .overlay { background: linear-gradient(90deg, rgba(10,10,10,.94) 0%, rgba(17,17,17,.78) 50%, rgba(17,17,17,.30) 100%); } }
+    .hero-anim > * { opacity: 0; transform: translateY(26px); }
+    .hero-slide.is-active .hero-anim > * { animation: heroIn .8s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i, 0) * 130ms + 250ms); }
+    @keyframes heroIn { to { opacity: 1; transform: none; } }
+    .hero-title { font-weight: 800; color: #fff; font-size: clamp(2.1rem, 1.3rem + 3.6vw, 4rem); line-height: 1.08; }
+    .hero-arrow { width: 48px; height: 48px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: #fff;
+      border: 1.5px solid rgba(255,255,255,.5); background: rgba(10,10,10,.35); backdrop-filter: blur(4px); transition: background .2s, border-color .2s; }
+    .hero-arrow:hover { background: var(--gold); border-color: var(--gold); color: var(--deep); }
+    .hero-dot { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    .hero-dot span { width: 10px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.5); transition: width .3s, background .3s; }
+    .hero-dot[aria-current="true"] span { width: 32px; background: var(--gold); }
+
+    /* ==========================================================
+       CARROSSEL COM SWIPE (scroll-snap)
+       ========================================================== */
+    .snap-track { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+      margin-left: -16px; margin-right: -16px; padding: 8px 16px 24px; scroll-padding: 0 16px; scrollbar-width: none; }
+    .snap-track::-webkit-scrollbar { display: none; }
+    .snap-track > * { scroll-snap-align: start; flex: 0 0 86%; }
+    @media (min-width: 640px) { .snap-track > * { flex-basis: 60%; } .snap-track { margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; scroll-padding: 0 24px; } }
+    /* Vira grade a partir do tablet */
+    @media (min-width: 768px) {
+      .snap-grid { display: grid; overflow: visible; margin: 0; padding: 0 0 8px; gap: 1.5rem; }
+      .snap-grid > * { flex: none; }
+      .snap-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+      .snap-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .snap-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+      .snap-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+    .car-dot { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    .car-dot span { width: 9px; height: 9px; border-radius: 99px; background: #CBD5E1; transition: width .3s, background .3s; }
+    .car-dot[aria-current="true"] span { width: 26px; background: var(--orange); }
+    .dark .car-dot span { background: rgba(255,255,255,.35); }
+    .dark .car-dot[aria-current="true"] span { background: var(--gold); }
+
+    /* ==========================================================
+       FAIXA DE IMPACTO / FOTOS REAIS
+       ========================================================== */
+    .parallax-wrap { position: absolute; inset: 0; overflow: hidden; }
+    .parallax-wrap img { position: absolute; left: 0; top: -15%; width: 100%; height: 130%; object-fit: cover; will-change: transform; }
+    .frame-gold { position: relative; border-radius: 18px; padding: 10px; background: linear-gradient(135deg, #FF8A1F, #EF6C22 60%, #FF8A1F);
+      box-shadow: 0 40px 70px -30px rgba(0,0,0,.65); transform: rotate(-3deg); transition: transform .5s ease; }
+    .frame-gold:hover { transform: rotate(-1deg) scale(1.01); }
+    .frame-gold .inner { border-radius: 12px; overflow: hidden; background: #0A0A0A; padding: 3px; }
+    .frame-gold img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 68%; border-radius: 10px; }
+    .float-seal { position: absolute; z-index: 2; animation: floaty 4.5s ease-in-out infinite; }
+    @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .real-photo { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+
+    /* Galeria masonry */
+    .masonry { column-count: 2; column-gap: 12px; }
+    @media (min-width: 768px) { .masonry { column-count: 3; column-gap: 20px; } }
+    .masonry > * { break-inside: avoid; margin-bottom: 12px; }
+    @media (min-width: 768px) { .masonry > * { margin-bottom: 20px; } }
+    .masonry.few { max-width: 840px; margin-left: auto; margin-right: auto; } @media (min-width: 768px) { .masonry.few { column-count: 2; } }
+    .gal-item { position: relative; display: block; width: 100%; border-radius: 16px; overflow: hidden; cursor: zoom-in; background: #0A0A0A; }
+    .gal-item img { display: block; width: 100%; height: auto; border-radius: 16px; transition: transform .6s ease; }
+    .gal-item:hover img { transform: scale(1.04); }
+    .gal-item .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem .9rem .8rem; color: #fff; font-weight: 600; font-size: .9rem;
+      background: linear-gradient(transparent, rgba(10,10,10,.9)); text-align: left; }
+    .gal-placeholder { border: 2px dashed #CBD5E1; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: .5rem; color: #64748B; font-size: .9rem; text-align: center; padding: 1rem; background: #fff; }
+
+    /* Lightbox */
+    .lightbox { position: fixed; inset: 0; z-index: 95; background: rgba(0,0,0,.95); display: flex; align-items: center; justify-content: center; }
+    .lightbox[hidden] { display: none; }
+    .lightbox img { max-width: calc(100vw - 32px); max-height: calc(100dvh - 140px); object-fit: contain; border-radius: 12px; user-select: none; }
+    .lb-btn { position: absolute; width: 52px; height: 52px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center;
+      color: #fff; background: rgba(255,255,255,.12); transition: background .2s; }
+    .lb-btn:hover { background: var(--gold); color: var(--deep); }
+
+    /* ==========================================================
+       RESULTADOS (abas)
+       ========================================================== */
+    .tab-btn { min-height: 48px; padding: .6rem 1.25rem; border-radius: 999px; font-weight: 700; font-family: 'Nunito', sans-serif; color: var(--navy);
+      border: 2px solid #E2E8F0; background: #fff; transition: all .25s; display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap; }
+    .tab-btn[aria-selected="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .tab-btn:not([aria-selected="true"]):hover { border-color: var(--gold); }
+    .chart-box { position: relative; width: 100%; height: 300px; }
+    @media (min-width: 768px) { .chart-box { height: 340px; } }
+
+    /* ==========================================================
+       QUIZ / DIAGNÓSTICO
+       ========================================================== */
+    .quiz-card { background: #fff; border-radius: 24px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.55); color: #334155; overflow: hidden; }
+    .q-progress { height: 8px; border-radius: 99px; background: #EEF1F5; overflow: hidden; }
+    .q-progress > span { display: block; height: 100%; background: var(--grad); border-radius: 99px; transition: width .5s ease; }
+    .q-opt { display: flex; align-items: center; gap: 1rem; width: 100%; min-height: 68px; padding: .9rem 1.1rem; text-align: left;
+      border: 2px solid #E2E8F0; border-radius: 16px; background: #fff; font-weight: 600; color: var(--navy); transition: border-color .2s, transform .2s, background .2s, box-shadow .2s; }
+    .q-opt:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 10px 24px -16px rgba(10,10,10,.4); }
+    .q-opt[aria-pressed="true"] { border-color: var(--orange); background: #FFF7EC; }
+    .q-opt .q-ico { width: 44px; height: 44px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; background: #FFF4E0; color: #D46A0F; flex-shrink: 0; }
+    .q-opt[aria-pressed="true"] .q-ico { background: var(--grad); color: var(--deep); }
+    .q-enter { animation: qIn .45s cubic-bezier(.2,.8,.2,1) both; }
+    .q-enter-back { animation: qInBack .45s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes qIn { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+    @keyframes qInBack { from { opacity: 0; transform: translateX(-32px); } to { opacity: 1; transform: none; } }
+
+    .field label { display: block; font-weight: 600; color: var(--navy); margin-bottom: .35rem; font-size: .95rem; }
+    .field input[type="text"], .field input[type="email"], .field input[type="tel"] {
+      width: 100%; min-height: 50px; padding: .75rem 1rem; border: 2px solid #E2E8F0; border-radius: 12px; font-size: 16px; color: #0F172A; background: #fff; transition: border-color .2s, box-shadow .2s; }
+    .field input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px rgba(255,138,31,.2); }
+    .field.is-invalid input { border-color: #DC2626; }
+    .field.is-valid input { border-color: #16A34A; }
+    .field .msg { min-height: 1.25rem; font-size: .85rem; margin-top: .25rem; color: #B91C1C; }
+    .checkbox-row { display: flex; gap: .75rem; align-items: flex-start; cursor: pointer; }
+    .checkbox-row input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--orange); flex-shrink: 0; }
+    .spinner { width: 20px; height: 20px; border-radius: 50%; border: 3px solid rgba(10,10,10,.25); border-top-color: var(--deep); animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Modal do quiz */
+    .modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; }
+    .modal[hidden] { display: none; }
+    .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.72); backdrop-filter: blur(3px); animation: fadeIn .3s ease; }
+    .modal-panel { position: relative; width: 100%; height: 100%; height: 100dvh; overflow-y: auto; background: #fff; animation: panelIn .4s cubic-bezier(.2,.8,.2,1); overscroll-behavior: contain; }
+    @media (min-width: 640px) { .modal-panel { width: min(780px, calc(100vw - 48px)); height: auto; max-height: 92vh; border-radius: 24px; } }
+    .modal-panel .quiz-card { box-shadow: none; border-radius: 0; }
+    @keyframes fadeIn { from { opacity: 0; } }
+    @keyframes panelIn { from { opacity: 0; transform: translateY(30px) scale(.98); } }
+
+    /* ==========================================================
+       COMO TRABALHAMOS (linha do tempo)
+       ========================================================== */
+    .tl { position: relative; }
+    .tl-line { position: absolute; left: 27px; top: 28px; bottom: 28px; width: 3px; background: #E2E8F0; border-radius: 3px; }
+    .tl-fill { position: absolute; inset: 0; background: var(--grad); transform-origin: top; transform: scaleY(var(--p, 0)); border-radius: 3px; }
+    @media (min-width: 1024px) {
+      .tl-line { left: 12.5%; right: 12.5%; top: 34px; bottom: auto; width: auto; height: 3px; }
+      .tl-fill { transform-origin: left; transform: scaleX(var(--p, 0)); }
+    }
+    .tl-marker { width: 56px; height: 56px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center;
+      background: #fff; border: 2px solid #E2E8F0; color: #94A3B8; transition: all .45s ease; position: relative; z-index: 1; flex-shrink: 0; }
+    @media (min-width: 1024px) { .tl-marker { width: 68px; height: 68px; } }
+    .tl-step.is-on .tl-marker { background: var(--deep); border-color: var(--gold); color: var(--gold); box-shadow: 0 12px 26px -12px rgba(239,108,34,.7); }
+
+    /* ==========================================================
+       MARQUEE DE CLIENTES
+       ========================================================== */
+    .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+    .marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+    .marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* ==========================================================
+       FAQ
+       ========================================================== */
+    .faq-item { border-bottom: 1px solid #E2E8F0; }
+    .faq-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 64px; padding: 1rem 0;
+      text-align: left; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.08rem; color: var(--navy); }
+    .faq-btn .faq-ico { width: 36px; height: 36px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #FFF4E0; color: #D46A0F; transition: transform .3s, background .3s; flex-shrink: 0; }
+    .faq-item.is-open .faq-ico { transform: rotate(180deg); background: var(--grad); color: var(--deep); }
+    .faq-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+    .faq-item.is-open .faq-panel { grid-template-rows: 1fr; }
+    .faq-panel > div { overflow: hidden; }
+
+    /* ==========================================================
+       BOTÃO FLUTUANTE + COOKIES
+       ========================================================== */
+    .wa-float { position: fixed; right: 16px; bottom: 16px; z-index: 60; width: 60px; height: 60px; border-radius: 999px; background: #25D366; color: #fff;
+      display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px -8px rgba(0,0,0,.45); transition: transform .25s, bottom .3s, opacity .3s, visibility .3s; }
+    .wa-float:hover { transform: scale(1.07); }
+    .wa-float::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: #25D366; z-index: -1; animation: pulse 2.4s ease-out infinite; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: .55; } 80%, 100% { transform: scale(1.6); opacity: 0; } }
+    .wa-float.is-hidden { opacity: 0; visibility: hidden; transform: scale(.8); }
+    .wa-balloon { position: fixed; right: 16px; bottom: 88px; z-index: 60; max-width: 250px; background: #fff; color: var(--navy); border-radius: 16px;
+      padding: .8rem 2.6rem .8rem 1rem; font-weight: 700; font-size: .95rem; box-shadow: 0 16px 36px -14px rgba(10,10,10,.45); border: 1px solid #F1E2C6;
+      opacity: 0; transform: translateY(10px); visibility: hidden; transition: all .35s ease; }
+    .wa-balloon.is-show { opacity: 1; transform: none; visibility: visible; }
+    .wa-balloon::after { content: ''; position: absolute; right: 22px; bottom: -7px; width: 14px; height: 14px; background: #fff; transform: rotate(45deg); border-right: 1px solid #F1E2C6; border-bottom: 1px solid #F1E2C6; }
+    body.has-cookie-bar .wa-float { bottom: var(--cookie-h, 140px); }
+    body.has-cookie-bar .wa-balloon { bottom: calc(var(--cookie-h, 140px) + 72px); }
+
+    .cookie-bar { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 65; background: var(--deep); color: #E2E8F0; border-radius: 16px;
+      box-shadow: 0 20px 40px -16px rgba(0,0,0,.5); border: 1px solid rgba(255,138,31,.35); }
+    @media (min-width: 768px) { .cookie-bar { left: 24px; right: auto; max-width: 560px; } }
+
+    /* ==========================================================
+       MENOS MOVIMENTO (prefers-reduced-motion)
+       ========================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+      .reveal, .hero-anim > * { opacity: 1 !important; transform: none !important; }
+      .marquee-track { animation: none !important; flex-wrap: wrap; justify-content: center; width: auto; }
+      .marquee-track [data-dup] { display: none; }
+      .wa-float::before, .float-seal { animation: none !important; }
+      .hero-slide img { transform: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:px-4 focus:py-3 focus:rounded-lg">Pular para o conteúdo</a>
+
+  <!-- ========== 1. HEADER FIXO ========== -->
+  <header id="siteHeader">
+    <div class="container-ns h-full flex items-center justify-between gap-4">
+      <a href="#inicio" id="headerLogo" class="flex items-center shrink-0" aria-label="Next Step: voltar ao início"></a>
+      <nav aria-label="Menu principal" class="hidden xl:block">
+        <ul id="desktopMenu" class="flex items-center gap-6"></ul>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button type="button" id="headerCta" class="btn btn-primary hidden sm:inline-flex" data-quiz data-origem="header"></button>
+        <button type="button" id="menuOpen" class="xl:hidden inline-flex items-center justify-center w-12 h-12 rounded-xl text-ns-navy hover:bg-ns-light" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu lateral do celular -->
+  <div id="mnavOverlay" class="mnav-overlay"></div>
+  <aside id="mobileNav" class="mnav" aria-label="Menu" aria-hidden="true">
+    <div class="flex items-center justify-between px-5 h-20 border-b border-slate-100">
+      <span id="mnavLogo"></span>
+      <button type="button" id="menuClose" class="inline-flex items-center justify-center w-12 h-12 rounded-xl text-ns-navy hover:bg-ns-light" aria-label="Fechar menu">
+        <i data-lucide="x" class="w-7 h-7"></i>
+      </button>
+    </div>
+    <nav class="px-5 py-4 flex-1" aria-label="Menu do celular"><div id="mobileMenu"></div></nav>
+    <div class="p-5 border-t border-slate-100">
+      <button type="button" id="mnavCta" class="btn btn-primary w-full" data-quiz data-origem="menu-celular"></button>
+    </div>
+  </aside>
+
+  <main id="conteudo">
+    <!-- ========== 2. HERO EM CARROSSEL ========== -->
+    <section id="inicio" class="hero" aria-roledescription="carrossel" aria-label="Destaques da Next Step">
+      <h1 class="sr-only" id="heroH1"></h1>
+      <div id="heroSlides"></div>
+      <div class="absolute inset-x-0 bottom-4 md:bottom-8 z-10">
+        <div class="container-ns flex items-center justify-between gap-4">
+          <div id="heroDots" class="flex items-center" role="group" aria-label="Escolher slide"></div>
+          <div class="flex gap-2">
+            <button type="button" class="hero-arrow" id="heroPrev" aria-label="Slide anterior"><i data-lucide="chevron-left"></i></button>
+            <button type="button" class="hero-arrow" id="heroNext" aria-label="Próximo slide"><i data-lucide="chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3. FAIXA "ENCONTRE SUA SOLUÇÃO" ========== -->
+    <section id="encontre" class="bg-ns-navy text-white py-8 md:py-10" aria-label="Encontre sua solução"></section>
+
+    <!-- ========== 4. SOLUÇÕES EM DESTAQUE (Sobre) ========== -->
+    <section id="sobre" class="section bg-white"></section>
+
+    <div class="step-divider" aria-hidden="true" data-divider></div>
+
+    <!-- ========== 5. OS TRÊS SERVIÇOS EM DETALHE ========== -->
+    <section id="cursos" class="section bg-white"></section>
+    <section id="marketing" class="section bg-ns-deep text-slate-200 relative overflow-hidden"></section>
+    <section id="processos" class="section bg-white"></section>
+
+    <!-- ========== 6. FAIXA DE IMPACTO ========== -->
+    <section id="impacto" class="section relative overflow-hidden bg-ns-deep text-white"></section>
+
+    <!-- ========== 7. RESULTADOS REAIS + GALERIA ========== -->
+    <section id="resultados" class="section bg-white"></section>
+    <section id="galeria" class="section bg-ns-light" aria-labelledby="galeriaTitulo"></section>
+
+    <!-- ========== 8. DIAGNÓSTICO GRATUITO (quiz + lead + simulador) ========== -->
+    <section id="diagnostico" class="section bg-ns-deep relative overflow-hidden">
+      <div class="container-ns relative">
+        <div id="diagHead"></div>
+        <div id="quizHome" class="max-w-3xl mx-auto mt-10">
+          <div id="quiz" class="quiz-card" aria-live="polite"></div>
+          <p id="quizAway" class="hidden text-center text-slate-300 py-10">O diagnóstico está aberto na janela à frente.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 9. COMO TRABALHAMOS ========== -->
+    <section id="como-trabalhamos" class="section bg-white"></section>
+
+    <!-- ========== 10. EMPRESAS QUE CONFIAM ========== -->
+    <section id="clientes" class="py-14 bg-ns-light" aria-labelledby="clientesTitulo"></section>
+
+    <!-- ========== 11. DEPOIMENTOS ========== -->
+    <section id="depoimentos" class="section bg-ns-navy text-white dark"></section>
+
+    <!-- ========== 12. PERGUNTAS FREQUENTES ========== -->
+    <section id="faq" class="section bg-white"></section>
+
+    <!-- ========== 13. CONTEÚDOS / BLOG ========== -->
+    <section id="blog" class="section bg-ns-light"></section>
+
+    <!-- ========== 14. CTA FINAL ========== -->
+    <section id="cta-final" class="section relative overflow-hidden bg-ns-navy text-white"></section>
+  </main>
+
+  <!-- ========== 15. RODAPÉ (Contato) ========== -->
+  <footer id="contato" class="bg-ns-deep text-slate-300 pt-16 pb-28 md:pb-12"></footer>
+
+  <!-- ========== MODAL DO QUIZ ========== -->
+  <div id="quizModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quizModalTitle" hidden>
+    <div class="modal-backdrop" data-close-quiz></div>
+    <div class="modal-panel" id="quizPanel">
+      <h2 id="quizModalTitle" class="sr-only">Diagnóstico gratuito</h2>
+      <button type="button" class="absolute right-3 top-3 z-10 w-12 h-12 inline-flex items-center justify-center rounded-full bg-ns-light text-ns-navy hover:bg-ns-gold" data-close-quiz aria-label="Fechar diagnóstico">
+        <i data-lucide="x"></i>
+      </button>
+      <div id="quizModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ========== LIGHTBOX DA GALERIA ========== -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem" hidden>
+    <button type="button" class="lb-btn right-3 top-3" id="lbClose" aria-label="Fechar imagem"><i data-lucide="x"></i></button>
+    <button type="button" class="lb-btn left-3 top-1/2 -translate-y-1/2" id="lbPrev" aria-label="Imagem anterior"><i data-lucide="chevron-left"></i></button>
+    <figure class="flex flex-col items-center gap-3 px-4">
+      <img id="lbImg" src="" alt="">
+      <figcaption id="lbCap" class="text-slate-200 text-center text-sm max-w-xl"></figcaption>
+    </figure>
+    <button type="button" class="lb-btn right-3 top-1/2 -translate-y-1/2" id="lbNext" aria-label="Próxima imagem"><i data-lucide="chevron-right"></i></button>
+  </div>
+
+  <!-- ========== POLÍTICA DE PRIVACIDADE ========== -->
+  <div id="privacyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="privTitle" hidden>
+    <div class="modal-backdrop" data-close-privacy></div>
+    <div class="modal-panel p-6 sm:p-10">
+      <button type="button" class="absolute right-3 top-3 w-12 h-12 inline-flex items-center justify-center rounded-full bg-ns-light text-ns-navy hover:bg-ns-gold" data-close-privacy aria-label="Fechar política de privacidade"><i data-lucide="x"></i></button>
+      <h2 id="privTitle" class="text-2xl font-extrabold text-ns-navy pr-12">Política de Privacidade</h2>
+      <div id="privBody" class="mt-4 space-y-3 text-slate-600"></div>
+    </div>
+  </div>
+
+  <!-- ========== BOTÃO FLUTUANTE + BALÃO ========== -->
+  <div id="waBalloon" class="wa-balloon" role="status">
+    <span id="waBalloonText"></span>
+    <button type="button" id="waBalloonClose" class="absolute right-1 top-1 w-10 h-10 inline-flex items-center justify-center text-slate-400 hover:text-ns-navy" aria-label="Fechar aviso"><i data-lucide="x" class="w-4 h-4"></i></button>
+  </div>
+  <button type="button" id="waFloat" class="wa-float" data-quiz data-origem="botao-flutuante" aria-label="Fazer diagnóstico gratuito e falar com um especialista">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.36 9.36 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.04.72C5.79.72.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.62l6.02-1.58a11.33 11.33 0 0 0 5.42 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02"/></svg>
+  </button>
+
+  <!-- ========== BANNER DE COOKIES (LGPD) ========== -->
+  <div id="cookieBar" class="cookie-bar p-5" role="region" aria-label="Aviso de cookies" hidden>
+    <p id="cookieText" class="text-sm leading-relaxed"></p>
+    <div class="mt-4 flex flex-wrap gap-3">
+      <button type="button" id="cookieAccept" class="btn btn-primary !min-h-[44px] !py-2">Aceitar</button>
+      <button type="button" id="cookieDecline" class="btn btn-outline-light !min-h-[44px] !py-2">Recusar</button>
+    </div>
+  </div>
+
+  <script>
+  /* ============================================================================
+     CONFIG — EDITE AQUI TODOS OS TEXTOS, NÚMEROS, LINKS, IMAGENS E CONTATOS.
+     Tudo marcado com [EDITAR] é fictício e deve ser trocado pelos seus dados reais.
+     ============================================================================ */
+  const CONFIG = {
+
+    /* ---------- Dados da agência ---------- */
+    EMPRESA: {
+      nome: 'Next Step',
+      slogan: 'Sua jornada começa aqui.',
+      frase: 'Ajudamos empresas a dar o próximo passo com equipes preparadas, marketing que vende e processos que funcionam.',
+      cidade: 'Belo Horizonte/MG',
+      endereco: 'Belo Horizonte/MG',
+      email: 'stepnext.soluctions@gmail.com',
+      telefone: '(31) 99820-9953',
+      whatsapp: '5531998209953',                                // só números (55 + DDD + número)
+      redes: {                                                  // link vazio esconde o ícone
+        instagram: 'https://www.instagram.com/nextstepofc/',
+        linkedin:  '',   // [EDITAR] cole aqui o link do LinkedIn
+        youtube:   '',
+        facebook:  ''
+      },
+      siteUrl: 'https://www.seudominio.com.br'                  // [EDITAR] usado nos dados estruturados
+    },
+
+    /* ---------- Integrações ---------- */
+    LEAD_WEBHOOK_URL: '',   // [EDITAR] cole aqui a URL /exec do Google Apps Script (veja apps-script.gs)
+    GA4_ID: '',             // [EDITAR] ex.: 'G-XXXXXXX' (opcional). Só carrega se o visitante aceitar cookies.
+    META_PIXEL_ID: '',      // [EDITAR] ex.: '1234567890' (opcional). Só carrega se o visitante aceitar cookies.
+
+    /* ---------- Imagens ---------- */
+    IMAGENS: {
+      logo: 'imagens/logo.png?v=2',            // logo oficial (fundo branco): só em fundo claro
+      logoClaro: 'imagens/logo-branco.png', // versão branca/transparente para fundos escuros. Vazio = usa o logo em SVG.
+      prova500k: 'imagens/prova-500k-vendas.jpg',
+      provaDestaque: 'imagens/prova-1m-vendas.jpg', // foto da faixa de impacto
+      dashboard: 'imagens/dashboard-vendas.jpg?v=2',
+      // Galeria "Conquistas e bastidores": adicione quantas fotos quiser
+      galeria: [
+        { src: 'imagens/prova-1m-vendas.jpg', alt: 'Placa comemorativa de 1 milhão de reais em vendas recebida em caixa de presente', legenda: 'Marco de R$ 1 milhão em vendas' },
+        { src: 'imagens/prova-500k-vendas.jpg', alt: 'Quadro comemorativo de 500 mil reais em vendas segurado em frente ao setup de trabalho', legenda: 'Marco de R$ 500 mil em vendas' },
+        { src: 'imagens/dashboard-vendas.jpg?v=2', alt: 'Painel de vendas mostrando total de R$ 45.262,88 e vários pagamentos concluídos', legenda: 'Painel real de vendas de um cliente' }
+      ],
+      espacosExtrasGaleria: 0,             // espaços reservados para novas fotos
+      unsplash: (id, w = 1200) => /[\/.]/.test(id) ? id : `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`
+    },
+
+    /* ---------- Menu ---------- */
+    MENU: [
+      { label: 'Início', href: '#inicio' },
+      { label: 'Sobre', href: '#sobre' },
+      { label: 'Cursos', href: '#cursos' },
+      { label: 'Marketing', href: '#marketing' },
+      { label: 'Processos', href: '#processos' },
+      { label: 'Resultados', href: '#resultados' },
+      { label: 'Diagnóstico', href: '#diagnostico' },
+      { label: 'Contato', href: '#contato' }
+    ],
+    BOTAO_HEADER: 'Diagnóstico gratuito',
+
+    /* ---------- 2. Hero (use *palavra* para destacar em dourado) ---------- */
+    HERO: {
+      h1: 'Next Step: cursos de capacitação, marketing e resolução de processos. Sua jornada começa aqui.',
+      autoplayMs: 6500,
+      botaoSaibaMais: 'Quero saber mais',
+      botaoDiagnostico: 'Fazer diagnóstico gratuito',
+      slides: [
+        { servico: 'cursos', alvo: '#cursos', imagem: '1552664730-d307ca884978', alt: 'Equipe reunida em treinamento corporativo com instrutor apresentando no quadro',
+          titulo: 'Equipes preparadas, *resultados maiores.*', subtitulo: 'Treinamentos práticos para equipes e líderes que precisam entregar mais.' },
+        { servico: 'marketing', alvo: '#marketing', imagem: '1460925895917-afdab827c52f', alt: 'Notebook exibindo gráficos de desempenho de campanhas de marketing digital',
+          titulo: 'Marketing que gera *clientes de verdade.*', subtitulo: 'Estratégia, tráfego pago e redes sociais focados em vendas, não em curtidas.' },
+        { servico: 'processos', alvo: '#processos', imagem: '1531403009284-440f080d1e12', alt: 'Profissionais mapeando processos com notas adesivas em um quadro branco',
+          titulo: 'Processos claros, *empresa que cresce.*', subtitulo: 'Diagnóstico, mapeamento e padronização para acabar com retrabalho e desperdício.' }
+      ]
+    },
+
+    /* ---------- 3. Faixa "Encontre sua solução" ---------- */
+    ENCONTRE: {
+      titulo: 'Qual o desafio da sua empresa?',
+      botoes: [
+        { label: 'Capacitar minha equipe', alvo: '#cursos', icone: 'graduation-cap' },
+        { label: 'Vender mais', alvo: '#marketing', icone: 'trending-up' },
+        { label: 'Organizar meus processos', alvo: '#processos', icone: 'workflow' }
+      ]
+    },
+
+    /* ---------- 4. Soluções em destaque ---------- */
+    SOLUCOES: {
+      eyebrow: 'Sobre a Next Step',
+      titulo: 'Soluções em *destaque*',
+      subtitulo: 'Somos uma agência de crescimento empresarial. Unimos capacitação de pessoas, marketing orientado a vendas e organização de processos para que sua empresa evolua um passo de cada vez, com método e resultado medido.',
+      selos: ['Diagnóstico gratuito', 'Atendimento personalizado', 'Turmas in company e online', 'Resultados medidos', 'Suporte pós-projeto'],
+      botao: 'Quero este',
+      cards: [
+        { id: 'trafego', servico: 'marketing', etiqueta: 'Mais procurado', titulo: 'Tráfego pago e performance', imagem: '1551288049-bebda4e38f71', alt: 'Tela com painel de métricas de campanhas de anúncios',
+          beneficios: [{ icone: 'target', texto: 'Anúncios para quem está pronto para comprar' }, { icone: 'bar-chart-3', texto: 'Relatórios claros de custo por cliente' }, { icone: 'trending-up', texto: 'Otimização semanal das campanhas' }] },
+        { id: 'lideranca', servico: 'cursos', etiqueta: 'Turmas abertas', titulo: 'Formação de líderes', imagem: '1517245386807-bb43f82c33c4', alt: 'Grupo de líderes participando de um workshop presencial',
+          beneficios: [{ icone: 'users', texto: 'Líderes que delegam e cobram resultado' }, { icone: 'message-circle', texto: 'Comunicação e feedback na prática' }, { icone: 'award', texto: 'Certificado de conclusão' }] },
+        { id: 'mapeamento', servico: 'processos', etiqueta: 'Novo', titulo: 'Mapeamento e padronização', imagem: '1454165804606-c3d57bc86b40', alt: 'Mesa com fluxogramas e planilhas de mapeamento de processos',
+          beneficios: [{ icone: 'search', texto: 'Diagnóstico de gargalos e desperdícios' }, { icone: 'list-checks', texto: 'Procedimentos padrão (POPs) prontos' }, { icone: 'gauge', texto: 'Indicadores para acompanhar a operação' }] },
+        { id: 'redes', servico: 'marketing', etiqueta: '', titulo: 'Redes sociais e branding', imagem: '1611162617213-7d7a39e9b1d7', alt: 'Celular com ícones de redes sociais em destaque',
+          beneficios: [{ icone: 'sparkles', texto: 'Posicionamento e identidade de marca' }, { icone: 'calendar', texto: 'Calendário de conteúdo estratégico' }, { icone: 'heart', texto: 'Autoridade que vira oportunidade de venda' }] }
+      ]
+    },
+
+    /* ---------- 5. Serviços em detalhe ---------- */
+    SERVICOS: [
+      {
+        id: 'cursos', icone: 'graduation-cap', eyebrow: 'Frente 1 · Capacitação',
+        titulo: 'Cursos de *capacitação*',
+        imagem: '1542744173-8e7e53415bb0', alt: 'Instrutor conduzindo treinamento para equipe em sala de reunião',
+        problema: 'Equipe sem preparo, líderes que vivem apagando incêndio e resultados que dependem de poucas pessoas. Treinamento genérico não muda isso. Sua equipe precisa de método aplicado à realidade da sua empresa.',
+        inclusos: ['Levantamento das necessidades de cada área', 'Conteúdo personalizado para o seu negócio', 'Dinâmicas práticas e estudos de caso reais', 'Material de apoio e certificado', 'Plano de aplicação pós-treinamento'],
+        paraQuem: 'Empresas que querem equipes mais produtivas, líderes mais preparados e menos rotatividade.',
+        formato: 'Presencial, online ao vivo ou in company · de 4h a 40h por programa.',
+        destaque: { numero: '+41%', texto: 'de produtividade média após os programas' }, // [EDITAR]
+        botao: 'Quero resolver isso'
+      },
+      {
+        id: 'marketing', icone: 'megaphone', eyebrow: 'Frente 2 · Marketing',
+        titulo: 'Marketing que *vende*',
+        imagem: '1556761175-5973dc0f32e7', alt: 'Equipe de marketing analisando resultados de campanha em reunião',
+        problema: 'Você posta, impulsiona e investe em anúncios, mas os clientes não chegam com previsibilidade. Sem estratégia, marketing vira custo. Com método, vira a máquina de vendas da empresa.',
+        inclusos: ['Estratégia e posicionamento de marca', 'Gestão de tráfego pago (Meta e Google Ads)', 'Planejamento e produção para redes sociais', 'Branding e identidade visual', 'Relatórios mensais com custo por cliente'],
+        paraQuem: 'Negócios que querem sair da dependência de indicação e ter um fluxo constante de clientes novos.',
+        formato: 'Projeto mensal contínuo · resultados acompanhados semanalmente.',
+        destaque: { numero: '+212%', texto: 'em leads no melhor case dos últimos 6 meses' }, // [EDITAR]
+        botao: 'Quero resolver isso'
+      },
+      {
+        id: 'processos', icone: 'workflow', eyebrow: 'Frente 3 · Processos',
+        titulo: 'Processos que *funcionam*',
+        imagem: '1600880292203-757bb62b4baf', alt: 'Consultores revisando fluxo de processos com gestores da empresa',
+        problema: 'Retrabalho, erros que se repetem, tudo dependendo do dono e a sensação de que o dinheiro escapa em algum lugar. Sem processos claros, a empresa não consegue crescer sem virar um caos.',
+        inclusos: ['Diagnóstico completo da operação', 'Mapeamento dos processos atuais (como é hoje)', 'Redesenho e padronização (como deve ser)', 'Indicadores e rotina de gestão', 'Implantação acompanhada e treinamento do time'],
+        paraQuem: 'Empresas em crescimento que sentem o peso da desorganização e querem ganhar escala sem perder qualidade.',
+        formato: 'Projetos de 30 a 120 dias · presencial ou remoto.',
+        destaque: { numero: '-58%', texto: 'no tempo médio de execução dos processos' }, // [EDITAR]
+        botao: 'Quero resolver isso'
+      }
+    ],
+
+    /* ---------- Catálogo de cursos ---------- */
+    CURSOS_TITULO: 'Catálogo de *cursos*',
+    CURSOS_BOTAO: 'Quero me inscrever',
+    CURSOS: [ // [EDITAR] [LISTA DE CURSOS]
+      { id: 'lideranca', nome: 'Liderança de Alta Performance', descricao: 'Forme líderes que delegam, dão feedback e batem metas com a equipe.', modalidades: ['Presencial', 'In company'], carga: '16h', icone: 'crown' },
+      { id: 'vendas', nome: 'Vendas Consultivas e Negociação', descricao: 'Técnicas para vender valor, contornar objeções e fechar mais.', modalidades: ['Online', 'Presencial'], carga: '12h', icone: 'handshake' },
+      { id: 'atendimento', nome: 'Atendimento que Fideliza', descricao: 'Padrão de atendimento que transforma clientes em promotores.', modalidades: ['In company', 'Online'], carga: '8h', icone: 'smile' },
+      { id: 'produtividade', nome: 'Gestão do Tempo e Produtividade', descricao: 'Organização, prioridades e foco no que gera resultado.', modalidades: ['Online'], carga: '6h', icone: 'timer' },
+      { id: 'comunicacao', nome: 'Comunicação Assertiva para Equipes', descricao: 'Menos ruído, menos conflito e mais alinhamento entre áreas.', modalidades: ['In company'], carga: '8h', icone: 'message-circle' },
+      { id: 'indicadores', nome: 'Gestão por Indicadores (KPIs)', descricao: 'Defina, acompanhe e use indicadores para decidir melhor.', modalidades: ['Online', 'In company'], carga: '10h', icone: 'gauge' }
+    ],
+
+    /* ---------- 6. Faixa de impacto ---------- */
+    IMPACTO: {
+      fundo: '1497366216548-37526070297c',
+      eyebrow: 'Prova de resultado',
+      fraseAntes: 'Já ajudamos',
+      empresas: 70,                        // [EDITAR] [EMPRESAS ATENDIDAS]
+      fraseDepois: 'empresas a crescer',
+      texto: 'Cada número abaixo é o resultado de empresas que decidiram dar o próximo passo com método, acompanhamento e foco em resultado.',
+      selo: '+R$ 1 milhão em vendas geradas',
+      numeros: [
+        { valor: 100, prefixo: '+', sufixo: ' mil', label: 'vendas feitas no digital' },
+        { valor: 37, prefixo: '+', sufixo: '%', label: 'de aumento médio em vendas' },   // [EDITAR]
+        { valor: 98, prefixo: '', sufixo: '%', label: 'de satisfação dos clientes' }    // [EDITAR]
+      ]
+    },
+
+    /* ---------- 7. Resultados reais (gráficos) ---------- */
+    RESULTADOS: {
+      eyebrow: 'Resultados comprovados',
+      titulo: 'Resultados *reais*',
+      subtitulo: 'Veja o antes e depois de clientes atendidos em cada frente.',
+      legendaAntes: 'Antes da Next Step',
+      legendaDepois: 'Com a Next Step',
+      legendaPrint: 'Painel real de vendas de um cliente',
+      seloPrint: 'Print real de cliente',
+      abas: {
+        marketing: { label: 'Marketing', icone: 'megaphone',
+          meses: ['Mês 1', 'Mês 2', 'Mês 3', 'Mês 4', 'Mês 5', 'Mês 6'],
+          antes: [42, 45, 40, 48, 44, 46], depois: [58, 74, 96, 110, 124, 131], // [EDITAR] leads por mês
+          caso: { cliente: 'E-commerce de moda', desafio: 'Dependia de indicações e não tinha previsibilidade de vendas.', feito: 'Estratégia de conteúdo, funil de tráfego pago e otimização da página de vendas.', resultado: '+212% em leads em 6 meses' } },
+        processos: { label: 'Processos', icone: 'workflow',
+          etapas: ['Pedido', 'Produção', 'Expedição', 'Faturamento'],
+          antes: [48, 72, 24, 16], depois: [20, 40, 10, 4], // [EDITAR] horas
+          caso: { cliente: 'Indústria de alimentos', desafio: 'Pedidos atrasados, retrabalho na produção e faturamento manual.', feito: 'Mapeamento ponta a ponta, padronização com POPs e painel de indicadores.', resultado: '-58% no tempo médio de execução' } },
+        capacitacao: { label: 'Capacitação', icone: 'graduation-cap',
+          avaliacao: { labels: ['Excelente', 'Bom', 'Regular'], valores: [82, 15, 3] }, // [EDITAR] % das avaliações
+          produtividade: { labels: ['Metas batidas', 'Engajamento', 'Produtividade'], antes: [54, 61, 58], depois: [86, 89, 84] }, // [EDITAR] %
+          caso: { cliente: 'Rede de clínicas', desafio: 'Alta rotatividade e líderes recém-promovidos sem preparo.', feito: 'Programa de liderança de 16h e trilha de atendimento para a equipe.', resultado: '+41% de produtividade da equipe' } }
+      }
+    },
+
+    GALERIA: { eyebrow: 'Por trás dos números', titulo: 'Conquistas e *bastidores*', subtitulo: 'Momentos reais da nossa jornada com clientes. Clique para ampliar.', placeholder: 'Espaço para nova foto' },
+
+    /* ---------- 8. Diagnóstico (quiz + lead + simulador) ---------- */
+    QUIZ: {
+      eyebrow: 'Diagnóstico gratuito',
+      titulo: 'Descubra o *próximo passo* da sua empresa',
+      subtitulo: 'Responda 7 perguntas rápidas e receba um diagnóstico personalizado, com projeção de resultado.',
+      intro: {
+        titulo: 'Diagnóstico gratuito em 1 minuto',
+        texto: 'Entenda o que está travando o crescimento da sua empresa e qual é o caminho mais rápido para destravar.',
+        itens: ['7 perguntas rápidas', 'Resultado na hora', 'Projeção de ganho em 6 meses'],
+        botao: 'Comece sua jornada'
+      },
+      perguntas: [
+        { id: 'desafio', titulo: 'Qual é o maior desafio da sua empresa hoje?', opcoes: [
+          { valor: 'vendas', label: 'Vender mais', icone: 'trending-up', resumo: 'vender mais' },
+          { valor: 'processos', label: 'Organizar processos', icone: 'workflow', resumo: 'organizar os processos' },
+          { valor: 'equipe', label: 'Capacitar a equipe', icone: 'graduation-cap', resumo: 'capacitar a equipe' },
+          { valor: 'diagnostico', label: 'Não sei, quero um diagnóstico', icone: 'circle-help', resumo: 'descobrir o que trava o crescimento' } ] },
+        { id: 'situacao', titulo: 'Qual destas situações mais parece com a sua?', opcoesPor: {
+          vendas: [
+            { valor: 'poucos_clientes', label: 'Poucos clientes novos', icone: 'user-x', servico: 'marketing' },
+            { valor: 'indicacao', label: 'Dependo de indicação', icone: 'repeat', servico: 'marketing' },
+            { valor: 'anuncios_sem_retorno', label: 'Invisto em anúncios e não vejo retorno', icone: 'coins', servico: 'marketing' } ],
+          processos: [
+            { valor: 'retrabalho', label: 'Retrabalho e erros', icone: 'triangle-alert', servico: 'processos' },
+            { valor: 'depende_dono', label: 'Tudo depende do dono', icone: 'user', servico: 'processos' },
+            { valor: 'perde_dinheiro', label: 'Não sei onde perco dinheiro', icone: 'search', servico: 'processos' } ],
+          equipe: [
+            { valor: 'desmotivada', label: 'Equipe desmotivada', icone: 'battery-low', servico: 'cursos' },
+            { valor: 'rotatividade', label: 'Alta rotatividade', icone: 'refresh-cw', servico: 'cursos' },
+            { valor: 'lideres', label: 'Líderes sem preparo', icone: 'users', servico: 'cursos' } ],
+          diagnostico: [
+            { valor: 'faturamento_parado', label: 'O faturamento parou de crescer', icone: 'trending-down', servico: 'marketing' },
+            { valor: 'sem_tempo', label: 'Vivo apagando incêndio e não tenho tempo', icone: 'flame', servico: 'processos' },
+            { valor: 'time_nao_entrega', label: 'O time não entrega o que eu preciso', icone: 'users', servico: 'cursos' } ]
+        } },
+        { id: 'tempo', titulo: 'Há quanto tempo esse problema existe?', opcoes: [
+          { valor: 'menos_3m', label: 'Menos de 3 meses', icone: 'clock', resumo: 'menos de 3 meses' },
+          { valor: '3_12m', label: '3 a 12 meses', icone: 'calendar', resumo: 'entre 3 e 12 meses' },
+          { valor: 'mais_1a', label: 'Mais de 1 ano', icone: 'hourglass', resumo: 'mais de 1 ano' } ] },
+        { id: 'porte', titulo: 'Quantas pessoas trabalham na empresa?', opcoes: [
+          { valor: 'so_eu', label: 'Só eu', icone: 'user', resumo: 'uma operação enxuta, em que tudo passa por você' },
+          { valor: '2_10', label: '2 a 10', icone: 'users', resumo: 'uma equipe pequena, de 2 a 10 pessoas' },
+          { valor: '11_50', label: '11 a 50', icone: 'building', resumo: 'uma equipe de 11 a 50 pessoas' },
+          { valor: 'mais_50', label: 'Mais de 50', icone: 'building-2', resumo: 'uma estrutura com mais de 50 pessoas' } ] },
+        { id: 'faturamento', titulo: 'Qual o faturamento mensal aproximado?', opcoes: [
+          { valor: 'ate_20k', label: 'Até R$ 20 mil', icone: 'wallet' },
+          { valor: '20k_100k', label: 'R$ 20 a 100 mil', icone: 'wallet' },
+          { valor: '100k_500k', label: 'R$ 100 a 500 mil', icone: 'banknote' },
+          { valor: 'acima_500k', label: 'Acima de R$ 500 mil', icone: 'landmark' },
+          { valor: 'nao_informar', label: 'Prefiro não informar', icone: 'eye-off' } ] },
+        { id: 'tentativas', titulo: 'Já tentou resolver isso antes?', opcoes: [
+          { valor: 'nunca', label: 'Nunca tentei', icone: 'sprout', resumo: 'Como vocês ainda não atacaram o problema de forma estruturada, há ganhos rápidos a capturar logo nas primeiras semanas.' },
+          { valor: 'sozinho', label: 'Tentei sozinho', icone: 'user-check', resumo: 'Vocês já tentaram resolver por conta própria, o que mostra disposição. Falta um método testado para chegar ao resultado.' },
+          { valor: 'contratou', label: 'Já contratei alguém e não deu certo', icone: 'thumbs-down', resumo: 'Uma tentativa anterior não funcionou, por isso o plano precisa começar por um diagnóstico profundo e metas medidas desde o primeiro mês.' } ] },
+        { id: 'prazo', titulo: 'Para quando você quer resolver?', opcoes: [
+          { valor: 'urgente', label: 'Urgente, este mês', icone: 'zap', resumo: 'A urgência é alta, então a prioridade é atacar primeiro o que traz resultado em até 30 dias.' },
+          { valor: '3_meses', label: 'Nos próximos 3 meses', icone: 'calendar-days', resumo: 'Com um horizonte de 3 meses, dá para estruturar a solução com calma e resultados consistentes.' },
+          { valor: 'pesquisando', label: 'Só estou pesquisando', icone: 'book-open', resumo: 'Você está na fase de pesquisa, e este diagnóstico já mostra por onde começar quando decidir agir.' } ] }
+      ],
+      form: {
+        titulo: 'Seu diagnóstico está pronto! Para onde enviamos?',
+        texto: 'Preencha seus dados para ver o resultado completo agora mesmo.',
+        campos: {
+          nome: 'Nome', empresa: 'Empresa', cargo: 'Cargo', whatsapp: 'WhatsApp', email: 'E-mail', cidade: 'Cidade/UF', site: 'Instagram ou site da empresa (opcional)'
+        },
+        lgpd: 'Aceito receber contato da Next Step e concordo com a <button type="button" class="underline font-semibold text-ns-navy" data-open-privacy>Política de Privacidade</button>.',
+        botao: 'Ver meu diagnóstico',
+        carregando: 'Gerando seu diagnóstico...',
+        erros: {
+          nome: 'Informe seu nome completo.', empresa: 'Informe o nome da empresa.', whatsapp: 'Informe um WhatsApp válido com DDD.',
+          email: 'Informe um e-mail válido.', lgpd: 'Para continuar, aceite os termos.'
+        }
+      },
+      resultado: {
+        titulo: '{nome}, este é o diagnóstico da {empresa}',
+        proximoPasso: 'Seu próximo passo é...',
+        projecaoTitulo: 'Projeção de faturamento em 6 meses',
+        semAcao: 'Sem ação', comNextStep: 'Com a Next Step',
+        botaoWhats: 'Falar com um especialista agora',
+        aviso: 'Estimativa ilustrativa baseada em médias de projetos anteriores.',
+        refazer: 'Refazer diagnóstico',
+        mensagemWhats: 'Olá! Sou {nome}, da {empresa}. Acabei de fazer o diagnóstico no site da Next Step.\n\nProblema: {problema}.\nServiço recomendado: {servico}.\n\nQuero falar com um especialista.'
+      }
+    },
+
+    /* Pontuação do lead (vai só para a planilha). Máximo = 100. */
+    PONTUACAO: {
+      prazo: { urgente: 35, '3_meses': 20, pesquisando: 5 },
+      faturamento: { ate_20k: 5, '20k_100k': 15, '100k_500k': 25, acima_500k: 30, nao_informar: 10 },
+      porte: { so_eu: 5, '2_10': 10, '11_50': 17, mais_50: 20 },
+      tentativas: { nunca: 8, sozinho: 12, contratou: 15 },
+      faixas: { quente: 70, morno: 45 } // >= 70 Quente · >= 45 Morno · abaixo disso Frio
+    },
+
+    /* Simulador: fórmulas simples (edite à vontade) */
+    SIMULADOR: {
+      faturamentoBase: { ate_20k: 15000, '20k_100k': 60000, '100k_500k': 250000, acima_500k: 700000, nao_informar: 60000 }, // valor médio por faixa (R$/mês)
+      ganhoPorServico: { marketing: 0.32, processos: 0.22, cursos: 0.18 }, // ganho no 6º mês
+      variacaoSemAcao: -0.012,  // variação mensal sem ação (ex.: -1,2% ao mês)
+      bonusUrgencia: { urgente: 0.03, '3_meses': 0.01, pesquisando: 0 }
+    },
+
+    /* Serviço recomendado no resultado */
+    RECOMENDACOES: {
+      marketing: { nome: 'Marketing que vende', icone: 'megaphone', descricao: 'Estratégia, tráfego pago e redes sociais para gerar um fluxo previsível de clientes.',
+        passos: ['Reunião de diagnóstico de marketing (gratuita, 30 min)', 'Plano de aquisição de clientes com metas mensais', 'Campanhas no ar e relatórios semanais de resultado'],
+        depoimento: { texto: 'Em 4 meses saímos da dependência de indicação. Hoje sabemos quanto custa cada cliente novo.', nome: 'Carla Mendes', cargo: 'Sócia, Loja Bella Moda' } },
+      processos: { nome: 'Resolução de processos', icone: 'workflow', descricao: 'Diagnóstico, mapeamento e padronização para acabar com retrabalho e desperdício.',
+        passos: ['Visita de diagnóstico da operação', 'Mapa dos gargalos com prioridades e ganhos estimados', 'Padronização, indicadores e implantação acompanhada'],
+        depoimento: { texto: 'A empresa parou de depender de mim para tudo. Reduzimos erros e ganhamos tempo para crescer.', nome: 'Roberto Lima', cargo: 'Diretor, Lima Alimentos' } },
+      cursos: { nome: 'Programa de capacitação', icone: 'graduation-cap', descricao: 'Treinamentos práticos e personalizados para equipes e líderes.',
+        passos: ['Levantamento das necessidades da equipe', 'Trilha de cursos sob medida (presencial, online ou in company)', 'Aplicação prática e medição de resultados'],
+        depoimento: { texto: 'Nossos líderes mudaram a forma de conduzir a equipe. A rotatividade caiu pela metade.', nome: 'Juliana Prado', cargo: 'RH, Rede Vida Clínicas' } }
+    },
+
+    /* ---------- 9. Como trabalhamos ---------- */
+    TIMELINE: {
+      eyebrow: 'Nossa jornada com você',
+      titulo: 'Como *trabalhamos*',
+      subtitulo: 'Quatro passos claros, do diagnóstico ao resultado medido.',
+      etapas: [
+        { icone: 'search', titulo: 'Diagnóstico', texto: 'Entendemos onde sua empresa está hoje e o que trava o crescimento.' },
+        { icone: 'map', titulo: 'Plano de ação', texto: 'Definimos prioridades, metas e o caminho mais rápido até o resultado.' },
+        { icone: 'rocket', titulo: 'Execução', texto: 'Colocamos o plano em prática junto com sua equipe, sem enrolação.' },
+        { icone: 'line-chart', titulo: 'Acompanhamento de resultados', texto: 'Medimos, ajustamos e mostramos a evolução em números.' }
+      ]
+    },
+
+    /* ---------- 10. Clientes (troque por logos reais quando tiver) ---------- */
+    CLIENTES: {
+      titulo: 'Empresas que *confiam* em nós',
+      lista: [ // [EDITAR] nomes fictícios. Pode usar { nome, logo: 'imagens/cliente.png' }
+        { nome: 'Grupo Alvorada', icone: 'sunrise' }, { nome: 'Vértice Engenharia', icone: 'triangle' }, { nome: 'Clínica Vida+', icone: 'heart-pulse' },
+        { nome: 'Mercado Bom Preço', icone: 'shopping-cart' }, { nome: 'Atlas Logística', icone: 'truck' }, { nome: 'Lumen Educação', icone: 'lightbulb' },
+        { nome: 'Sabor da Terra', icone: 'leaf' }, { nome: 'Prime Imóveis', icone: 'home' }
+      ]
+    },
+
+    /* ---------- 11. Depoimentos ---------- */
+    DEPOIMENTOS: {
+      eyebrow: 'Quem já deu o próximo passo',
+      titulo: 'O que dizem nossos *clientes*',
+      lista: [ // [EDITAR] depoimentos fictícios
+        { nome: 'Carla Mendes', cargo: 'Sócia-diretora', empresa: 'Bella Moda', foto: '1494790108377-be9c29b29330', estrelas: 5, texto: 'Antes vivíamos de indicação. Com a estratégia de tráfego da Next Step, triplicamos os contatos em seis meses e hoje temos previsibilidade.' },
+        { nome: 'Roberto Lima', cargo: 'Diretor de operações', empresa: 'Lima Alimentos', foto: '1500648767791-00dcc994a43e', estrelas: 5, texto: 'O mapeamento de processos mostrou onde perdíamos dinheiro. Reduzimos o tempo de pedido até a entrega pela metade.' },
+        { nome: 'Juliana Prado', cargo: 'Gerente de RH', empresa: 'Rede Vida Clínicas', foto: '1438761681033-6461ffad8d80', estrelas: 5, texto: 'O curso de liderança foi um divisor de águas. Os gestores passaram a dar feedback e a rotatividade caiu muito.' },
+        { nome: 'Marcos Andrade', cargo: 'CEO', empresa: 'Atlas Logística', foto: '1472099645785-5658abf4ff4e', estrelas: 5, texto: 'Profissionais sérios, que entregam o que prometem. O diagnóstico inicial já valeu o investimento.' }
+      ]
+    },
+
+    /* ---------- 12. FAQ ---------- */
+    FAQ: {
+      eyebrow: 'Tire suas dúvidas',
+      titulo: 'Perguntas *frequentes*',
+      lista: [
+        { p: 'Quanto custa contratar a Next Step?', r: 'O investimento depende do tamanho da empresa e do que precisa ser feito. Tudo começa com o diagnóstico gratuito e, a partir dele, montamos uma proposta sob medida, para que você pague só pelo que precisa.' },
+        { p: 'Em quanto tempo vejo resultado?', r: 'Em marketing, os primeiros resultados costumam aparecer entre 30 e 60 dias. Em processos, os ganhos rápidos surgem já no primeiro mês. Nos cursos, a aplicação começa logo após o treinamento, com acompanhamento.' },
+        { p: 'Vocês atendem pequenas empresas?', r: 'Sim. Atendemos desde negócios com poucos colaboradores até empresas com centenas de pessoas. O plano é ajustado ao seu momento e ao seu orçamento.' },
+        { p: 'O atendimento é online ou presencial?', r: 'Os dois. Temos turmas online ao vivo, turmas presenciais e programas in company. Projetos de marketing e processos podem ser 100% remotos ou com visitas presenciais.' },
+        { p: 'Os cursos emitem certificado?', r: 'Sim. Todos os participantes que concluem a carga horária recebem certificado digital da Next Step.' },
+        { p: 'Como funciona o diagnóstico gratuito?', r: 'Você responde 7 perguntas rápidas aqui no site e recebe na hora um diagnóstico com projeção de resultado. Depois, se quiser, um especialista aprofunda a análise com você, sem compromisso.' },
+        { p: 'Qual a região de atendimento?', r: 'Estamos em Belo Horizonte/MG e atendemos presencialmente em BH e região. No formato online, atendemos empresas de todo o Brasil.' },
+        { p: 'Quais as formas de pagamento?', r: 'As formas e condições de pagamento são combinadas na proposta, de acordo com o serviço contratado. Fale com a gente depois do diagnóstico para ver a melhor opção para a sua empresa.' }
+      ]
+    },
+
+    /* ---------- 13. Blog ---------- */
+    BLOG: {
+      eyebrow: 'Conteúdos',
+      titulo: 'Aprenda com a *Next Step*',
+      lerMais: 'Ler mais',
+      posts: [ // [EDITAR] links dos artigos
+        { categoria: 'Processos', titulo: '5 sinais de que seus processos estão custando caro', imagem: '1553877522-43269d4ea984', alt: 'Pessoa analisando fluxograma de processos em um quadro', href: '#' },
+        { categoria: 'Marketing', titulo: 'Tráfego pago: por que você investe e não vende?', imagem: '1432888498266-38ffec3eaf0a', alt: 'Mesa de trabalho com notebook aberto em campanha de marketing digital', href: '#' },
+        { categoria: 'Capacitação', titulo: 'Como formar líderes que não dependem do dono', imagem: '1522071820081-009f0129c71c', alt: 'Equipe colaborando em torno de uma mesa com notebooks', href: '#' }
+      ]
+    },
+
+    /* ---------- 14. CTA final ---------- */
+    CTA_FINAL: {
+      fundo: '1556761175-b413da4baf72',
+      titulo: 'Pronto para destravar o *crescimento* da sua empresa?',
+      subtitulo: 'Responda 7 perguntas rápidas e receba um diagnóstico gratuito',
+      botao: 'Fazer meu diagnóstico'
+    },
+
+    /* ---------- 15. Rodapé ---------- */
+    RODAPE: {
+      linksTitulo: 'Links rápidos', servicosTitulo: 'Serviços', contatoTitulo: 'Contato',
+      servicos: [{ label: 'Cursos de capacitação', href: '#cursos' }, { label: 'Marketing e tráfego pago', href: '#marketing' }, { label: 'Resolução de processos', href: '#processos' }, { label: 'Diagnóstico gratuito', href: '#diagnostico' }],
+      privacidade: 'Política de Privacidade',
+      copyright: 'Next Step. Todos os direitos reservados.'
+    },
+
+    /* ---------- Botão flutuante e cookies ---------- */
+    FLUTUANTE: { balao: 'Diagnóstico grátis em 1 minuto!', atrasoMs: 5000 },
+    COOKIES: { texto: 'Usamos cookies para melhorar sua experiência e medir o desempenho do site, conforme a LGPD. Você pode aceitar ou recusar.' },
+
+    PRIVACIDADE: [
+      'A Next Step respeita a sua privacidade e trata os seus dados pessoais de acordo com a Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018).',
+      '<strong>Quem é o responsável:</strong> Next Step, com sede em Belo Horizonte/MG. Para qualquer assunto sobre os seus dados, fale com a gente pelo e-mail stepnext.soluctions@gmail.com.',
+      '<strong>Quais dados coletamos:</strong> nome, empresa, cargo, WhatsApp, e-mail, cidade/UF, Instagram ou site e as respostas do diagnóstico, informados voluntariamente por você. Também registramos dados técnicos do envio: data e hora, página de origem, parâmetros de campanha (UTM), tipo de dispositivo e navegador.',
+      '<strong>Para que usamos:</strong> gerar o seu diagnóstico, entrar em contato sobre os nossos serviços, preparar propostas e melhorar o nosso atendimento. Não vendemos os seus dados.',
+      '<strong>Base legal:</strong> o seu consentimento, dado ao marcar a caixa do formulário, e a realização de procedimentos preliminares a um contrato que você solicitou (art. 7º, incisos I e V, da LGPD).',
+      '<strong>Com quem compartilhamos:</strong> os dados do formulário ficam guardados em uma planilha Google (Google Workspace), usada apenas pela nossa equipe. Ferramentas de medição, como Google Analytics e Meta Pixel, só são ativadas se você aceitar os cookies.',
+      '<strong>Cookies e armazenamento no navegador:</strong> usamos cookies de medição apenas com a sua autorização no aviso de cookies. O site também guarda no seu navegador o andamento do diagnóstico e uma cópia do formulário enviado, para reenviar caso a conexão falhe.',
+      '<strong>Por quanto tempo guardamos:</strong> mantemos os dados pelo tempo necessário para as finalidades acima ou até você pedir a exclusão, respeitando obrigações legais.',
+      '<strong>Seus direitos:</strong> você pode pedir a confirmação, o acesso, a correção, a exclusão ou a portabilidade dos seus dados e revogar o consentimento a qualquer momento pelo e-mail stepnext.soluctions@gmail.com. Você também pode apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).',
+      '<strong>Segurança:</strong> adotamos medidas técnicas e administrativas para proteger os seus dados contra acessos não autorizados, perda ou uso indevido.',
+      '<em>Última atualização: outubro de 2026.</em>'
+    ]
+  };
+
+  /* ============================================================================
+     UTILITÁRIOS
+     ============================================================================ */
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const IMG = CONFIG.IMAGENS.unsplash;
+  const escapeHTML = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  // *palavra* vira destaque dourado
+  const hl = (txt, dark = false) => escapeHTML(txt).replace(/\*(.+?)\*/g, `<span class="${dark ? 'gold-text' : 'gold-text-light'}">$1</span>`);
+  const plain = txt => String(txt).replace(/\*/g, '');
+  const brl = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(v);
+  const num = v => new Intl.NumberFormat('pt-BR').format(v);
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const icons = () => { if (window.lucide) window.lucide.createIcons(); };
+  const store = {
+    get(k, s = 'local') { try { return JSON.parse(window[s + 'Storage'].getItem(k)); } catch (e) { return null; } },
+    set(k, v, s = 'local') { try { window[s + 'Storage'].setItem(k, JSON.stringify(v)); } catch (e) {} },
+    del(k, s = 'local') { try { window[s + 'Storage'].removeItem(k); } catch (e) {} }
+  };
+
+  /* Símbolo do logo (N + seta) em SVG. nColor muda conforme o fundo. */
+  let svgId = 0;
+  const markSVG = (size = 40, nColor = '#111111') => {
+    const id = 'nsg' + (++svgId);
+    return `<svg width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8A1F"/><stop offset="1" stop-color="#EF6C22"/></linearGradient></defs><path d="M6 58V18h14l24 24V30h14v28H44L20 34v24z" fill="${nColor}"/><path d="M36 26h8v-9l16-13v26z" fill="url(#${id})"/></svg>`;
+  };
+  /* Versão em texto do logo para fundos escuros */
+  const logoDark = (big = false) => CONFIG.IMAGENS.logoClaro
+    ? `<img src="${CONFIG.IMAGENS.logoClaro}" alt="Next Step" class="${big ? 'h-16' : 'h-12'} w-auto" width="562" height="174" loading="lazy">`
+    : `<span class="inline-flex items-center gap-2">${markSVG(big ? 48 : 38, '#FFFFFF')}<span class="flex flex-col leading-none"><span class="font-display font-extrabold text-white ${big ? 'text-3xl' : 'text-2xl'}">${escapeHTML(CONFIG.EMPRESA.nome)}</span>${big ? `<span class="text-xs text-slate-300 mt-1.5 pt-1.5 border-t border-white/25">${escapeHTML(CONFIG.EMPRESA.slogan)}</span>` : ''}</span></span>`;
+
+  const STEP_ICON = `<svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 15h6v-5h6V5h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 1H20v4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const DIVIDER_SVG = `<svg viewBox="0 0 420 28" fill="none" preserveAspectRatio="xMidYMid meet"><path d="M0 24h170v-7h20v-7h20V3h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M216 3h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M234 24h186" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".5"/></svg>`;
+
+  const heading = ({ eyebrow, titulo, subtitulo, dark = false, center = true, id = '' }) => `
+    <div class="${center ? 'text-center mx-auto' : ''} max-w-3xl reveal">
+      ${eyebrow ? `<p class="eyebrow ${dark ? 'eyebrow-dark' : ''}">${STEP_ICON}<span>${escapeHTML(eyebrow)}</span></p>` : ''}
+      <h2 ${id ? `id="${id}"` : ''} class="h2 ${dark ? 'text-white' : 'text-ns-navy'}">${hl(titulo, dark)}</h2>
+      ${subtitulo ? `<p class="lead ${dark ? 'text-slate-300' : 'text-slate-600'}">${escapeHTML(subtitulo)}</p>` : ''}
+    </div>`;
+
+  /* Botão que abre o quiz (todo contato passa pelo quiz) */
+  const quizBtn = ({ label, servico = '', curso = '', origem = '', cls = 'btn btn-primary', icone = 'arrow-right' }) =>
+    `<button type="button" class="${cls}" data-quiz data-quiz-servico="${servico}" data-quiz-curso="${curso}" data-origem="${origem}">${escapeHTML(label)}${icone ? ` <i data-lucide="${icone}" class="w-5 h-5"></i>` : ''}</button>`;
+
+  /* Rastreamento de UTM (guardado na sessão) */
+  const UTM = (() => {
+    const p = new URLSearchParams(location.search);
+    const saved = store.get('ns_utm', 'session') || {};
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(k => { if (p.get(k)) saved[k] = p.get(k); });
+    store.set('ns_utm', saved, 'session');
+    return saved;
+  })();
+
+  /* ============================================================================
+     1. HEADER + MENU
+     ============================================================================ */
+  function renderHeader() {
+    $('#headerLogo').innerHTML = `<img src="${CONFIG.IMAGENS.logo}" alt="Next Step: Sua jornada começa aqui." class="logo-img" width="635" height="300">`;
+    $('#mnavLogo').innerHTML = `<img src="${CONFIG.IMAGENS.logo}" alt="Next Step" class="h-14 w-auto" width="635" height="300">`;
+    $('#desktopMenu').innerHTML = CONFIG.MENU.map(m => `<li><a href="${m.href}" class="nav-link link-gold" data-nav>${escapeHTML(m.label)}</a></li>`).join('');
+    $('#mobileMenu').innerHTML = CONFIG.MENU.map(m => `<a href="${m.href}" class="mnav-link" data-nav data-mnav-link>${escapeHTML(m.label)}<i data-lucide="chevron-right" class="w-5 h-5 text-ns-gold"></i></a>`).join('');
+    $('#headerCta').innerHTML = `${escapeHTML(CONFIG.BOTAO_HEADER)}`;
+    $('#mnavCta').innerHTML = `${escapeHTML(CONFIG.BOTAO_HEADER)} <i data-lucide="arrow-right" class="w-5 h-5"></i>`;
+  }
+
+  function initHeader() {
+    const header = $('#siteHeader');
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Menu hambúrguer
+    const nav = $('#mobileNav'), overlay = $('#mnavOverlay'), btnOpen = $('#menuOpen');
+    const open = () => { nav.classList.add('is-open'); overlay.classList.add('is-open'); nav.setAttribute('aria-hidden', 'false'); btnOpen.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; setTimeout(() => $('#menuClose').focus(), 50); };
+    const close = () => { nav.classList.remove('is-open'); overlay.classList.remove('is-open'); nav.setAttribute('aria-hidden', 'true'); btnOpen.setAttribute('aria-expanded', 'false'); document.documentElement.style.overflow = ''; };
+    btnOpen.addEventListener('click', open);
+    $('#menuClose').addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    nav.addEventListener('click', e => { if (e.target.closest('[data-mnav-link], [data-quiz]')) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('is-open')) { close(); btnOpen.focus(); } });
+    window.closeMobileNav = close;
+
+    // Destaque do item ativo conforme a seção visível
+    const links = $$('[data-nav]');
+    const ids = CONFIG.MENU.map(m => m.href.slice(1));
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          links.forEach(l => {
+            const on = l.getAttribute('href') === '#' + en.target.id;
+            l.classList.toggle('is-active', on);
+            if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  /* ============================================================================
+     2. HERO EM CARROSSEL
+     ============================================================================ */
+  function renderHero() {
+    const H = CONFIG.HERO;
+    $('#heroH1').textContent = H.h1;
+    $('#heroSlides').innerHTML = H.slides.map((s, i) => `
+      <div class="hero-slide ${i === 0 ? 'is-active' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} de ${H.slides.length}" ${i ? 'aria-hidden="true"' : ''}>
+        <img src="${IMG(s.imagem, 1920)}" srcset="${IMG(s.imagem, 768)} 768w, ${IMG(s.imagem, 1280)} 1280w, ${IMG(s.imagem, 1920)} 1920w" sizes="100vw"
+             alt="${escapeHTML(s.alt)}" ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} width="1920" height="1080">
+        <div class="overlay"></div>
+        <div class="relative h-full container-ns flex items-center">
+          <div class="hero-anim max-w-2xl pb-16">
+            <p class="eyebrow eyebrow-dark" style="--i:0">${STEP_ICON}<span>${escapeHTML(CONFIG.EMPRESA.nome)} · ${escapeHTML(CONFIG.EMPRESA.slogan)}</span></p>
+            <h2 class="hero-title" style="--i:1">${hl(s.titulo, true)}</h2>
+            <p class="mt-5 text-lg md:text-xl text-slate-200 max-w-xl" style="--i:2">${escapeHTML(s.subtitulo)}</p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3" style="--i:3">
+              <a href="${s.alvo}" class="btn btn-outline-light" ${i ? 'tabindex="-1"' : ''}>${escapeHTML(H.botaoSaibaMais)}</a>
+              ${quizBtn({ label: H.botaoDiagnostico, servico: s.servico, origem: 'hero-slide-' + (i + 1) }).replace('<button', i ? '<button tabindex="-1"' : '<button')}
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+    $('#heroDots').innerHTML = H.slides.map((s, i) => `<button type="button" class="hero-dot" aria-label="Ir para o slide ${i + 1}" aria-current="${i === 0}"><span></span></button>`).join('');
+  }
+
+  function initHero() {
+    const slides = $$('.hero-slide'), dots = $$('.hero-dot'), hero = $('#inicio');
+    let cur = 0, timer = null;
+    const go = n => {
+      cur = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        const on = i === cur;
+        s.classList.toggle('is-active', on);
+        s.setAttribute('aria-hidden', on ? 'false' : 'true');
+        $$('a, button', s).forEach(el => on ? el.removeAttribute('tabindex') : el.setAttribute('tabindex', '-1'));
+      });
+      dots.forEach((d, i) => d.setAttribute('aria-current', i === cur));
+    };
+    const start = () => { if (REDUCED) return; stop(); timer = setInterval(() => go(cur + 1), CONFIG.HERO.autoplayMs); };
+    const stop = () => clearInterval(timer);
+    $('#heroNext').addEventListener('click', () => { go(cur + 1); start(); });
+    $('#heroPrev').addEventListener('click', () => { go(cur - 1); start(); });
+    dots.forEach((d, i) => d.addEventListener('click', () => { go(i); start(); }));
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+    hero.addEventListener('focusin', stop);
+    // Swipe no celular
+    let x0 = null, y0 = null;
+    hero.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; stop(); }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) go(cur + (dx < 0 ? 1 : -1));
+      x0 = null; start();
+    });
+    start();
+  }
+
+  /* ============================================================================
+     3. FAIXA "ENCONTRE SUA SOLUÇÃO"
+     ============================================================================ */
+  function renderEncontre() {
+    const E = CONFIG.ENCONTRE;
+    $('#encontre').innerHTML = `
+      <div class="container-ns flex flex-col lg:flex-row items-center justify-between gap-5">
+        <h2 class="font-display font-extrabold text-xl md:text-2xl text-white text-center lg:text-left">${escapeHTML(E.titulo)}</h2>
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 w-full lg:w-auto">
+          ${E.botoes.map(b => `<a href="${b.alvo}" class="btn bg-white/10 border border-white/25 text-white hover:bg-ns-gold hover:text-ns-deep hover:border-ns-gold"><i data-lucide="${b.icone}" class="w-5 h-5"></i>${escapeHTML(b.label)}</a>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  /* ============================================================================
+     4. SOLUÇÕES EM DESTAQUE
+     ============================================================================ */
+  function renderSolucoes() {
+    const S = CONFIG.SOLUCOES;
+    $('#sobre').innerHTML = `
+      <div class="container-ns">
+        ${heading({ eyebrow: S.eyebrow, titulo: S.titulo, subtitulo: S.subtitulo })}
+        <ul class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3">
+          ${S.selos.map((s, i) => `<li class="reveal flex items-center gap-2 font-semibold text-ns-navy" style="--d:${i * 70}ms"><span class="inline-flex w-7 h-7 rounded-full items-center justify-center" style="background:var(--grad)"><i data-lucide="check" class="w-4 h-4 text-ns-deep"></i></span>${escapeHTML(s)}</li>`).join('')}
+        </ul>
+        <div class="mt-12 snap-track snap-grid cols-4" data-carousel>
+          ${S.cards.map((c, i) => `
+            <article class="card card-hover overflow-hidden flex flex-col reveal" style="--d:${i * 90}ms">
+              <div class="relative aspect-[4/3] overflow-hidden">
+                <img src="${IMG(c.imagem, 700)}" alt="${escapeHTML(c.alt)}" loading="lazy" class="w-full h-full object-cover" width="700" height="525">
+                ${c.etiqueta ? `<span class="chip chip-gold absolute top-3 left-3 shadow">${escapeHTML(c.etiqueta)}</span>` : ''}
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <h3 class="text-xl font-extrabold text-ns-navy">${escapeHTML(c.titulo)}</h3>
+                <ul class="mt-4 space-y-3 flex-1">
+                  ${c.beneficios.map(b => `<li class="flex gap-3 text-slate-600"><i data-lucide="${b.icone}" class="w-5 h-5 text-ns-orange shrink-0 mt-0.5"></i><span>${escapeHTML(b.texto)}</span></li>`).join('')}
+                </ul>
+                <div class="mt-6">${quizBtn({ label: S.botao, servico: c.servico, origem: 'card-' + c.id, cls: 'btn btn-primary w-full' })}</div>
+              </div>
+            </article>`).join('')}
+        </div>
+        <div class="flex justify-center md:hidden" data-dots-for="sobre"></div>
+      </div>`;
+  }
+
+  /* ============================================================================
+     5. SERVIÇOS EM DETALHE (+ catálogo de cursos)
+     ============================================================================ */
+  function renderServicos() {
+    CONFIG.SERVICOS.forEach((s, idx) => {
+      const dark = s.id === 'marketing';
+      const imgRight = idx % 2 === 1;
+      const el = document.getElementById(s.id);
+      const catalogo = s.id === 'cursos' ? renderCatalogo() : '';
+      el.innerHTML = `
+        <div class="container-ns">
+          <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div class="relative reveal ${imgRight ? 'lg:order-2' : ''}">
+              <img src="${IMG(s.imagem, 1000)}" alt="${escapeHTML(s.alt)}" loading="lazy" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl" width="1000" height="750">
+              <div class="absolute -bottom-6 ${imgRight ? 'left-4 sm:-left-4' : 'right-4 sm:-right-4'} card p-4 sm:p-5 flex items-center gap-4 max-w-[280px]">
+                <span class="font-display font-extrabold text-3xl gold-text-light">${escapeHTML(s.destaque.numero)}</span>
+                <span class="text-sm text-slate-600 leading-snug">${escapeHTML(s.destaque.texto)}</span>
+              </div>
+              <div class="absolute -top-4 ${imgRight ? '-right-2' : '-left-2'} hidden sm:flex icon-badge !w-16 !h-16 !rounded-2xl shadow-lg" style="background:var(--grad);color:var(--deep)"><i data-lucide="${s.icone}" class="w-8 h-8"></i></div>
+            </div>
+            <div class="mt-6 lg:mt-0">
+              ${heading({ eyebrow: s.eyebrow, titulo: s.titulo, dark, center: false })}
+              <div class="reveal mt-6">
+                <h3 class="font-extrabold text-lg ${dark ? 'text-white' : 'text-ns-navy'} flex items-center gap-2"><i data-lucide="triangle-alert" class="w-5 h-5 text-ns-orange"></i>O problema que resolvemos</h3>
+                <p class="mt-2 ${dark ? 'text-slate-300' : 'text-slate-600'}">${escapeHTML(s.problema)}</p>
+              </div>
+              <div class="reveal mt-6">
+                <h3 class="font-extrabold text-lg ${dark ? 'text-white' : 'text-ns-navy'}">O que está incluso</h3>
+                <ul class="step-list mt-3 ${dark ? 'text-slate-200' : 'text-slate-700'}">${s.inclusos.map(i => `<li>${escapeHTML(i)}</li>`).join('')}</ul>
+              </div>
+              <div class="reveal mt-6 grid sm:grid-cols-2 gap-4">
+                <div class="rounded-2xl p-5 ${dark ? 'bg-white/5 border border-white/10' : 'bg-ns-light'}">
+                  <p class="flex items-center gap-2 font-bold ${dark ? 'text-ns-gold' : 'text-ns-navy'}"><i data-lucide="users" class="w-5 h-5"></i>Para quem é</p>
+                  <p class="mt-1 text-[15px] ${dark ? 'text-slate-300' : 'text-slate-600'}">${escapeHTML(s.paraQuem)}</p>
+                </div>
+                <div class="rounded-2xl p-5 ${dark ? 'bg-white/5 border border-white/10' : 'bg-ns-light'}">
+                  <p class="flex items-center gap-2 font-bold ${dark ? 'text-ns-gold' : 'text-ns-navy'}"><i data-lucide="clock" class="w-5 h-5"></i>Formato e duração</p>
+                  <p class="mt-1 text-[15px] ${dark ? 'text-slate-300' : 'text-slate-600'}">${escapeHTML(s.formato)}</p>
+                </div>
+              </div>
+              <div class="reveal mt-8">${quizBtn({ label: s.botao, servico: s.id, origem: 'servico-' + s.id, cls: 'btn btn-primary btn-lg w-full sm:w-auto' })}</div>
+            </div>
+          </div>
+          ${catalogo}
+        </div>`;
+    });
+  }
+
+  function renderCatalogo() {
+    return `
+      <div class="mt-20 lg:mt-28" id="catalogo-cursos">
+        ${heading({ eyebrow: 'Turmas presenciais, online e in company', titulo: CONFIG.CURSOS_TITULO })}
+        <div class="mt-10 snap-track snap-grid cols-3" data-carousel>
+          ${CONFIG.CURSOS.map((c, i) => `
+            <article class="card card-hover p-6 flex flex-col reveal" style="--d:${(i % 3) * 90}ms">
+              <div class="flex items-start justify-between gap-3">
+                <span class="icon-badge"><i data-lucide="${c.icone}" class="w-6 h-6"></i></span>
+                <span class="chip chip-navy"><i data-lucide="clock" class="w-3.5 h-3.5"></i>${escapeHTML(c.carga)}</span>
+              </div>
+              <h3 class="mt-4 text-xl font-extrabold text-ns-navy">${escapeHTML(c.nome)}</h3>
+              <p class="mt-2 text-slate-600 flex-1">${escapeHTML(c.descricao)}</p>
+              <div class="mt-4 flex flex-wrap gap-2">${c.modalidades.map(m => `<span class="chip chip-soft">${escapeHTML(m)}</span>`).join('')}</div>
+              <div class="mt-5">${quizBtn({ label: CONFIG.CURSOS_BOTAO, servico: 'cursos', curso: c.id, origem: 'curso-' + c.id, cls: 'btn btn-outline-navy w-full', icone: '' })}</div>
+            </article>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  /* ============================================================================
+     6. FAIXA DE IMPACTO
+     ============================================================================ */
+  function renderImpacto() {
+    const I = CONFIG.IMPACTO;
+    const galIdx = CONFIG.IMAGENS.galeria.findIndex(g => g.src === CONFIG.IMAGENS.provaDestaque);
+    $('#impacto').innerHTML = `
+      <div class="parallax-wrap" aria-hidden="true"><img src="${IMG(I.fundo, 1600)}" alt="" loading="lazy" data-parallax class="opacity-[0.12]"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-ns-deep via-ns-deep/95 to-ns-navy/90" aria-hidden="true"></div>
+      <div class="container-ns relative">
+        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+          <div class="order-2 lg:order-1">
+            <p class="eyebrow eyebrow-dark reveal">${STEP_ICON}<span>${escapeHTML(I.eyebrow)}</span></p>
+            <h2 class="h2 text-white reveal">${escapeHTML(I.fraseAntes)} <span class="gold-text whitespace-nowrap">+<span data-count="${I.empresas}">0</span></span> ${escapeHTML(I.fraseDepois)}</h2>
+            <p class="lead text-slate-300 reveal">${escapeHTML(I.texto)}</p>
+            <div class="mt-10 grid sm:grid-cols-3 gap-6">
+              ${I.numeros.map((n, i) => `
+                <div class="reveal border-l-2 border-ns-gold/70 pl-4" style="--d:${i * 120}ms">
+                  <p class="inline-block pr-1 font-display font-extrabold text-4xl xl:text-[2.6rem] gold-text leading-none whitespace-nowrap">${escapeHTML(n.prefixo)}<span data-count="${n.valor}">0</span>${n.sufixo.trim().length > 1 ? `<span class="text-[0.75em]">${escapeHTML(n.sufixo)}</span>` : escapeHTML(n.sufixo)}</p>
+                  <p class="mt-2 text-slate-300">${escapeHTML(n.label)}</p>
+                </div>`).join('')}
+            </div>
+          </div>
+          <div class="order-1 lg:order-2 reveal flex justify-center">
+            <div class="relative w-full max-w-[380px] sm:max-w-[420px] mx-auto pt-6 pb-10 px-4">
+              <button type="button" class="frame-gold block w-full text-left" data-lightbox="${Math.max(galIdx, 0)}" aria-label="Ampliar foto da placa de 1 milhão em vendas">
+                <div class="inner"><img src="${CONFIG.IMAGENS.provaDestaque}" alt="Placa comemorativa de 1 milhão de reais em vendas dentro da caixa" loading="lazy" width="900" height="1600"></div>
+              </button>
+              <div class="float-seal -left-1 sm:-left-8 bottom-2 sm:bottom-8">
+                <div class="rounded-2xl px-4 py-3 shadow-2xl flex items-center gap-3" style="background:var(--grad)">
+                  <span class="inline-flex w-10 h-10 rounded-xl bg-ns-deep text-ns-gold items-center justify-center"><i data-lucide="trophy" class="w-5 h-5"></i></span>
+                  <span class="font-display font-extrabold text-ns-deep leading-tight text-[15px] sm:text-base max-w-[170px]">${escapeHTML(I.selo)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  /* ============================================================================
+     7. RESULTADOS REAIS (gráficos) + GALERIA
+     ============================================================================ */
+  function renderResultados() {
+    const R = CONFIG.RESULTADOS;
+    const keys = Object.keys(R.abas);
+    const galIdx = CONFIG.IMAGENS.galeria.findIndex(g => g.src === CONFIG.IMAGENS.dashboard);
+    const caseHTML = c => `
+      <div class="rounded-2xl bg-ns-light p-6 h-full flex flex-col">
+        <p class="chip chip-navy self-start"><i data-lucide="briefcase" class="w-3.5 h-3.5"></i>Mini case</p>
+        <h3 class="mt-3 text-lg font-extrabold text-ns-navy">${escapeHTML(c.cliente)}</h3>
+        <dl class="mt-3 space-y-3 text-[15px] flex-1">
+          <div><dt class="font-bold text-ns-navy">Desafio</dt><dd class="text-slate-600">${escapeHTML(c.desafio)}</dd></div>
+          <div><dt class="font-bold text-ns-navy">O que foi feito</dt><dd class="text-slate-600">${escapeHTML(c.feito)}</dd></div>
+        </dl>
+        <div class="mt-4 rounded-xl p-4 bg-ns-deep">
+          <p class="text-xs uppercase tracking-wider text-slate-300 font-semibold">Resultado</p>
+          <p class="font-display font-extrabold text-2xl gold-text leading-tight">${escapeHTML(c.resultado)}</p>
+        </div>
+      </div>`;
+    $('#resultados').innerHTML = `
+      <div class="container-ns">
+        ${heading({ eyebrow: R.eyebrow, titulo: R.titulo, subtitulo: R.subtitulo })}
+        <div class="mt-10 flex gap-2 overflow-x-auto pb-2 justify-start sm:justify-center -mx-4 px-4" role="tablist" aria-label="Escolha a área de resultado">
+          ${keys.map((k, i) => `<button type="button" role="tab" class="tab-btn" id="tab-${k}" aria-controls="panel-${k}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-tab="${k}"><i data-lucide="${R.abas[k].icone}" class="w-4 h-4"></i>${escapeHTML(R.abas[k].label)}</button>`).join('')}
+        </div>
+        <div class="mt-8 grid lg:grid-cols-3 gap-6 items-start">
+          <div class="lg:col-span-2 card p-5 sm:p-7 reveal" id="chartsArea">
+            ${keys.map((k, i) => `
+              <div role="tabpanel" id="panel-${k}" aria-labelledby="tab-${k}" ${i ? 'hidden' : ''}>
+                <div class="grid md:grid-cols-5 gap-6">
+                  <div class="md:col-span-3">
+                    ${k === 'capacitacao'
+                      ? `<p class="font-bold text-ns-navy mb-2">Avaliação dos alunos</p><div class="chart-box !h-[220px]"><canvas id="chart-${k}-a" aria-label="Gráfico de rosca com a avaliação dos alunos" role="img"></canvas></div>
+                         <p class="font-bold text-ns-navy mt-6 mb-2">Produtividade da equipe (%)</p><div class="chart-box !h-[220px]"><canvas id="chart-${k}-b" aria-label="Gráfico de barras da produtividade da equipe antes e depois" role="img"></canvas></div>`
+                      : `<p class="font-bold text-ns-navy mb-2">${k === 'marketing' ? 'Leads por mês' : 'Tempo médio de execução (horas)'}</p><div class="chart-box"><canvas id="chart-${k}" aria-label="${k === 'marketing' ? 'Gráfico de linhas com leads por mês antes e depois da agência' : 'Gráfico de barras com tempo médio de execução antes e depois'}" role="img"></canvas></div>`}
+                  </div>
+                  <div class="md:col-span-2">${caseHTML(R.abas[k].caso)}</div>
+                </div>
+              </div>`).join('')}
+          </div>
+          <figure class="reveal card p-3" style="--d:120ms">
+            <div class="relative">
+              <button type="button" class="block w-full" data-lightbox="${Math.max(galIdx, 0)}" aria-label="Ampliar print do painel de vendas">
+                <img src="${CONFIG.IMAGENS.dashboard}" alt="Painel real de vendas de um cliente mostrando total de R$ 45.262,88 e pagamentos concluídos" loading="lazy" class="real-photo aspect-[3/4]" style="object-position:40% 6%" width="1500" height="2000">
+              </button>
+              <span class="chip chip-gold absolute top-3 left-3 shadow"><i data-lucide="badge-check" class="w-4 h-4"></i>${escapeHTML(R.seloPrint)}</span>
+            </div>
+            <figcaption class="text-center text-sm font-semibold text-ns-navy pt-3 pb-1">${escapeHTML(R.legendaPrint)}</figcaption>
+          </figure>
+        </div>
+      </div>`;
+  }
+
+  function renderGaleria() {
+    const G = CONFIG.GALERIA, fotos = CONFIG.IMAGENS.galeria;
+    const alturas = [220, 300, 260, 200];
+    $('#galeria').innerHTML = `
+      <div class="container-ns">
+        ${heading({ eyebrow: G.eyebrow, titulo: G.titulo, subtitulo: G.subtitulo, id: 'galeriaTitulo' })}
+        <div class="masonry mt-10 ${fotos.length + CONFIG.IMAGENS.espacosExtrasGaleria <= 2 ? 'few' : ''}">
+          ${fotos.map((f, i) => `
+            <button type="button" class="gal-item reveal" style="--d:${i * 80}ms" data-lightbox="${i}" aria-label="Ampliar: ${escapeHTML(f.legenda || f.alt)}">
+              <img src="${f.src}" alt="${escapeHTML(f.alt)}" loading="lazy">
+              ${f.legenda ? `<span class="cap">${escapeHTML(f.legenda)}</span>` : ''}
+            </button>`).join('')}
+          ${Array.from({ length: CONFIG.IMAGENS.espacosExtrasGaleria }, (_, i) => `
+            <div class="gal-placeholder reveal" style="height:${alturas[i % alturas.length]}px" aria-hidden="true">
+              <i data-lucide="image-plus" class="w-8 h-8 text-ns-gold"></i><span>${escapeHTML(G.placeholder)}</span>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  /* Gráficos Chart.js — só são criados quando ficam visíveis */
+  const CHARTS = {};
+  const NAVY = '#111111', GOLD = '#FF8A1F', ORANGE = '#EF6C22';
+  function chartDefaults() {
+    if (!window.Chart) return;
+    Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+    Chart.defaults.font.size = 13;
+    Chart.defaults.color = '#475569';
+    Chart.defaults.locale = 'pt-BR';
+    Chart.defaults.plugins.legend.labels.usePointStyle = true;
+    Chart.defaults.plugins.tooltip.backgroundColor = '#0A0A0A';
+    Chart.defaults.plugins.tooltip.padding = 12;
+    Chart.defaults.plugins.tooltip.cornerRadius = 10;
+    if (REDUCED) Chart.defaults.animation = false;
+  }
+  const baseOpts = (unit = '') => ({
+    responsive: true, maintainAspectRatio: false,
+    animation: REDUCED ? false : { duration: 1400, easing: 'easeOutQuart' },
+    interaction: { mode: 'index', intersect: false },
+    plugins: { legend: { position: 'bottom' },
+      tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${num(c.parsed.y ?? c.parsed)}${unit}` } } },
+    scales: { y: { beginAtZero: true, grid: { color: '#EEF1F5' }, ticks: { callback: v => num(v) + unit } }, x: { grid: { display: false } } }
+  });
+
+  function createResultChart(key) {
+    if (!window.Chart) return;
+    const R = CONFIG.RESULTADOS, A = R.abas[key];
+    if (key === 'marketing' && !CHARTS.marketing) {
+      CHARTS.marketing = new Chart($('#chart-marketing'), {
+        type: 'line',
+        data: { labels: A.meses, datasets: [
+          { label: R.legendaAntes, data: A.antes, borderColor: NAVY, backgroundColor: 'rgba(17,17,17,.08)', tension: .35, borderWidth: 3, pointRadius: 4, fill: true },
+          { label: R.legendaDepois, data: A.depois, borderColor: GOLD, backgroundColor: 'rgba(255,138,31,.15)', tension: .35, borderWidth: 3, pointRadius: 5, pointBackgroundColor: ORANGE, fill: true } ] },
+        options: baseOpts(' leads')
+      });
+    }
+    if (key === 'processos' && !CHARTS.processos) {
+      CHARTS.processos = new Chart($('#chart-processos'), {
+        type: 'bar',
+        data: { labels: A.etapas, datasets: [
+          { label: R.legendaAntes, data: A.antes, backgroundColor: NAVY, borderRadius: 8 },
+          { label: R.legendaDepois, data: A.depois, backgroundColor: GOLD, borderRadius: 8 } ] },
+        options: baseOpts('h')
+      });
+    }
+    if (key === 'capacitacao' && !CHARTS.capacitacao) {
+      CHARTS.capacitacao = [
+        new Chart($('#chart-capacitacao-a'), {
+          type: 'doughnut',
+          data: { labels: A.avaliacao.labels, datasets: [{ data: A.avaliacao.valores, backgroundColor: [GOLD, ORANGE, NAVY], borderWidth: 0, hoverOffset: 8 }] },
+          options: { responsive: true, maintainAspectRatio: false, cutout: '62%', animation: REDUCED ? false : { animateRotate: true, duration: 1400 },
+            plugins: { legend: { position: 'right' }, tooltip: { callbacks: { label: c => ` ${c.label}: ${num(c.parsed)}% das avaliações` } } } }
+        }),
+        new Chart($('#chart-capacitacao-b'), {
+          type: 'bar',
+          data: { labels: A.produtividade.labels, datasets: [
+            { label: R.legendaAntes, data: A.produtividade.antes, backgroundColor: NAVY, borderRadius: 8 },
+            { label: R.legendaDepois, data: A.produtividade.depois, backgroundColor: GOLD, borderRadius: 8 } ] },
+          options: { ...baseOpts('%'), scales: { y: { beginAtZero: true, max: 100, grid: { color: '#EEF1F5' }, ticks: { callback: v => v + '%' } }, x: { grid: { display: false } } } }
+        })
+      ];
+    }
+  }
+
+  function initResultados() {
+    let seen = false, active = Object.keys(CONFIG.RESULTADOS.abas)[0];
+    const tabs = $$('[data-tab]');
+    const select = k => {
+      active = k;
+      tabs.forEach(t => { const on = t.dataset.tab === k; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
+      $$('[role="tabpanel"]', $('#chartsArea')).forEach(p => p.hidden = p.id !== 'panel-' + k);
+      if (seen) createResultChart(k);
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t.dataset.tab));
+      t.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+        n.focus(); select(n.dataset.tab);
+      });
+    });
+    const io = new IntersectionObserver(en => {
+      if (en[0].isIntersecting) { seen = true; createResultChart(active); io.disconnect(); }
+    }, { threshold: 0.3 });
+    io.observe($('#chartsArea'));
+  }
+
+  /* Lightbox com setas, swipe e ESC */
+  function initLightbox() {
+    const lb = $('#lightbox'), img = $('#lbImg'), cap = $('#lbCap'), fotos = CONFIG.IMAGENS.galeria;
+    let i = 0, last = null;
+    const show = n => { i = (n + fotos.length) % fotos.length; img.src = fotos[i].src; img.alt = fotos[i].alt; cap.textContent = fotos[i].legenda || ''; };
+    const open = n => { last = document.activeElement; show(n); lb.hidden = false; document.documentElement.style.overflow = 'hidden'; $('#lbClose').focus();
+      const multi = fotos.length > 1; $('#lbPrev').hidden = !multi; $('#lbNext').hidden = !multi; };
+    const close = () => { lb.hidden = true; document.documentElement.style.overflow = ''; if (last) last.focus(); };
+    document.addEventListener('click', e => { const b = e.target.closest('[data-lightbox]'); if (b) open(+b.dataset.lightbox); });
+    $('#lbClose').addEventListener('click', close);
+    $('#lbPrev').addEventListener('click', () => show(i - 1));
+    $('#lbNext').addEventListener('click', () => show(i + 1));
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') show(i + 1);
+      if (e.key === 'ArrowLeft') show(i - 1);
+      if (e.key === 'Tab') { // mantém o foco dentro do lightbox
+        const f = $$('button:not([hidden])', lb); const first = f[0], lastEl = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
+        else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
+      }
+    });
+    let x0 = null;
+    lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 45) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  }
+
+  /* ============================================================================
+     8. DIAGNÓSTICO: QUIZ + LEAD + SIMULADOR
+     ============================================================================ */
+  const Q = CONFIG.QUIZ;
+  const P = Q.perguntas;
+  const SERVICO_POR_DESAFIO = { vendas: 'marketing', processos: 'processos', equipe: 'cursos' };
+  const DESAFIO_POR_SERVICO = { marketing: 'vendas', processos: 'processos', cursos: 'equipe' };
+  const QS_KEY = 'ns_quiz_state';
+  let QS = store.get(QS_KEY, 'session') || newQuizState();
+  let simChart = null;
+
+  function newQuizState() { return { step: 'intro', answers: {}, interesse: '', origem: '', lead: {}, result: null }; }
+  function saveQuiz() { store.set(QS_KEY, QS, 'session'); }
+
+  function renderDiagHead() {
+    $('#diagHead').innerHTML = `
+      <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full opacity-20 blur-3xl pointer-events-none" style="background:var(--grad)" aria-hidden="true"></div>
+      ${heading({ eyebrow: Q.eyebrow, titulo: Q.titulo, subtitulo: Q.subtitulo, dark: true })}`;
+  }
+
+  const optionsFor = idx => idx === 1 ? (P[1].opcoesPor[QS.answers.desafio] || P[1].opcoesPor.diagnostico) : P[idx].opcoes;
+  const answerObj = id => {
+    const idx = P.findIndex(p => p.id === id);
+    if (idx < 0) return null;
+    return optionsFor(idx).find(o => o.valor === QS.answers[id]) || null;
+  };
+  const servicoRecomendado = () => SERVICO_POR_DESAFIO[QS.answers.desafio] || (answerObj('situacao') || {}).servico || 'processos';
+
+  function quizRender(dir = 'fwd') {
+    const root = $('#quiz');
+    const st = QS.step;
+    const total = P.length;
+    let pct = 0, label = '';
+    if (typeof st === 'number') { pct = (st / (total + 1)) * 100; label = `Pergunta ${st + 1} de ${total}`; }
+    else if (st === 'form') { pct = (total / (total + 1)) * 100; label = 'Último passo'; }
+    else if (st === 'result') { pct = 100; label = 'Diagnóstico concluído'; }
+
+    const showTop = st !== 'intro';
+    const canBack = typeof st === 'number' || st === 'form';
+    const top = showTop ? `
+      <div class="px-5 sm:px-8 pt-5 sm:pt-7">
+        <div class="flex items-center justify-between gap-3 pr-12 sm:pr-0 mb-3">
+          ${canBack ? `<button type="button" class="inline-flex items-center gap-1 min-h-[44px] px-2 -ml-2 rounded-lg font-semibold text-ns-navy hover:text-ns-orange" data-q-back><i data-lucide="arrow-left" class="w-5 h-5"></i>Voltar</button>` : '<span></span>'}
+          <span class="text-sm font-semibold text-slate-500" aria-live="polite">${label}</span>
+        </div>
+        <div class="q-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}" aria-label="Progresso do diagnóstico"><span style="width:${pct}%"></span></div>
+      </div>` : '';
+
+    let body = '';
+    if (st === 'intro') body = quizIntroHTML();
+    else if (typeof st === 'number') body = quizQuestionHTML(st);
+    else if (st === 'form') body = quizFormHTML();
+    else if (st === 'result') body = quizResultHTML();
+
+    root.innerHTML = `${top}<div class="px-5 sm:px-8 py-6 sm:py-8 ${REDUCED ? '' : (dir === 'back' ? 'q-enter-back' : 'q-enter')}" id="quizStage">${body}</div>`;
+    icons();
+    if (st === 'form') initForm();
+    if (st === 'result') drawSimChart();
+    // Leva o foco para o título da etapa (acessibilidade) quando o visitante está interagindo
+    const h = $('#quizStage [data-q-title]');
+    if (h && root.contains(document.activeElement) === false && quizInteracting) h.focus({ preventScroll: false });
+    if (quizInteracting) { const box = root.closest('.modal-panel'); if (box) box.scrollTop = 0; else if (root.getBoundingClientRect().top < 0) root.scrollIntoView({ block: 'start' }); }
+  }
+  let quizInteracting = false;
+
+  function quizIntroHTML() {
+    const I = Q.intro;
+    return `
+      <div class="text-center max-w-xl mx-auto py-4">
+        <span class="inline-flex w-16 h-16 rounded-2xl items-center justify-center shadow-lg" style="background:var(--grad)">${markSVG(40, '#0A0A0A')}</span>
+        <h3 class="mt-5 text-2xl sm:text-3xl font-extrabold text-ns-navy" tabindex="-1" data-q-title>${escapeHTML(I.titulo)}</h3>
+        <p class="mt-3 text-slate-600">${escapeHTML(I.texto)}</p>
+        ${QS.interesse ? `<p class="mt-4 chip chip-soft"><i data-lucide="bookmark" class="w-4 h-4"></i>Interesse: ${escapeHTML(QS.interesse)}</p>` : ''}
+        <ul class="mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 text-ns-navy font-semibold">
+          ${I.itens.map(t => `<li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-5 h-5 text-ns-orange"></i>${escapeHTML(t)}</li>`).join('')}
+        </ul>
+        <button type="button" class="btn btn-primary btn-lg mt-8 w-full sm:w-auto" data-q-start>${escapeHTML(I.botao)} <i data-lucide="arrow-right" class="w-5 h-5"></i></button>
+      </div>`;
+  }
+
+  function quizQuestionHTML(idx) {
+    const p = P[idx], opts = optionsFor(idx);
+    return `
+      ${QS.interesse ? `<p class="chip chip-soft mb-4"><i data-lucide="bookmark" class="w-4 h-4"></i>Interesse: ${escapeHTML(QS.interesse)}</p>` : ''}
+      <h3 class="text-xl sm:text-2xl font-extrabold text-ns-navy outline-none" tabindex="-1" data-q-title>${escapeHTML(p.titulo)}</h3>
+      <div class="mt-6 grid ${opts.length > 3 ? 'sm:grid-cols-2' : ''} gap-3" role="group" aria-label="${escapeHTML(p.titulo)}">
+        ${opts.map(o => `
+          <button type="button" class="q-opt" data-q-opt="${escapeHTML(o.valor)}" aria-pressed="${QS.answers[p.id] === o.valor}">
+            <span class="q-ico"><i data-lucide="${o.icone}" class="w-5 h-5"></i></span>
+            <span class="flex-1">${escapeHTML(o.label)}</span>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-slate-300"></i>
+          </button>`).join('')}
+      </div>`;
+  }
+
+  function quizFormHTML() {
+    const F = Q.form, C = F.campos, L = QS.lead || {};
+    const field = (name, label, type, req, attrs = '') => `
+      <div class="field" data-field="${name}">
+        <label for="f-${name}">${escapeHTML(label)}${req ? ' <span class="text-ns-orange" aria-hidden="true">*</span>' : ''}</label>
+        <input id="f-${name}" name="${name}" type="${type}" value="${escapeHTML(L[name] || '')}" ${req ? 'required aria-required="true"' : ''} aria-describedby="m-${name}" ${attrs}>
+        <p class="msg" id="m-${name}" aria-live="polite"></p>
+      </div>`;
+    return `
+      <div class="text-center sm:text-left">
+        <span class="inline-flex w-12 h-12 rounded-xl items-center justify-center bg-green-50 text-green-600 mb-3"><i data-lucide="party-popper" class="w-6 h-6"></i></span>
+        <h3 class="text-xl sm:text-2xl font-extrabold text-ns-navy outline-none" tabindex="-1" data-q-title>${escapeHTML(F.titulo)}</h3>
+        <p class="mt-2 text-slate-600">${escapeHTML(F.texto)}</p>
+      </div>
+      <form id="leadForm" class="mt-6 grid sm:grid-cols-2 gap-x-4 gap-y-1" novalidate>
+        ${field('nome', C.nome, 'text', true, 'autocomplete="name"')}
+        ${field('empresa', C.empresa, 'text', true, 'autocomplete="organization"')}
+        ${field('cargo', C.cargo, 'text', false, 'autocomplete="organization-title"')}
+        ${field('whatsapp', C.whatsapp, 'tel', true, 'autocomplete="tel-national" inputmode="numeric" placeholder="(00) 00000-0000" maxlength="15"')}
+        ${field('email', C.email, 'email', true, 'autocomplete="email" inputmode="email"')}
+        ${field('cidade', C.cidade, 'text', false, 'autocomplete="address-level2" placeholder="Ex.: Belo Horizonte/MG"')}
+        <div class="sm:col-span-2">${field('site', C.site, 'text', false, 'placeholder="@suaempresa ou www.suaempresa.com.br"')}</div>
+        <div class="sm:col-span-2 field" data-field="lgpd">
+          <label class="checkbox-row !font-normal !text-slate-600 !text-[15px]" for="f-lgpd">
+            <input type="checkbox" id="f-lgpd" name="lgpd" ${L.lgpd ? 'checked' : ''} required aria-required="true" aria-describedby="m-lgpd">
+            <span>${F.lgpd} <span class="text-ns-orange" aria-hidden="true">*</span></span>
+          </label>
+          <p class="msg" id="m-lgpd" aria-live="polite"></p>
+        </div>
+        <div class="sm:col-span-2 mt-2">
+          <button type="submit" class="btn btn-primary btn-lg w-full" id="leadSubmit">${escapeHTML(F.botao)} <i data-lucide="arrow-right" class="w-5 h-5"></i></button>
+          <p class="mt-3 text-center text-sm text-slate-500 flex items-center justify-center gap-1.5"><i data-lucide="lock" class="w-4 h-4"></i>Seus dados estão seguros e não serão compartilhados.</p>
+        </div>
+      </form>`;
+  }
+
+  /* --------- Formulário: máscara + validação em tempo real --------- */
+  const maskPhone = v => {
+    const d = v.replace(/\D/g, '').slice(0, 11);
+    if (d.length <= 2) return d.length ? `(${d}` : '';
+    if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+  };
+  const VALID = {
+    nome: v => v.trim().length >= 3 && /[a-zA-ZÀ-ú]/.test(v),
+    empresa: v => v.trim().length >= 2,
+    whatsapp: v => { const d = v.replace(/\D/g, ''); return d.length === 11 || d.length === 10; },
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+    lgpd: (v, el) => el.checked
+  };
+
+  function validateField(name, show = true) {
+    const wrap = $(`[data-field="${name}"]`), el = $(`#f-${name}`);
+    if (!wrap || !VALID[name]) return true;
+    const ok = VALID[name](el.value, el);
+    if (show) {
+      wrap.classList.toggle('is-invalid', !ok);
+      wrap.classList.toggle('is-valid', ok && name !== 'lgpd');
+      $(`#m-${name}`).textContent = ok ? '' : Q.form.erros[name];
+      el.setAttribute('aria-invalid', String(!ok));
+    }
+    return ok;
+  }
+
+  function initForm() {
+    const form = $('#leadForm');
+    const touched = new Set();
+    const persist = () => {
+      const fd = new FormData(form);
+      QS.lead = { ...Object.fromEntries(fd.entries()), lgpd: $('#f-lgpd').checked };
+      saveQuiz();
+    };
+    $('#f-whatsapp').addEventListener('input', e => { e.target.value = maskPhone(e.target.value); });
+    $$('input', form).forEach(el => {
+      const name = el.name;
+      el.addEventListener('blur', () => { touched.add(name); validateField(name); });
+      el.addEventListener('input', () => { if (touched.has(name) || el.type === 'checkbox') validateField(name); persist(); });
+      el.addEventListener('change', () => { if (el.type === 'checkbox') { touched.add(name); validateField(name); } persist(); });
+    });
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const names = ['nome', 'empresa', 'whatsapp', 'email', 'lgpd'];
+      const results = names.map(n => validateField(n));
+      const firstBad = names[results.indexOf(false)];
+      if (firstBad) { $(`#f-${firstBad}`).focus(); return; }
+      persist();
+      const btn = $('#leadSubmit');
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner" aria-hidden="true"></span> ${escapeHTML(Q.form.carregando)}`;
+      QS.result = computeResult();
+      const payload = buildPayload();
+      submitLead(payload); // envia em segundo plano: nunca trava o visitante
+      trackConversion();
+      await wait(REDUCED ? 200 : 1100);
+      QS.step = 'result';
+      saveQuiz();
+      quizRender();
+    });
+  }
+
+  /* --------- Pontuação do lead --------- */
+  function leadScore() {
+    const W = CONFIG.PONTUACAO, a = QS.answers;
+    const pts = (W.prazo[a.prazo] || 0) + (W.faturamento[a.faturamento] || 0) + (W.porte[a.porte] || 0) + (W.tentativas[a.tentativas] || 0);
+    const classe = pts >= W.faixas.quente ? 'Quente' : pts >= W.faixas.morno ? 'Morno' : 'Frio';
+    return { pts, classe };
+  }
+
+  /* --------- Simulador (fórmulas no CONFIG.SIMULADOR) --------- */
+  function computeResult() {
+    const S = CONFIG.SIMULADOR, a = QS.answers;
+    const servico = servicoRecomendado();
+    const base = S.faturamentoBase[a.faturamento] || S.faturamentoBase.nao_informar;
+    const ganho = (S.ganhoPorServico[servico] || 0.2) + (S.bonusUrgencia[a.prazo] || 0);
+    const sem = [], com = [];
+    for (let m = 0; m <= 6; m++) {
+      sem.push(Math.round(base * Math.pow(1 + S.variacaoSemAcao, m)));
+      const t = m / 6, ease = 1 - Math.pow(1 - t, 2); // curva suave de evolução
+      com.push(Math.round(base * (1 + ganho * ease)));
+    }
+    const ganhoRS = com.slice(1).reduce((acc, v, i) => acc + (v - sem[i + 1]), 0);
+    return { servico, base, ganhoPct: Math.round(ganho * 100), ganhoRS, sem, com };
+  }
+
+  function problemaTexto() {
+    const d = answerObj('desafio'), s = answerObj('situacao');
+    return `${d ? d.label : ''}${s ? ' — ' + s.label : ''}`;
+  }
+
+  function resumoTexto() {
+    const L = QS.lead, d = answerObj('desafio'), s = answerObj('situacao'), t = answerObj('tempo'), p = answerObj('porte'), tt = answerObj('tentativas'), pr = answerObj('prazo');
+    return `Hoje, o maior desafio da <strong>${escapeHTML(L.empresa)}</strong> é <strong>${escapeHTML(d ? d.resumo : '')}</strong>. A situação que mais se parece com a sua é <strong>“${escapeHTML(s ? s.label.toLowerCase() : '')}”</strong>, um problema que existe há ${escapeHTML(t ? t.resumo : '')}, em ${escapeHTML(p ? p.resumo : '')}. ${escapeHTML(tt ? tt.resumo : '')} ${escapeHTML(pr ? pr.resumo : '')}`;
+  }
+
+  function whatsLink() {
+    const L = QS.lead, rec = CONFIG.RECOMENDACOES[QS.result.servico];
+    const msg = Q.resultado.mensagemWhats
+      .replace('{nome}', L.nome).replace('{empresa}', L.empresa)
+      .replace('{problema}', problemaTexto()).replace('{servico}', rec.nome);
+    return `https://wa.me/${CONFIG.EMPRESA.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(msg)}`;
+  }
+
+  function quizResultHTML() {
+    const R = Q.resultado, L = QS.lead, res = QS.result, rec = CONFIG.RECOMENDACOES[res.servico];
+    const titulo = R.titulo.replace('{nome}', L.nome.split(' ')[0]).replace('{empresa}', L.empresa);
+    return `
+      <h3 class="text-2xl sm:text-3xl font-extrabold text-ns-navy outline-none" tabindex="-1" data-q-title>${escapeHTML(titulo)}</h3>
+      <div class="mt-5 rounded-2xl bg-ns-light p-5 border-l-4 border-ns-gold">
+        <p class="font-bold text-ns-navy flex items-center gap-2"><i data-lucide="stethoscope" class="w-5 h-5 text-ns-orange"></i>Problema identificado</p>
+        <p class="mt-2 text-slate-700">${resumoTexto()}</p>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-5 gap-5">
+        <div class="md:col-span-3 rounded-2xl border border-slate-200 p-4 sm:p-5">
+          <p class="font-bold text-ns-navy">${escapeHTML(R.projecaoTitulo)}</p>
+          <div class="chart-box !h-[240px] mt-2"><canvas id="simChart" role="img" aria-label="Gráfico comparando faturamento sem ação e com a Next Step em 6 meses"></canvas></div>
+        </div>
+        <div class="md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-4">
+          <div class="rounded-2xl bg-ns-deep p-5 flex flex-col justify-center">
+            <p class="text-sm text-slate-300">Ganho estimado no 6º mês</p>
+            <p class="font-display font-extrabold text-4xl gold-text leading-tight">+${res.ganhoPct}%</p>
+          </div>
+          <div class="rounded-2xl bg-ns-deep p-5 flex flex-col justify-center">
+            <p class="text-sm text-slate-300">A mais em 6 meses</p>
+            <p class="font-display font-extrabold text-2xl sm:text-3xl gold-text leading-tight">${brl(res.ganhoRS)}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-2xl p-5 sm:p-6 border-2 border-ns-gold/60 bg-[#FFFBF3]">
+        <p class="eyebrow !mb-1">${STEP_ICON}<span>${escapeHTML(R.proximoPasso)}</span></p>
+        <div class="flex items-start gap-4">
+          <span class="icon-badge" style="background:var(--grad);color:var(--deep)"><i data-lucide="${rec.icone}" class="w-6 h-6"></i></span>
+          <div>
+            <p class="text-xl font-extrabold text-ns-navy font-display">${escapeHTML(rec.nome)}</p>
+            <p class="text-slate-600">${escapeHTML(rec.descricao)}</p>
+          </div>
+        </div>
+        <ol class="mt-5 space-y-3">
+          ${rec.passos.map((p, i) => `<li class="flex gap-3 items-start"><span class="shrink-0 w-8 h-8 rounded-full bg-ns-navy text-ns-gold font-extrabold font-display inline-flex items-center justify-center">${i + 1}</span><span class="pt-1 text-slate-700">${escapeHTML(p)}</span></li>`).join('')}
+        </ol>
+        <blockquote class="mt-5 rounded-xl bg-white p-4 border border-slate-200">
+          <div class="flex gap-0.5 text-ns-gold" aria-label="5 estrelas">${'<i data-lucide="star" class="w-4 h-4 fill-current"></i>'.repeat(5)}</div>
+          <p class="mt-2 text-slate-700 italic">“${escapeHTML(rec.depoimento.texto)}”</p>
+          <footer class="mt-2 text-sm font-semibold text-ns-navy">${escapeHTML(rec.depoimento.nome)} · <span class="font-normal text-slate-500">${escapeHTML(rec.depoimento.cargo)}</span></footer>
+        </blockquote>
+      </div>
+
+      <a href="${whatsLink()}" target="_blank" rel="noopener" class="btn btn-lg w-full mt-6 text-white" style="background:#1FAF55" data-whats-final>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.36 9.36 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.04.72C5.79.72.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.62l6.02-1.58a11.33 11.33 0 0 0 5.42 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02"/></svg>
+        ${escapeHTML(R.botaoWhats)}
+      </a>
+      <p class="mt-3 text-center text-sm text-slate-500">${escapeHTML(R.aviso)}</p>
+      <div class="mt-4 text-center">
+        <button type="button" class="btn btn-outline-navy" data-q-restart><i data-lucide="rotate-ccw" class="w-4 h-4"></i>${escapeHTML(R.refazer)}</button>
+      </div>`;
+  }
+
+  function drawSimChart() {
+    if (!window.Chart) return;
+    const res = QS.result, R = Q.resultado;
+    if (simChart) simChart.destroy();
+    simChart = new Chart($('#simChart'), {
+      type: 'line',
+      data: { labels: ['Hoje', 'Mês 1', 'Mês 2', 'Mês 3', 'Mês 4', 'Mês 5', 'Mês 6'], datasets: [
+        { label: R.semAcao, data: res.sem, borderColor: NAVY, backgroundColor: 'rgba(17,17,17,.06)', borderWidth: 3, tension: .35, pointRadius: 3, fill: true, borderDash: [6, 5] },
+        { label: R.comNextStep, data: res.com, borderColor: GOLD, backgroundColor: 'rgba(255,138,31,.18)', borderWidth: 3, tension: .35, pointRadius: 4, pointBackgroundColor: ORANGE, fill: true } ] },
+      options: { responsive: true, maintainAspectRatio: false, animation: REDUCED ? false : { duration: 1600, easing: 'easeOutQuart' },
+        interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${brl(c.parsed.y)}` } } },
+        scales: { y: { grid: { color: '#EEF1F5' }, ticks: { callback: v => v >= 1000 ? 'R$ ' + num(Math.round(v / 1000)) + ' mil' : brl(v) } }, x: { grid: { display: false } } } }
+    });
+  }
+
+  /* --------- Envio do lead (Google Apps Script) + fila de reenvio --------- */
+  function dispositivo() {
+    const ua = navigator.userAgent;
+    const tipo = /iPad|Tablet/i.test(ua) || (/Android/i.test(ua) && !/Mobile/i.test(ua)) ? 'Tablet' : /Mobi|Android|iPhone/i.test(ua) ? 'Celular' : 'Desktop';
+    return `${tipo} (${window.innerWidth}x${window.innerHeight})`;
+  }
+
+  function buildPayload() {
+    const L = QS.lead, a = QS.answers, sc = leadScore(), lab = id => (answerObj(id) || {}).label || '';
+    return {
+      lead_id: 'ns-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7),
+      data_hora: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+      nome: L.nome.trim(), empresa: L.empresa.trim(), cargo: (L.cargo || '').trim(), whatsapp: L.whatsapp, email: L.email.trim(),
+      cidade_uf: (L.cidade || '').trim(), site_instagram: (L.site || '').trim(), consentimento_lgpd: !!L.lgpd,
+      desafio: lab('desafio'), situacao: lab('situacao'), tempo_problema: lab('tempo'), porte: lab('porte'),
+      faturamento: lab('faturamento'), tentativas: lab('tentativas'), prazo: lab('prazo'),
+      respostas: a,
+      interesse: QS.interesse || '',
+      servico_recomendado: CONFIG.RECOMENDACOES[QS.result.servico].nome,
+      ganho_estimado_pct: QS.result.ganhoPct, ganho_estimado_rs: QS.result.ganhoRS,
+      pontuacao: sc.pts, classificacao: sc.classe,
+      pagina: location.href, botao_origem: QS.origem || 'secao-diagnostico',
+      utm_source: UTM.utm_source || '', utm_medium: UTM.utm_medium || '', utm_campaign: UTM.utm_campaign || '',
+      dispositivo: dispositivo(), user_agent: navigator.userAgent
+    };
+  }
+
+  const PENDING_KEY = 'ns_leads_pendentes';
+  async function sendLead(payload) {
+    if (!CONFIG.LEAD_WEBHOOK_URL) return false;
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 12000);
+    try {
+      // text/plain evita a requisição de "preflight" (CORS), que o Apps Script não aceita. O corpo é JSON.
+      const res = await fetch(CONFIG.LEAD_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), signal: ctrl.signal });
+      return res.ok;
+    } catch (e) { return false; } finally { clearTimeout(t); }
+  }
+  async function submitLead(payload) {
+    // Guarda primeiro; só remove da fila depois que o envio confirmar.
+    const fila = store.get(PENDING_KEY) || [];
+    fila.push(payload); store.set(PENDING_KEY, fila);
+    if (!CONFIG.LEAD_WEBHOOK_URL) { console.info('[Next Step] Lead guardado localmente. Configure CONFIG.LEAD_WEBHOOK_URL para enviar à planilha.', payload); return; }
+    if (await sendLead(payload)) store.set(PENDING_KEY, (store.get(PENDING_KEY) || []).filter(l => l.lead_id !== payload.lead_id));
+  }
+  async function retryPendingLeads() {
+    const fila = store.get(PENDING_KEY) || [];
+    if (!fila.length || !CONFIG.LEAD_WEBHOOK_URL) return;
+    const ok = [];
+    for (const lead of fila) if (await sendLead(lead)) ok.push(lead.lead_id);
+    store.set(PENDING_KEY, (store.get(PENDING_KEY) || []).filter(l => !ok.includes(l.lead_id)));
+  }
+
+  function trackConversion() {
+    try {
+      if (CONFIG.GA4_ID && typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { currency: 'BRL', value: 1, servico: QS.result.servico });
+      if (CONFIG.META_PIXEL_ID && typeof window.fbq === 'function') window.fbq('track', 'Lead');
+    } catch (e) {}
+  }
+
+  /* --------- Navegação do quiz --------- */
+  function initQuiz() {
+    const root = $('#quiz');
+    root.addEventListener('click', e => {
+      quizInteracting = true;
+      if (e.target.closest('[data-q-start]')) { QS.step = 0; saveQuiz(); quizRender(); return; }
+      if (e.target.closest('[data-q-back]')) {
+        if (QS.step === 'form') QS.step = P.length - 1;
+        else if (QS.step === 0) QS.step = 'intro';
+        else QS.step -= 1;
+        saveQuiz(); quizRender('back'); return;
+      }
+      if (e.target.closest('[data-q-restart]')) { QS = newQuizState(); saveQuiz(); quizRender('back'); return; }
+      const opt = e.target.closest('[data-q-opt]');
+      if (opt && typeof QS.step === 'number') {
+        const p = P[QS.step], val = opt.dataset.qOpt;
+        if (p.id === 'desafio' && QS.answers.desafio !== val) delete QS.answers.situacao; // pergunta 2 depende da 1
+        QS.answers[p.id] = val;
+        $$('[data-q-opt]', root).forEach(b => b.setAttribute('aria-pressed', b === opt));
+        saveQuiz();
+        setTimeout(() => { QS.step = QS.step + 1 >= P.length ? 'form' : QS.step + 1; saveQuiz(); quizRender(); }, REDUCED ? 60 : 280);
+      }
+    });
+    quizRender();
+  }
+
+  /* Pré-seleção vinda do botão clicado */
+  function applyPreselect(servico, cursoId) {
+    const inProgress = (typeof QS.step === 'number' && QS.step > 0) || QS.step === 'form';
+    if (inProgress || QS.step === 'result') return; // continua de onde parou
+    if (!servico && !cursoId) return;
+    const curso = CONFIG.CURSOS.find(c => c.id === cursoId);
+    const srv = curso ? 'cursos' : servico;
+    QS.answers = { desafio: DESAFIO_POR_SERVICO[srv] };
+    QS.interesse = curso ? 'Curso: ' + curso.nome : (CONFIG.RECOMENDACOES[srv] || {}).nome || '';
+    QS.step = 1; // pula a pergunta 1, já respondida pelo botão (o "Voltar" permite trocar)
+    saveQuiz();
+  }
+
+  /* --------- Modal do quiz --------- */
+  let lastFocus = null;
+  function openQuiz({ servico = '', curso = '', origem = '' } = {}) {
+    if (window.closeMobileNav) window.closeMobileNav();
+    applyPreselect(servico, curso);
+    if (origem) { QS.origem = origem; saveQuiz(); }
+    lastFocus = document.activeElement;
+    const modal = $('#quizModal');
+    $('#quizModalBody').appendChild($('#quiz'));
+    $('#quizAway').classList.remove('hidden');
+    modal.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    $('#waFloat').classList.add('is-hidden'); hideBalloon();
+    quizInteracting = true;
+    quizRender();
+    setTimeout(() => { const t = $('#quiz [data-q-title]') || $('#quizPanel [data-close-quiz]:not(.modal-backdrop)'); if (t) t.focus(); }, 60);
+  }
+  function closeQuiz() {
+    const modal = $('#quizModal');
+    if (modal.hidden) return;
+    modal.hidden = true;
+    $('#quizHome').prepend($('#quiz'));
+    $('#quizAway').classList.add('hidden');
+    document.documentElement.style.overflow = '';
+    $('#waFloat').classList.remove('is-hidden');
+    saveQuiz();
+    if (lastFocus) lastFocus.focus();
+  }
+  function initQuizModal() {
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-quiz]');
+      if (b && !b.closest('#quiz')) { e.preventDefault(); openQuiz({ servico: b.dataset.quizServico, curso: b.dataset.quizCurso, origem: b.dataset.origem }); }
+      if (e.target.closest('[data-close-quiz]')) closeQuiz();
+    });
+    document.addEventListener('keydown', e => {
+      const modal = $('#quizModal');
+      if (modal.hidden || !$('#privacyModal').hidden) return;
+      if (e.key === 'Escape') closeQuiz();
+      if (e.key === 'Tab') trapFocus(e, $('#quizPanel'));
+    });
+  }
+  function trapFocus(e, box) {
+    const f = $$('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])', box).filter(el => el.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  /* ============================================================================
+     9. COMO TRABALHAMOS (linha do tempo)
+     ============================================================================ */
+  function renderTimeline() {
+    const T = CONFIG.TIMELINE;
+    $('#como-trabalhamos').innerHTML = `
+      <div class="container-ns">
+        ${heading({ eyebrow: T.eyebrow, titulo: T.titulo, subtitulo: T.subtitulo })}
+        <div class="tl mt-14" id="timeline">
+          <div class="tl-line" aria-hidden="true"><div class="tl-fill"></div></div>
+          <ol class="grid gap-10 lg:grid-cols-4 lg:gap-6">
+            ${T.etapas.map((s, i) => `
+              <li class="tl-step flex lg:flex-col lg:items-center lg:text-center gap-5" data-tl-step="${i}">
+                <span class="tl-marker"><i data-lucide="${s.icone}" class="w-6 h-6 lg:w-7 lg:h-7"></i></span>
+                <div>
+                  <p class="text-sm font-bold uppercase tracking-wider text-[#C2410C]">Passo ${i + 1}</p>
+                  <h3 class="text-xl font-extrabold text-ns-navy mt-1">${escapeHTML(s.titulo)}</h3>
+                  <p class="mt-2 text-slate-600 lg:max-w-[240px] lg:mx-auto">${escapeHTML(s.texto)}</p>
+                </div>
+              </li>`).join('')}
+          </ol>
+        </div>
+      </div>`;
+  }
+  function updateTimeline() {
+    const tl = $('#timeline'); if (!tl) return;
+    let p = 1;
+    if (!REDUCED) {
+      const r = tl.getBoundingClientRect(), vh = window.innerHeight;
+      p = Math.min(1, Math.max(0, (vh * 0.75 - r.top) / (r.height + vh * 0.15)));
+    }
+    tl.style.setProperty('--p', p.toFixed(3));
+    const steps = $$('[data-tl-step]', tl);
+    steps.forEach((s, i) => s.classList.toggle('is-on', p >= (i / steps.length) + 0.02 || p === 1));
+  }
+
+  /* ============================================================================
+     10. EMPRESAS QUE CONFIAM (marquee)
+     ============================================================================ */
+  function renderClientes() {
+    const C = CONFIG.CLIENTES;
+    const item = (c, dup) => `<li class="flex items-center gap-2.5 px-8 py-3 shrink-0 text-slate-500 hover:text-ns-navy transition-colors" ${dup ? 'data-dup aria-hidden="true"' : ''}>
+      ${c.logo ? `<img src="${c.logo}" alt="${dup ? '' : escapeHTML(c.nome)}" class="h-10 w-auto grayscale hover:grayscale-0" loading="lazy">` : `<i data-lucide="${c.icone}" class="w-7 h-7 text-ns-gold"></i><span class="font-display font-extrabold text-xl whitespace-nowrap">${escapeHTML(c.nome)}</span>`}</li>`;
+    $('#clientes').innerHTML = `
+      <div class="container-ns">
+        <h2 id="clientesTitulo" class="text-center font-display font-extrabold text-2xl text-ns-navy reveal">${hl(C.titulo)}</h2>
+      </div>
+      <div class="marquee mt-8" tabindex="0" aria-label="Logos de clientes (passe o mouse para pausar)">
+        <ul class="marquee-track">${C.lista.map(c => item(c, false)).join('')}${C.lista.map(c => item(c, true)).join('')}</ul>
+      </div>`;
+  }
+
+  /* ============================================================================
+     11. DEPOIMENTOS (carrossel com autoplay + swipe)
+     ============================================================================ */
+  function renderDepoimentos() {
+    const D = CONFIG.DEPOIMENTOS;
+    $('#depoimentos').innerHTML = `
+      <div class="container-ns">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          ${heading({ eyebrow: D.eyebrow, titulo: D.titulo, dark: true, center: false })}
+          <div class="hidden md:flex gap-2">
+            <button type="button" class="hero-arrow" data-car-prev="dep" aria-label="Depoimento anterior"><i data-lucide="chevron-left"></i></button>
+            <button type="button" class="hero-arrow" data-car-next="dep" aria-label="Próximo depoimento"><i data-lucide="chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="mt-10 snap-track lg:[&>*]:!basis-[calc((100%-2rem)/3)] md:[&>*]:!basis-[calc((100%-1rem)/2)]" data-carousel="dep" data-autoplay="6000" aria-roledescription="carrossel" aria-label="Depoimentos">
+          ${D.lista.map((d, i) => `
+            <figure class="rounded-2xl bg-white/5 border border-white/10 p-6 sm:p-7 flex flex-col" role="group" aria-roledescription="slide" aria-label="${i + 1} de ${D.lista.length}">
+              <div class="flex gap-0.5 text-ns-gold" aria-label="${d.estrelas} de 5 estrelas">${'<i data-lucide="star" class="w-5 h-5 fill-current"></i>'.repeat(d.estrelas)}</div>
+              <blockquote class="mt-4 text-slate-200 text-[17px] flex-1">“${escapeHTML(d.texto)}”</blockquote>
+              <figcaption class="mt-6 flex items-center gap-3">
+                <img src="${IMG(d.foto, 160)}" alt="Foto de ${escapeHTML(d.nome)}" loading="lazy" class="w-14 h-14 rounded-full object-cover border-2 border-ns-gold" width="56" height="56">
+                <span><span class="block font-bold text-white">${escapeHTML(d.nome)}</span><span class="block text-sm text-slate-300">${escapeHTML(d.cargo)}, ${escapeHTML(d.empresa)}</span></span>
+              </figcaption>
+            </figure>`).join('')}
+        </div>
+        <div class="flex justify-center" data-dots-for="dep"></div>
+      </div>`;
+  }
+
+  /* Carrosséis com scroll-snap: pontos, setas e autoplay */
+  function initCarousels() {
+    $$('[data-carousel]').forEach((track, n) => {
+      const key = track.dataset.carousel || ('c' + n);
+      const section = track.closest('section');
+      const dotsBox = $(`[data-dots-for="${key}"]`) || (section && $(`[data-dots-for="${section.id}"]`));
+      const items = Array.from(track.children);
+      const isScrollable = () => track.scrollWidth > track.clientWidth + 4;
+      const step = () => items[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 16);
+      const index = () => Math.round(track.scrollLeft / step());
+      if (dotsBox) {
+        dotsBox.innerHTML = items.map((_, i) => `<button type="button" class="car-dot" aria-label="Ir para o item ${i + 1}" aria-current="${i === 0}"><span></span></button>`).join('');
+        const dots = $$('.car-dot', dotsBox);
+        dots.forEach((d, i) => d.addEventListener('click', () => track.scrollTo({ left: i * step() })));
+        let raf;
+        track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { const k = Math.min(index(), dots.length - 1); dots.forEach((d, i) => d.setAttribute('aria-current', i === k)); }); }, { passive: true });
+        const toggle = () => dotsBox.style.display = isScrollable() ? '' : 'none';
+        toggle(); window.addEventListener('resize', toggle);
+      }
+      const next = () => { if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 8) track.scrollTo({ left: 0 }); else track.scrollBy({ left: step() }); };
+      const prev = () => track.scrollBy({ left: -step() });
+      $$(`[data-car-next="${key}"]`).forEach(b => b.addEventListener('click', next));
+      $$(`[data-car-prev="${key}"]`).forEach(b => b.addEventListener('click', prev));
+      const ms = +track.dataset.autoplay;
+      if (ms && !REDUCED) {
+        let timer = null, paused = false;
+        const run = () => { clearInterval(timer); timer = setInterval(() => { if (!paused && isScrollable() && document.visibilityState === 'visible') next(); }, ms); };
+        ['mouseenter', 'touchstart', 'focusin'].forEach(ev => track.addEventListener(ev, () => paused = true, { passive: true }));
+        ['mouseleave', 'focusout'].forEach(ev => track.addEventListener(ev, () => paused = false));
+        track.addEventListener('touchend', () => setTimeout(() => paused = false, 4000), { passive: true });
+        run();
+      }
+    });
+  }
+
+  /* ============================================================================
+     12. FAQ (acordeão)
+     ============================================================================ */
+  function renderFaq() {
+    const F = CONFIG.FAQ;
+    $('#faq').innerHTML = `
+      <div class="container-ns grid lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-16">
+        <div>
+          ${heading({ eyebrow: F.eyebrow, titulo: F.titulo, center: false, subtitulo: 'Ainda ficou alguma dúvida? Faça o diagnóstico gratuito e fale com um especialista.' })}
+          <div class="mt-6 reveal">${quizBtn({ label: 'Fazer diagnóstico gratuito', origem: 'faq' })}</div>
+        </div>
+        <div class="reveal">
+          ${F.lista.map((f, i) => `
+            <div class="faq-item">
+              <h3><button type="button" class="faq-btn" aria-expanded="false" aria-controls="faq-${i}" id="faq-b-${i}">${escapeHTML(f.p)}<span class="faq-ico"><i data-lucide="chevron-down" class="w-5 h-5"></i></span></button></h3>
+              <div class="faq-panel" id="faq-${i}" role="region" aria-labelledby="faq-b-${i}"><div><p class="pb-5 text-slate-600">${escapeHTML(f.r)}</p></div></div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+    $$('.faq-btn').forEach(b => b.addEventListener('click', () => {
+      const item = b.closest('.faq-item'), open = !item.classList.contains('is-open');
+      $$('.faq-item.is-open').forEach(o => { o.classList.remove('is-open'); $('.faq-btn', o).setAttribute('aria-expanded', 'false'); });
+      item.classList.toggle('is-open', open);
+      b.setAttribute('aria-expanded', String(open));
+    }));
+  }
+
+  /* ============================================================================
+     13. BLOG
+     ============================================================================ */
+  function renderBlog() {
+    const B = CONFIG.BLOG;
+    $('#blog').innerHTML = `
+      <div class="container-ns">
+        ${heading({ eyebrow: B.eyebrow, titulo: B.titulo })}
+        <div class="mt-10 snap-track snap-grid cols-3" data-carousel="blog">
+          ${B.posts.map((p, i) => `
+            <article class="card card-hover overflow-hidden flex flex-col reveal" style="--d:${i * 90}ms">
+              <img src="${IMG(p.imagem, 700)}" alt="${escapeHTML(p.alt)}" loading="lazy" class="w-full aspect-[16/10] object-cover" width="700" height="438">
+              <div class="p-6 flex flex-col flex-1">
+                <span class="chip chip-soft self-start">${escapeHTML(p.categoria)}</span>
+                <h3 class="mt-3 text-xl font-extrabold text-ns-navy flex-1">${escapeHTML(p.titulo)}</h3>
+                <a href="${p.href}" class="mt-4 inline-flex items-center gap-1.5 font-bold text-ns-navy self-start min-h-[44px]"><span class="link-gold">${escapeHTML(B.lerMais)}</span><i data-lucide="arrow-right" class="w-4 h-4 text-ns-orange"></i><span class="sr-only">: ${escapeHTML(p.titulo)}</span></a>
+              </div>
+            </article>`).join('')}
+        </div>
+        <div class="flex justify-center md:hidden" data-dots-for="blog"></div>
+      </div>`;
+  }
+
+  /* ============================================================================
+     14. CTA FINAL
+     ============================================================================ */
+  function renderCta() {
+    const C = CONFIG.CTA_FINAL;
+    $('#cta-final').innerHTML = `
+      <div class="parallax-wrap" aria-hidden="true"><img src="${IMG(C.fundo, 1600)}" alt="" loading="lazy" data-parallax class="opacity-20"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-ns-deep/95 to-ns-navy/90" aria-hidden="true"></div>
+      <div class="container-ns relative text-center max-w-3xl reveal">
+        <span class="inline-flex mb-6">${markSVG(56, '#FFFFFF')}</span>
+        <h2 class="h2 text-white">${hl(C.titulo, true)}</h2>
+        <p class="lead text-slate-200">${escapeHTML(C.subtitulo)}</p>
+        <div class="mt-8">${quizBtn({ label: C.botao, origem: 'cta-final', cls: 'btn btn-primary btn-lg' })}</div>
+      </div>`;
+  }
+
+  /* ============================================================================
+     15. RODAPÉ
+     ============================================================================ */
+  const SOCIAL_SVG = {
+    instagram: '<path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 2.9.3.8.7 1.5 1.4 2.1.7.7 1.3 1.1 2.1 1.4.8.3 1.6.5 2.9.6 1.3.1 1.7.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.2-.3 2.9-.6.8-.3 1.5-.7 2.1-1.4.7-.7 1.1-1.3 1.4-2.1.3-.8.5-1.6.6-2.9.1-1.3.1-1.7.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.1C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/>',
+    linkedin: '<path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/>',
+    youtube: '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/>',
+    facebook: '<path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1c0 6 4.4 11 10.1 11.9v-8.4h-3v-3.5h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.3h3.4l-.5 3.5h-2.9V24C19.6 23.1 24 18.1 24 12.1z"/>'
+  };
+  function renderFooter() {
+    const E = CONFIG.EMPRESA, R = CONFIG.RODAPE;
+    const social = Object.entries(E.redes).filter(([, u]) => u).map(([k, u]) =>
+      `<a href="${u}" target="_blank" rel="noopener" class="w-11 h-11 rounded-full bg-white/10 hover:bg-ns-gold hover:text-ns-deep inline-flex items-center justify-center transition-colors" aria-label="${k.charAt(0).toUpperCase() + k.slice(1)} da Next Step"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${SOCIAL_SVG[k] || ''}</svg></a>`).join('');
+    $('#contato').innerHTML = `
+      <div class="container-ns">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
+          <div>
+            ${logoDark(true)}
+            <p class="mt-5 text-slate-300 max-w-sm">${escapeHTML(E.frase)}</p>
+            <div class="mt-6 flex gap-2">${social}</div>
+          </div>
+          <nav aria-label="${R.linksTitulo}">
+            <h2 class="font-display font-extrabold text-white text-lg">${escapeHTML(R.linksTitulo)}</h2>
+            <ul class="mt-4 space-y-1">${CONFIG.MENU.map(m => `<li><a href="${m.href}" class="inline-flex items-center min-h-[40px] hover:text-white"><span class="link-gold">${escapeHTML(m.label)}</span></a></li>`).join('')}</ul>
+          </nav>
+          <nav aria-label="${R.servicosTitulo}">
+            <h2 class="font-display font-extrabold text-white text-lg">${escapeHTML(R.servicosTitulo)}</h2>
+            <ul class="mt-4 space-y-1">${R.servicos.map(s => `<li><a href="${s.href}" class="inline-flex items-center min-h-[40px] hover:text-white"><span class="link-gold">${escapeHTML(s.label)}</span></a></li>`).join('')}</ul>
+          </nav>
+          <div>
+            <h2 class="font-display font-extrabold text-white text-lg">${escapeHTML(R.contatoTitulo)}</h2>
+            <ul class="mt-4 space-y-4">
+              <li class="flex gap-3"><i data-lucide="map-pin" class="w-5 h-5 text-ns-gold shrink-0 mt-0.5"></i><span>${escapeHTML(E.endereco)}</span></li>
+              <li class="flex gap-3"><i data-lucide="mail" class="w-5 h-5 text-ns-gold shrink-0 mt-0.5"></i><a href="mailto:${E.email}" class="hover:text-white break-all"><span class="link-gold">${escapeHTML(E.email)}</span></a></li>
+              <li class="flex gap-3"><i data-lucide="phone" class="w-5 h-5 text-ns-gold shrink-0 mt-0.5"></i><span>${escapeHTML(E.telefone)}</span></li>
+            </ul>
+            <div class="mt-6">${quizBtn({ label: 'Diagnóstico gratuito', origem: 'rodape', cls: 'btn btn-primary !min-h-[44px]' })}</div>
+          </div>
+        </div>
+        <div class="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 justify-between text-sm text-slate-400">
+          <p>© ${new Date().getFullYear()} ${escapeHTML(R.copyright)} ${escapeHTML(E.slogan)}</p>
+          <button type="button" class="self-start sm:self-auto hover:text-white min-h-[44px]" data-open-privacy><span class="link-gold">${escapeHTML(R.privacidade)}</span></button>
+        </div>
+      </div>`;
+  }
+
+  /* ============================================================================
+     BOTÃO FLUTUANTE, COOKIES, PRIVACIDADE
+     ============================================================================ */
+  function hideBalloon() { $('#waBalloon').classList.remove('is-show'); }
+  function initFloat() {
+    $('#waBalloonText').textContent = CONFIG.FLUTUANTE.balao;
+    if (!store.get('ns_balao_fechado', 'session')) {
+      setTimeout(() => { if ($('#quizModal').hidden && !$('#waFloat').classList.contains('is-hidden')) $('#waBalloon').classList.add('is-show'); }, CONFIG.FLUTUANTE.atrasoMs);
+    }
+    $('#waBalloonClose').addEventListener('click', () => { hideBalloon(); store.set('ns_balao_fechado', true, 'session'); });
+    $('#waBalloon').addEventListener('click', e => { if (!e.target.closest('#waBalloonClose')) openQuiz({ origem: 'balao-flutuante' }); });
+    $('#waBalloon').style.cursor = 'pointer';
+    // Esconde o botão quando o quiz da página está visível, para não cobrir as opções
+    const io = new IntersectionObserver(en => {
+      const vis = en[0].isIntersecting;
+      if ($('#quizModal').hidden) $('#waFloat').classList.toggle('is-hidden', vis);
+      if (vis) hideBalloon();
+    }, { threshold: 0.15 });
+    io.observe($('#quizHome'));
+  }
+
+  function loadTracking() {
+    if (CONFIG.GA4_ID) {
+      const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + CONFIG.GA4_ID; document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date()); gtag('config', CONFIG.GA4_ID);
+    }
+    if (CONFIG.META_PIXEL_ID) {
+      !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', CONFIG.META_PIXEL_ID); fbq('track', 'PageView');
+    }
+  }
+  function initCookies() {
+    const bar = $('#cookieBar'), choice = store.get('ns_cookies');
+    $('#cookieText').textContent = CONFIG.COOKIES.texto;
+    if (choice === 'aceito') loadTracking();
+    if (choice) return;
+    bar.hidden = false;
+    document.body.classList.add('has-cookie-bar');
+    const setH = () => document.body.style.setProperty('--cookie-h', (bar.offsetHeight + 24) + 'px');
+    setH(); window.addEventListener('resize', setH);
+    const done = v => { store.set('ns_cookies', v); bar.hidden = true; document.body.classList.remove('has-cookie-bar'); if (v === 'aceito') loadTracking(); };
+    $('#cookieAccept').addEventListener('click', () => done('aceito'));
+    $('#cookieDecline').addEventListener('click', () => done('recusado'));
+  }
+
+  function initPrivacy() {
+    $('#privBody').innerHTML = CONFIG.PRIVACIDADE.map(p => `<p>${p}</p>`).join('');
+    const modal = $('#privacyModal');
+    let last = null;
+    const close = () => { modal.hidden = true; if ($('#quizModal').hidden) document.documentElement.style.overflow = ''; if (last) last.focus(); };
+    document.addEventListener('click', e => {
+      if (e.target.closest('[data-open-privacy]')) { e.preventDefault(); last = document.activeElement; modal.hidden = false; document.documentElement.style.overflow = 'hidden'; $('button', modal.querySelector('.modal-panel')).focus(); }
+      if (e.target.closest('[data-close-privacy]')) close();
+    });
+    document.addEventListener('keydown', e => { if (!modal.hidden && e.key === 'Escape') { e.stopPropagation(); close(); } }, true);
+  }
+
+  /* ============================================================================
+     DADOS ESTRUTURADOS (JSON-LD Organization)
+     ============================================================================ */
+  function injectJsonLd() {
+    const E = CONFIG.EMPRESA;
+    const data = {
+      '@context': 'https://schema.org', '@type': 'Organization',
+      name: E.nome, slogan: E.slogan, description: E.frase, url: E.siteUrl,
+      logo: new URL(CONFIG.IMAGENS.logo, location.href).href,
+      email: E.email, telephone: '+' + E.whatsapp.replace(/\D/g, ''),
+      address: { '@type': 'PostalAddress', streetAddress: E.endereco, addressLocality: E.cidade, addressCountry: 'BR' },
+      areaServed: 'BR', sameAs: Object.values(E.redes).filter(Boolean)
+    };
+    const s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(data); document.head.appendChild(s);
+  }
+
+  /* ============================================================================
+     ANIMAÇÕES: reveal, contadores, parallax, linha do tempo
+     ============================================================================ */
+  function initReveal() {
+    const els = $$('.reveal');
+    if (REDUCED || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('is-visible')); return; }
+    const io = new IntersectionObserver(en => en.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(e => io.observe(e));
+  }
+  function initCounters() {
+    const io = new IntersectionObserver(en => en.forEach(e => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const el = e.target, to = +el.dataset.count;
+      if (REDUCED) { el.textContent = num(to); return; }
+      const t0 = performance.now(), dur = 1800;
+      const tick = t => { const k = Math.min(1, (t - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - k, 3))); el.textContent = num(v); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }), { threshold: 0.6 });
+    $$('[data-count]').forEach(el => io.observe(el));
+  }
+  function initScrollEffects() {
+    const parallax = $$('[data-parallax]');
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      updateTimeline();
+      if (REDUCED || window.innerWidth < 1024) { parallax.forEach(img => img.style.transform = ''); return; }
+      const vh = window.innerHeight;
+      parallax.forEach(img => {
+        const r = img.parentElement.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        img.style.transform = `translate3d(0, ${((r.top + r.height / 2 - vh / 2) * -0.12).toFixed(1)}px, 0)`;
+      });
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  }
+
+  /* ============================================================================
+     INICIALIZAÇÃO (DOMContentLoaded roda depois dos scripts com defer)
+     ============================================================================ */
+  document.addEventListener('DOMContentLoaded', () => {
+    renderHeader(); renderHero(); renderEncontre(); renderSolucoes(); renderServicos(); renderImpacto();
+    renderResultados(); renderGaleria(); renderDiagHead(); renderTimeline(); renderClientes(); renderDepoimentos();
+    renderFaq(); renderBlog(); renderCta(); renderFooter();
+    $$('[data-divider]').forEach(d => d.innerHTML = DIVIDER_SVG);
+
+    chartDefaults();
+    initHeader(); initHero(); initCarousels(); initResultados(); initLightbox();
+    initQuizModal(); initQuiz(); initFloat(); initCookies(); initPrivacy();
+    initReveal(); initCounters(); initScrollEffects(); injectJsonLd();
+    icons();
+    retryPendingLeads(); // reenvia leads que falharam em visitas anteriores
+  });
+  </script>
+</body>
+</html>
