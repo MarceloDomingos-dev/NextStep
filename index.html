@@ -560,12 +560,10 @@
       logoClaro: 'imagens/logo-branco.png', // versão branca/transparente para fundos escuros. Vazio = usa o logo em SVG.
       prova500k: 'imagens/prova-500k-vendas.jpg',
       provaDestaque: 'imagens/prova-1m-vendas.jpg', // foto da faixa de impacto
-      dashboard: 'imagens/dashboard-vendas.jpg?v=2',
       // Galeria "Conquistas e bastidores": adicione quantas fotos quiser
       galeria: [
         { src: 'imagens/prova-1m-vendas.jpg', alt: 'Placa comemorativa de 1 milhão de reais em vendas recebida em caixa de presente', legenda: 'Marco de R$ 1 milhão em vendas' },
-        { src: 'imagens/prova-500k-vendas.jpg', alt: 'Quadro comemorativo de 500 mil reais em vendas segurado em frente ao setup de trabalho', legenda: 'Marco de R$ 500 mil em vendas' },
-        { src: 'imagens/dashboard-vendas.jpg?v=2', alt: 'Painel de vendas mostrando total de R$ 45.262,88 e vários pagamentos concluídos', legenda: 'Painel real de vendas de um cliente' }
+        { src: 'imagens/prova-500k-vendas.jpg', alt: 'Quadro comemorativo de 500 mil reais em vendas segurado em frente ao setup de trabalho', legenda: 'Marco de R$ 500 mil em vendas' }
       ],
       espacosExtrasGaleria: 0,             // espaços reservados para novas fotos
       unsplash: (id, w = 1200) => /[\/.]/.test(id) ? id : `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`
@@ -701,8 +699,6 @@
       subtitulo: 'Veja o antes e depois de clientes atendidos em cada frente.',
       legendaAntes: 'Antes da Next Step',
       legendaDepois: 'Com a Next Step',
-      legendaPrint: 'Painel real de vendas de um cliente',
-      seloPrint: 'Print real de cliente',
       abas: {
         marketing: { label: 'Marketing', icone: 'megaphone',
           meses: ['Mês 1', 'Mês 2', 'Mês 3', 'Mês 4', 'Mês 5', 'Mês 6'],
@@ -1253,7 +1249,6 @@
   function renderResultados() {
     const R = CONFIG.RESULTADOS;
     const keys = Object.keys(R.abas);
-    const galIdx = CONFIG.IMAGENS.galeria.findIndex(g => g.src === CONFIG.IMAGENS.dashboard);
     const caseHTML = c => `
       <div class="rounded-2xl bg-ns-light p-6 h-full flex flex-col">
         <p class="chip chip-navy self-start"><i data-lucide="briefcase" class="w-3.5 h-3.5"></i>Mini case</p>
@@ -1273,8 +1268,8 @@
         <div class="mt-10 flex gap-2 overflow-x-auto pb-2 justify-start sm:justify-center -mx-4 px-4" role="tablist" aria-label="Escolha a área de resultado">
           ${keys.map((k, i) => `<button type="button" role="tab" class="tab-btn" id="tab-${k}" aria-controls="panel-${k}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-tab="${k}"><i data-lucide="${R.abas[k].icone}" class="w-4 h-4"></i>${escapeHTML(R.abas[k].label)}</button>`).join('')}
         </div>
-        <div class="mt-8 grid lg:grid-cols-3 gap-6 items-start">
-          <div class="lg:col-span-2 card p-5 sm:p-7 reveal" id="chartsArea">
+        <div class="mt-8">
+          <div class="card p-5 sm:p-7 reveal" id="chartsArea">
             ${keys.map((k, i) => `
               <div role="tabpanel" id="panel-${k}" aria-labelledby="tab-${k}" ${i ? 'hidden' : ''}>
                 <div class="grid md:grid-cols-5 gap-6">
@@ -1288,15 +1283,6 @@
                 </div>
               </div>`).join('')}
           </div>
-          <figure class="reveal card p-3" style="--d:120ms">
-            <div class="relative">
-              <button type="button" class="block w-full" data-lightbox="${Math.max(galIdx, 0)}" aria-label="Ampliar print do painel de vendas">
-                <img src="${CONFIG.IMAGENS.dashboard}" alt="Painel real de vendas de um cliente mostrando total de R$ 45.262,88 e pagamentos concluídos" loading="lazy" class="real-photo aspect-[3/4]" style="object-position:40% 6%" width="1500" height="2000">
-              </button>
-              <span class="chip chip-gold absolute top-3 left-3 shadow"><i data-lucide="badge-check" class="w-4 h-4"></i>${escapeHTML(R.seloPrint)}</span>
-            </div>
-            <figcaption class="text-center text-sm font-semibold text-ns-navy pt-3 pb-1">${escapeHTML(R.legendaPrint)}</figcaption>
-          </figure>
         </div>
       </div>`;
   }
