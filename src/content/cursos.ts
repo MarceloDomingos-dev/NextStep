@@ -6,7 +6,7 @@
  * até a Next Step confirmar os módulos reais. [EDITAR]
  */
 
-export type Modalidade = "Online" | "Presencial" | "In company";
+export type Modalidade = "Online" | "In company";
 
 export type Curso = {
   slug: string;
@@ -26,7 +26,7 @@ export const cursos: Curso[] = [
     slug: "lideranca-alta-performance",
     nome: "Liderança de Alta Performance",
     carga: 16,
-    modalidades: ["Presencial", "In company"],
+    modalidades: ["In company"],
     publico: "Para gestores e novos líderes.",
     promessa:
       "Forme líderes que delegam, dão feedback e batem metas com a equipe, sem depender do dono para cada decisão.",
@@ -49,7 +49,7 @@ export const cursos: Curso[] = [
     slug: "vendas-consultivas-negociacao",
     nome: "Vendas Consultivas e Negociação",
     carga: 12,
-    modalidades: ["Online", "Presencial"],
+    modalidades: ["Online"],
     publico: "Para times comerciais.",
     promessa: "Venda valor, contorne objeções e feche mais, sem dar desconto para fechar.",
     paraQuem: ["Vendedores e representantes", "Líderes comerciais", "Donos que ainda vendem"],
@@ -164,8 +164,8 @@ export const faqCurso = [
     r: "Sim. No formato in company, o curso é feito só para a sua equipe, com exemplos da sua empresa.",
   },
   {
-    p: "Onde acontecem as turmas presenciais?",
-    r: "Em Belo Horizonte e região. O local exato vai junto com a confirmação da turma.",
+    p: "Como funcionam as aulas online?",
+    r: "Ao vivo, pela internet. Depois da inscrição, você recebe pelo WhatsApp as datas e o link de acesso.",
   },
   {
     p: "Como recebo o certificado?",

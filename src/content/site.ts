@@ -24,7 +24,7 @@ export const site = {
     email: "stepnext.soluctions@gmail.com",
     cidade: "Belo Horizonte",
     uf: "MG",
-    atendimento: "Presencial em Belo Horizonte e região, online em todo o Brasil",
+    atendimento: "Empresas de todo o Brasil",
   },
 
   redes: {

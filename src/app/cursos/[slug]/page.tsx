@@ -194,7 +194,7 @@ export default async function CursoPage({ params }: Props) {
           timeRequired: `PT${curso.carga}H`,
           hasCourseInstance: curso.modalidades.map((m) => ({
             "@type": "CourseInstance",
-            courseMode: m === "Online" ? "Online" : "Onsite",
+            courseMode: m === "Online" ? "Online" : "In company",
             courseWorkload: `PT${curso.carga}H`,
           })),
         }}

@@ -76,8 +76,7 @@ export default function Home() {
                     Capacitar minha equipe
                   </strong>
                   <span className="mt-3 block max-w-[480px] text-base text-body lg:mt-4 lg:text-lg">
-                    Liderança, vendas, atendimento, produtividade, comunicação e indicadores. Online, presencial ou in
-                    company.
+                    Liderança, vendas, atendimento, produtividade, comunicação e indicadores. Online ou in company.
                   </span>
                   <span className="mt-5 inline-block border-b-2 border-brand font-bold lg:mt-7">Ver os {cursos.length} cursos</span>
                 </span>

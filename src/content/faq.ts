@@ -14,7 +14,7 @@ export const faq = [
   },
   {
     p: "Para quem é a Next Step?",
-    r: "Para empresas de qualquer porte que querem uma equipe mais preparada, mais clientes ou menos trabalho manual. Atendemos presencialmente em Belo Horizonte e região e online em todo o Brasil.",
+    r: "Para empresas de qualquer porte que querem uma equipe mais preparada, mais clientes ou menos trabalho manual. Estamos em Belo Horizonte e atendemos empresas de todo o Brasil.",
   },
   {
     p: "Como começa?",

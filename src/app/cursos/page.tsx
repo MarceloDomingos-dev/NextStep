@@ -6,7 +6,7 @@ import { Trilha } from "@/components/site/trilha";
 export const metadata: Metadata = {
   title: "Cursos para equipes e líderes",
   description:
-    "Liderança, vendas, atendimento, produtividade, comunicação e KPIs. Online, presencial ou in company em BH.",
+    "Liderança, vendas, atendimento, produtividade, comunicação e KPIs. Online ou in company, para empresas de todo o Brasil.",
   alternates: { canonical: "/cursos/" },
   openGraph: { url: "/cursos/", title: "Cursos para equipes e líderes · Next Step" },
 };
@@ -24,7 +24,7 @@ export default function CursosPage() {
             Cursos para equipes e líderes
           </h1>
           <p className="mt-5 mb-10 max-w-2xl text-lg text-body lg:text-xl">
-            Seis cursos práticos, online, presencial ou in company. Escolha o curso e fale com a gente no WhatsApp.
+            Seis cursos práticos, online ou in company. Escolha o curso e fale com a gente no WhatsApp.
           </p>
           <Catalogo />
         </div>

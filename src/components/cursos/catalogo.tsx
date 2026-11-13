@@ -5,7 +5,7 @@ import { cursos, type Modalidade } from "@/content/cursos";
 import { CourseCard, InCompanyCard } from "@/components/site/course-card";
 import { cn } from "@/lib/utils";
 
-const FILTROS: ("Todos" | Modalidade)[] = ["Todos", "Online", "Presencial", "In company"];
+const FILTROS: ("Todos" | Modalidade)[] = ["Todos", "Online", "In company"];
 
 export function Catalogo() {
   const [filtro, setFiltro] = useState<(typeof FILTROS)[number]>("Todos");
