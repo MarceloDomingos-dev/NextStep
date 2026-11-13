@@ -124,8 +124,8 @@ export default function Home() {
               <p className="eyebrow">Cursos</p>
               <h2 className="h-section mt-2">Cursos para equipes e líderes</h2>
             </div>
-            <Link href="/cursos/" className="hidden shrink-0 border-b-2 border-brand pb-0.5 font-bold sm:inline-block">
-              Ver catálogo
+            <Link href="/cursos/" className="hidden min-h-11 shrink-0 items-end sm:inline-flex">
+              <span className="border-b-2 border-brand pb-0.5 font-bold">Ver catálogo</span>
             </Link>
           </div>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-5">

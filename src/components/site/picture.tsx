@@ -24,6 +24,7 @@ export function Picture({ nome, larguras, sizes, alt, width, height, prioridade,
       <img
         src={asset(`/imagens/otimizadas/${nome}-${maior}.webp`)}
         alt={alt}
+        translate={alt === "Next Step" ? "no" : undefined}
         width={width}
         height={height}
         loading={prioridade ? "eager" : "lazy"}

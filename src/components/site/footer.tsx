@@ -7,7 +7,7 @@ export function Footer() {
   const { contato, redes } = site;
   return (
     <footer id="rodape" className="bg-ink text-[#bdbdbd]">
-      <div className="container-ns grid gap-10 py-16 text-[0.9375rem] sm:grid-cols-2 lg:grid-cols-4">
+      <div className="container-ns grid gap-10 py-16 text-[0.9375rem] sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1.5fr_1fr]">
         <div>
           <Logo variante="claro" className="h-10 w-auto" />
           <p className="mt-4">{site.slogan}</p>
@@ -38,7 +38,7 @@ export function Footer() {
               </WhatsAppLink>
             </li>
             <li>
-              <a href={`mailto:${contato.email}`} className="inline-flex min-h-10 items-center break-all hover:text-white">
+              <a href={`mailto:${contato.email}`} className="inline-flex min-h-10 items-center [overflow-wrap:anywhere] hover:text-white">
                 {contato.email}
               </a>
             </li>

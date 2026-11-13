@@ -85,6 +85,20 @@
       scroll-behavior: smooth;
     }
   }
+  a,
+  button,
+  label,
+  summary,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(239, 108, 34, 0.15);
+  }
+  @media (max-width: 1023px) {
+    html {
+      /* A barra fixa do celular não cobre o elemento com foco. */
+      scroll-padding-bottom: 96px;
+    }
+  }
   body {
     @apply bg-background text-foreground antialiased;
     font-size: 1.0625rem;

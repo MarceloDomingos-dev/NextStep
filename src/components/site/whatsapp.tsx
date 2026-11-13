@@ -56,7 +56,7 @@ export function InscreverCurso({
   const icone = (
     <MessageCircle
       aria-hidden="true"
-      className="size-4 -translate-x-1 opacity-0 transition-all duration-300 group-hover/wa:translate-x-0 group-hover/wa:opacity-100 motion-reduce:hidden"
+      className="size-4 -translate-x-1 opacity-0 transition-[opacity,transform] duration-300 group-hover/wa:translate-x-0 group-hover/wa:opacity-100 motion-reduce:hidden"
     />
   );
   const aria = `${rotulo} em ${curso.nome}: abre o WhatsApp`;

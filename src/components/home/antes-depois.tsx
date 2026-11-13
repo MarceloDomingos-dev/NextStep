@@ -14,13 +14,21 @@ export function AntesDepois({ antes, depois }: { antes: string; depois: string }
   const [lado, setLado] = useState<"antes" | "depois">("depois");
   const [pausado, setPausado] = useState(false);
   const [manual, setManual] = useState(false);
+  // Um ciclo curto (Depois → Antes → Depois, ~4s) e para no "Depois": nada fica se mexendo sem parar.
+  const [trocas, setTrocas] = useState(0);
 
   useEffect(() => {
-    if (pausado || manual) return;
+    if (pausado || manual || trocas >= 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setTimeout(() => setLado((l) => (l === "depois" ? "antes" : "depois")), lado === "depois" ? 2800 : 1200);
+    const t = setTimeout(
+      () => {
+        setLado((l) => (l === "depois" ? "antes" : "depois"));
+        setTrocas((n) => n + 1);
+      },
+      lado === "depois" ? 2400 : 1400,
+    );
     return () => clearTimeout(t);
-  }, [lado, pausado, manual]);
+  }, [lado, pausado, manual, trocas]);
 
   const escolher = (l: "antes" | "depois") => {
     setManual(true);
@@ -29,7 +37,7 @@ export function AntesDepois({ antes, depois }: { antes: string; depois: string }
   const ativo = lado === "depois";
 
   return (
-    <div onMouseEnter={() => setPausado(true)} onMouseLeave={() => setPausado(false)}>
+    <div onMouseEnter={() => setPausado(true)} onMouseLeave={() => setPausado(false)} onFocus={() => setPausado(true)} onBlur={() => setPausado(false)}>
       <div role="group" aria-label="Comparar antes e depois" className="mb-2.5 grid grid-cols-2 rounded-full bg-ink-line p-1 sm:hidden">
         {(["antes", "depois"] as const).map((l) => (
           <button
@@ -38,7 +46,7 @@ export function AntesDepois({ antes, depois }: { antes: string; depois: string }
             aria-pressed={lado === l}
             onClick={() => escolher(l)}
             className={cn(
-              "h-11 rounded-full text-sm capitalize transition-colors",
+              "h-11 rounded-full text-sm capitalize transition-colors hover:text-white",
               lado === l ? "bg-white font-bold text-ink" : "text-[#bdbdbd]",
             )}
           >
@@ -56,7 +64,7 @@ export function AntesDepois({ antes, depois }: { antes: string; depois: string }
           )}
         >
           <strong className="block text-[#d4d4d4]">Antes (ilustrativo)</strong>
-          <span className={cn("transition-all duration-500", ativo && "line-through decoration-[#737373]")}>{antes}</span>
+          <span className={cn("transition-[text-decoration-color] duration-500", ativo && "line-through decoration-[#737373]")}>{antes}</span>
         </div>
         <div
           className={cn(

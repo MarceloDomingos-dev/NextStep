@@ -184,11 +184,19 @@ export function Quiz() {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm<Dados>({
     resolver: zodResolver(schema),
     defaultValues: { nome: "", empresa: "", cargo: "", whatsapp: "", email: "", cidade: "", consentimento: false },
   });
+
+  // Avisa antes de sair da página com o formulário começado.
+  useEffect(() => {
+    if (etapa !== "form" || !isDirty || isSubmitting) return;
+    const aviso = (e: BeforeUnloadEvent) => e.preventDefault();
+    window.addEventListener("beforeunload", aviso);
+    return () => window.removeEventListener("beforeunload", aviso);
+  }, [etapa, isDirty, isSubmitting]);
 
   const frente = frenteDe(respostas);
   const rec = recomendacoes[frente];
@@ -389,9 +397,9 @@ export function Quiz() {
       { nome: "nome", label: "Nome", auto: "name", ex: "Maria Silva…" },
       { nome: "empresa", label: "Empresa", auto: "organization", ex: "Nome da empresa…" },
       { nome: "cargo", label: "Cargo", auto: "organization-title", ex: "Sócia, gerente…" },
-      { nome: "whatsapp", label: "WhatsApp (com DDD)", tipo: "tel", auto: "tel-national", modo: "tel", ex: "(31) 99999-9999" },
-      { nome: "email", label: "E-mail", tipo: "email", auto: "email", modo: "email", ex: "voce@empresa.com.br" },
-      { nome: "cidade", label: "Cidade/UF", auto: "address-level2", ex: "Belo Horizonte/MG" },
+      { nome: "whatsapp", label: "WhatsApp (com DDD)", tipo: "tel", auto: "tel-national", modo: "tel", ex: "(31) 99999-9999…" },
+      { nome: "email", label: "E-mail", tipo: "email", auto: "email", modo: "email", ex: "voce@empresa.com.br…" },
+      { nome: "cidade", label: "Cidade/UF", auto: "address-level2", ex: "Belo Horizonte/MG…" },
     ];
     return (
       <div className={cartao}>

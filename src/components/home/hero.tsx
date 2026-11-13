@@ -48,11 +48,11 @@ export function Hero() {
             Cursos, marketing e automação para empresas de BH e de todo o Brasil
           </p>
           <h1
-            className="relative font-extrabold tracking-[-0.03em] [--degrau:0.5em] lg:[--degrau:0.8em]"
-            style={{ fontSize: "clamp(1.625rem, 7.2vw, 3.5rem)", lineHeight: 1.2 }}
+            className="relative text-[clamp(1.625rem,7.2vw,3.5rem)] font-extrabold tracking-[-0.03em] [--degrau:0.5em] lg:text-[min(3.5rem,4.6vw)] lg:[--degrau:0.8em]"
+            style={{ lineHeight: 1.2 }}
           >
             <Escada degrau={50} largura={1150} className="lg:hidden" />
-            <Escada degrau={80} largura={1220} className="hidden lg:block" />
+            <Escada degrau={80} largura={1080} className="hidden lg:block" />
             {LINHAS.map((linha, i) => (
               <span
                 key={linha}
@@ -95,8 +95,8 @@ export function Hero() {
               />
             </div>
           </HeroParallax>
-          <figcaption className="relative mt-4 flex items-baseline justify-between gap-4">
-            <strong className="text-2xl font-extrabold lg:text-[1.75rem]">R$ 1 milhão</strong>
+          <figcaption className="relative mt-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <strong className="text-2xl font-extrabold whitespace-nowrap lg:text-[1.75rem]">R$&nbsp;1 milhão</strong>
             <span className="text-sm text-subtle lg:text-[0.9375rem]">em vendas geradas no digital</span>
           </figcaption>
         </figure>
