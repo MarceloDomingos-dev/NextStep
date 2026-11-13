@@ -33,7 +33,7 @@ function Escada({ degrau, largura, className }: { degrau: number; largura: numbe
         vectorEffect="non-scaling-stroke"
         pathLength={1}
         className="anim-draw"
-        style={{ "--len": 1, animationDelay: "150ms" } as React.CSSProperties}
+        style={{ "--len": 1, animationDelay: "calc(var(--intro) + 150ms)" } as React.CSSProperties}
       />
     </svg>
   );
@@ -44,7 +44,7 @@ export function Hero() {
     <section className="relative overflow-x-clip pt-24 pb-14 lg:pt-36 lg:pb-24">
       <div className="container-ns grid items-center gap-12 lg:grid-cols-12 lg:gap-6">
         <div className="lg:col-span-7">
-          <p className="anim-fade-up mb-6 text-sm font-semibold text-brand-text lg:mb-9 lg:text-[0.9375rem]">
+          <p style={{ animationDelay: "var(--intro)" }} className="anim-fade-up mb-6 text-sm font-semibold text-brand-text lg:mb-9 lg:text-[0.9375rem]">
             Cursos, marketing e automação para empresas de BH e de todo o Brasil
           </p>
           <h1
@@ -59,17 +59,17 @@ export function Hero() {
                 className="relative block overflow-hidden whitespace-nowrap"
                 style={{ paddingLeft: `calc(var(--degrau) * ${i})` }}
               >
-                <span className="anim-rise" style={{ animationDelay: `${i * 80}ms` }}>
+                <span className="anim-rise" style={{ animationDelay: `calc(var(--intro) + ${i * 80}ms)` }}>
                   {linha}
                 </span>
               </span>
             ))}
           </h1>
-          <p className="anim-fade-up mt-9 max-w-xl text-lg text-body lg:mt-11 lg:text-xl" style={{ animationDelay: "420ms" }}>
+          <p className="anim-fade-up mt-9 max-w-xl text-lg text-body lg:mt-11 lg:text-xl" style={{ animationDelay: "calc(var(--intro) + 420ms)" }}>
             Treinamos sua equipe, fazemos o marketing trazer clientes e automatizamos o trabalho manual. Um parceiro, três
             frentes, tudo medido.
           </p>
-          <div className="anim-fade-up mt-8 flex flex-col gap-3 sm:flex-row lg:mt-9" style={{ animationDelay: "500ms" }}>
+          <div className="anim-fade-up mt-8 flex flex-col gap-3 sm:flex-row lg:mt-9" style={{ animationDelay: "calc(var(--intro) + 500ms)" }}>
             <Link href="/diagnostico/" className={cn(buttonVariants({ variant: "brand", size: "pill" }), "w-full sm:w-auto")}>
               Diagnóstico gratuito
             </Link>
@@ -82,7 +82,7 @@ export function Hero() {
         <figure className="relative mx-auto w-full max-w-md lg:col-span-4 lg:col-start-9 lg:max-w-none">
           <div aria-hidden="true" className="glow anim-glow-on absolute -inset-x-6 -top-12 -bottom-6 lg:-inset-x-14 lg:-top-16" />
           <HeroParallax>
-            <div className="anim-scale-in relative rounded-3xl border border-line bg-white p-2.5 shadow-[0_30px_80px_-40px_rgba(239,108,34,0.55)] lg:p-3">
+            <div style={{ animationDelay: "var(--intro)" }} className="anim-scale-in relative rounded-3xl border border-line bg-white p-2.5 shadow-[0_30px_80px_-40px_rgba(239,108,34,0.55)] lg:p-3">
               <Picture
                 nome="prova-1m-vendas"
                 larguras={[360, 600, 900]}

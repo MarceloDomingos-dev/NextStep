@@ -5,6 +5,7 @@ import { cursos } from "@/content/cursos";
 import { automacao, comoFunciona, marketing } from "@/content/servicos";
 import { faq } from "@/content/faq";
 import { Hero } from "@/components/home/hero";
+import { Intro } from "@/components/home/intro";
 import { AntesDepois } from "@/components/home/antes-depois";
 import { ComoFunciona } from "@/components/home/como-funciona";
 import { Provas } from "@/components/home/provas";
@@ -34,6 +35,7 @@ export default function Home() {
 
   return (
     <>
+      <Intro />
       <Hero />
 
       {/* Faixa de números */}
