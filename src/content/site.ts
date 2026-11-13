@@ -62,15 +62,8 @@ export const numeros = [
   { valor: 70, prefixo: "+", sufixo: "", legenda: "empresas atendidas", visivel: true },
 ] as const;
 
-/** Provas reais (fotos em public/imagens). */
+/** Provas reais (fotos em public/imagens). Para adicionar uma foto, inclua um bloco aqui. */
 export const provas = [
-  {
-    src: "/imagens/prova-500k-vendas",
-    largura: 1576,
-    altura: 2000,
-    alt: "Quadro comemorativo de R$ 500 mil em vendas",
-    legenda: "R$ 500 mil em vendas",
-  },
   {
     src: "/imagens/prova-1m-vendas",
     largura: 900,

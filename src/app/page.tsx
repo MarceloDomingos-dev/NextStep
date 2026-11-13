@@ -207,7 +207,7 @@ export default function Home() {
           <div className="lg:col-span-5">
             <h2 className="h-section">Resultados que dá para ver</h2>
             <p className="mt-4 text-lg text-body lg:mt-6">
-              Mostramos só o que é verificável. Estas placas marcam vendas reais feitas no digital.
+              Mostramos só o que é verificável. Esta placa marca R$ 1 milhão em vendas reais feitas no digital.
             </p>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">

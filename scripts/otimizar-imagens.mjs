@@ -11,7 +11,6 @@ const DESTINO = "public/imagens/otimizadas";
 
 const IMAGENS = [
   { arquivo: "prova-1m-vendas.jpg", larguras: [360, 600, 900] },
-  { arquivo: "prova-500k-vendas.jpg", larguras: [360, 600, 900] },
   { arquivo: "logo.png", larguras: [240, 480] },
   { arquivo: "logo-branco.png", larguras: [240, 480] },
 ];
