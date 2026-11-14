@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluta } from "@/lib/asset";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { automacao } from "@/content/servicos";
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
   title: "Automação de processos",
   description:
     "Automação de WhatsApp, integrações, CRM e relatórios automáticos. Menos retrabalho, menos erro, mais horas livres.",
-  alternates: { canonical: "/automacao/" },
-  openGraph: { url: "/automacao/", title: "Automação de processos · Next Step" },
+  alternates: { canonical: absoluta("/automacao/") },
+  openGraph: { url: absoluta("/automacao/"), title: "Automação de processos · Next Step" },
 };
 
 export default function AutomacaoPage() {

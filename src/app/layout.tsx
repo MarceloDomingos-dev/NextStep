@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
+import { absoluta, asset } from "@/lib/asset";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { MotionProvider } from "@/components/site/motion";
@@ -24,16 +25,16 @@ export const metadata: Metadata = {
   description:
     "Equipe preparada, marketing que vende e processos que rodam sozinhos. Cursos, marketing e automação em BH e online. Faça o diagnóstico gratuito.",
   applicationName: site.nome,
-  alternates: { canonical: "./" },
+  alternates: { canonical: absoluta("/") },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: site.nome,
-    url: "./",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Next Step: equipe preparada, marketing que vende e processos que rodam sozinhos." }],
+    url: absoluta("/"),
+    images: [{ url: absoluta("/og.png"), width: 1200, height: 630, alt: "Next Step: equipe preparada, marketing que vende e processos que rodam sozinhos." }],
   },
-  twitter: { card: "summary_large_image", images: ["/og.png"] },
-  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }] },
+  twitter: { card: "summary_large_image", images: [absoluta("/og.png")] },
+  icons: { icon: [{ url: asset("/icon.svg"), type: "image/svg+xml" }] },
   formatDetection: { telephone: false },
 };
 

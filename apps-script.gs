@@ -31,10 +31,11 @@
  *     (O aviso aparece porque o script é seu e não foi verificado pelo Google.
  *      É normal.)
  * 10. Copie a "URL do app da Web" (termina em /exec).
- * 11. Na Cloudflare Pages, abra o projeto do site → Configurações →
- *     Variáveis de ambiente → adicione
- *       NEXT_PUBLIC_LEAD_WEBHOOK_URL = (a URL copiada)
- *     e clique em "Repetir implantação" para o site pegar a variável.
+ * 11. No GitHub, abra o repositório NextStep → Settings →
+ *     Secrets and variables → Actions → aba Variables → New repository
+ *     variable: nome NEXT_PUBLIC_LEAD_WEBHOOK_URL, valor = (a URL copiada).
+ *     Depois, em Actions → "Publicar no GitHub Pages" → Run workflow,
+ *     para o site ser publicado de novo já com a variável.
  * 12. Teste: abra o site, faça o diagnóstico e confira a aba "Leads"
  *     e a caixa de entrada. A aba e o cabeçalho são criados sozinhos.
  *

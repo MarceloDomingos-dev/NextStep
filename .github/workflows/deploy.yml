@@ -1,0 +1,58 @@
+# Publica o site no GitHub Pages a cada push.
+# Endereço: https://marcelodomingos-dev.github.io/NextStep/
+#
+# Integrações opcionais: em Settings > Secrets and variables > Actions > Variables,
+# crie as variáveis abaixo. Sem elas, o site funciona e só não envia leads nem mede visitas.
+#   NEXT_PUBLIC_LEAD_WEBHOOK_URL  URL /exec do Google Apps Script (apps-script.gs)
+#   NEXT_PUBLIC_GA4_ID            ex.: G-XXXXXXX
+#   NEXT_PUBLIC_META_PIXEL_ID     ex.: 1234567890
+
+name: Publicar no GitHub Pages
+
+on:
+  push:
+    branches: [main, redesign]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+          NEXT_PUBLIC_LEAD_WEBHOOK_URL: ${{ vars.NEXT_PUBLIC_LEAD_WEBHOOK_URL }}
+          NEXT_PUBLIC_GA4_ID: ${{ vars.NEXT_PUBLIC_GA4_ID }}
+          NEXT_PUBLIC_META_PIXEL_ID: ${{ vars.NEXT_PUBLIC_META_PIXEL_ID }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

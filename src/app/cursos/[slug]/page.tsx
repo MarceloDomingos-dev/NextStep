@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluta } from "@/lib/asset";
 import { notFound } from "next/navigation";
 import { Check } from "lucide-react";
 import { cursos, faqCurso, getCurso } from "@/content/cursos";
@@ -28,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${curso.nome} (${curso.carga}h)`,
     description,
-    alternates: { canonical: `/cursos/${curso.slug}/` },
-    openGraph: { url: `/cursos/${curso.slug}/`, title: `${curso.nome} · Next Step`, description },
+    alternates: { canonical: absoluta(`/cursos/${curso.slug}/`) },
+    openGraph: { url: absoluta(`/cursos/${curso.slug}/`), title: `${curso.nome} · Next Step`, description },
   };
 }
 

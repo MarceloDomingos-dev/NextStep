@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluta } from "@/lib/asset";
 import { Catalogo } from "@/components/cursos/catalogo";
 import { CtaFinal } from "@/components/site/cta-final";
 import { Trilha } from "@/components/site/trilha";
@@ -7,8 +8,8 @@ export const metadata: Metadata = {
   title: "Cursos para equipes e líderes",
   description:
     "Liderança, vendas, atendimento, produtividade, comunicação e KPIs. Online ou in company, para empresas de todo o Brasil.",
-  alternates: { canonical: "/cursos/" },
-  openGraph: { url: "/cursos/", title: "Cursos para equipes e líderes · Next Step" },
+  alternates: { canonical: absoluta("/cursos/") },
+  openGraph: { url: absoluta("/cursos/"), title: "Cursos para equipes e líderes · Next Step" },
 };
 
 export default function CursosPage() {

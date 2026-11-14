@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { absoluta } from "@/lib/asset";
 import { Quiz } from "@/components/diagnostico/quiz";
 
 export const metadata: Metadata = {
   title: "Diagnóstico gratuito",
   description: "Sete perguntas para descobrir se o que trava sua empresa é equipe, vendas ou processos.",
-  alternates: { canonical: "/diagnostico/" },
-  openGraph: { url: "/diagnostico/", title: "Diagnóstico gratuito · Next Step" },
+  alternates: { canonical: absoluta("/diagnostico/") },
+  openGraph: { url: absoluta("/diagnostico/"), title: "Diagnóstico gratuito · Next Step" },
 };
 
 export default function DiagnosticoPage() {

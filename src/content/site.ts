@@ -13,9 +13,10 @@ export const site = {
    * [EDITAR: domínio próprio]
    * Endereço público do site, sem barra no final. É o ÚNICO lugar onde o domínio aparece:
    * canônico, sitemap.xml, robots.txt, Open Graph/Twitter, JSON-LD e imagem de compartilhamento leem daqui.
+   * O caminho depois do domínio (/NextStep) vira o prefixo das páginas no build (next.config.ts).
    * Quando comprar o domínio, troque por "https://seudominio.com.br" (passo a passo em DOMINIO.md).
    */
-  siteUrl: "https://nextstepofc.pages.dev",
+  siteUrl: "https://marcelodomingos-dev.github.io/NextStep",
 
   contato: {
     /** Só números: 55 + DDD + número. Usado por whatsappLink(). */

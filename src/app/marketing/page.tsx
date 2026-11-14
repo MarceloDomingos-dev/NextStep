@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluta } from "@/lib/asset";
 import Link from "next/link";
 import { marketing, comoFunciona } from "@/content/servicos";
 import { numeros, site } from "@/content/site";
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
   title: "Marketing que vende",
   description:
     "Estratégia, tráfego pago, redes sociais, branding e páginas de venda, medidos em clientes e não em curtidas.",
-  alternates: { canonical: "/marketing/" },
-  openGraph: { url: "/marketing/", title: "Marketing que vende · Next Step" },
+  alternates: { canonical: absoluta("/marketing/") },
+  openGraph: { url: absoluta("/marketing/"), title: "Marketing que vende · Next Step" },
 };
 
 export default function MarketingPage() {

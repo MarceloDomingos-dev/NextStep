@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { absoluta } from "@/lib/asset";
 import { site } from "@/content/site";
 import { Trilha } from "@/components/site/trilha";
 
 export const metadata: Metadata = {
   title: "Política de privacidade",
   description: "Como a Next Step trata os seus dados pessoais, conforme a LGPD.",
-  alternates: { canonical: "/privacidade/" },
-  openGraph: { url: "/privacidade/", title: "Política de privacidade · Next Step" },
+  alternates: { canonical: absoluta("/privacidade/") },
+  openGraph: { url: absoluta("/privacidade/"), title: "Política de privacidade · Next Step" },
 };
 
 const email = site.contato.email;
