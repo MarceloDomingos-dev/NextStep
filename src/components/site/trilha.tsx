@@ -3,21 +3,21 @@ import { site } from "@/content/site";
 import { JsonLd } from "@/components/site/json-ld";
 
 /** Breadcrumb (Início / ... / página atual) com dados estruturados. */
-export function Trilha({ itens }: { itens: { label: string; href?: string }[] }) {
+export function Trilha({ itens, escuro = false }: { itens: { label: string; href?: string }[]; escuro?: boolean }) {
   const todos = [{ label: "Início", href: "/" }, ...itens];
   return (
     <>
-      <nav aria-label="Trilha" className="text-sm text-subtle lg:text-[0.9375rem]">
+      <nav aria-label="Trilha" className={escuro ? "text-sm text-white/60 lg:text-[0.9375rem]" : "text-sm text-subtle lg:text-[0.9375rem]"}>
         <ol className="flex flex-wrap items-center gap-x-2">
           {todos.map((item, i) => (
             <li key={item.label} className="flex items-center gap-x-2">
               {i > 0 && <span aria-hidden="true">/</span>}
               {item.href ? (
-                <Link href={item.href} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-ink hover:underline">
+                <Link href={item.href} className={`inline-flex min-h-11 items-center underline-offset-4 hover:underline ${escuro ? "hover:text-white" : "hover:text-ink"}`}>
                   {item.label}
                 </Link>
               ) : (
-                <span aria-current="page" className="text-ink">
+                <span aria-current="page" className={escuro ? "text-white" : "text-ink"}>
                   {item.label}
                 </span>
               )}

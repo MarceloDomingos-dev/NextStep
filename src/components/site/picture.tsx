@@ -36,7 +36,15 @@ export function Picture({ nome, larguras, sizes, alt, width, height, prioridade,
   );
 }
 
-export function Logo({ variante = "escuro", className }: { variante?: "escuro" | "claro"; className?: string }) {
+export function Logo({
+  variante = "escuro",
+  className,
+  prioridade,
+}: {
+  variante?: "escuro" | "claro";
+  className?: string;
+  prioridade?: boolean;
+}) {
   const nome = variante === "escuro" ? "logo" : "logo-branco";
   const [w, h] = variante === "escuro" ? [480, 144] : [480, 139];
   return (
@@ -47,7 +55,7 @@ export function Logo({ variante = "escuro", className }: { variante?: "escuro" |
       alt="Next Step"
       width={w}
       height={h}
-      prioridade={variante === "escuro"}
+      prioridade={prioridade ?? false}
       imgClassName={className}
     />
   );

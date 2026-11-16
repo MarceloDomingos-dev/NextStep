@@ -14,7 +14,7 @@ export const faq = [
   },
   {
     p: "Para quem é a Next Step?",
-    r: "Para empresas de qualquer porte que querem uma equipe mais preparada, mais clientes ou menos trabalho manual. Estamos em Belo Horizonte e atendemos empresas de todo o Brasil.",
+    r: "Para pequenas e médias empresas que querem mais clientes, um site que passe confiança, menos trabalho manual ou uma equipe mais preparada. Os cursos também são abertos a quem quer empreender. Estamos em Belo Horizonte e atendemos todo o Brasil.",
   },
   {
     p: "Como começa?",

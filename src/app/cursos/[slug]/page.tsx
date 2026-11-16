@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluta } from "@/lib/asset";
 import { notFound } from "next/navigation";
 import { Check } from "lucide-react";
 import { cursos, faqCurso, getCurso } from "@/content/cursos";
@@ -28,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${curso.nome} (${curso.carga}h)`,
     description,
-    alternates: { canonical: `/cursos/${curso.slug}/` },
-    openGraph: { url: `/cursos/${curso.slug}/`, title: `${curso.nome} · Next Step`, description },
+    alternates: { canonical: absoluta(`/cursos/${curso.slug}/`) },
+    openGraph: { url: absoluta(`/cursos/${curso.slug}/`), title: `${curso.nome} · Next Step`, description },
   };
 }
 
@@ -57,9 +58,11 @@ export default async function CursoPage({ params }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className="pt-24 pb-14 lg:pt-32 lg:pb-24">
-        <div className="container-ns">
-          <Trilha itens={[{ label: "Cursos", href: "/cursos/" }, { label: curso.nome }]} />
+      <section className="on-dark relative overflow-hidden bg-ink pt-24 pb-14 text-white lg:pt-32 lg:pb-24">
+        <div aria-hidden="true" className="grid-dark absolute inset-0" />
+        <div aria-hidden="true" className="glow absolute -top-40 -right-40 size-[560px]" />
+        <div className="container-ns relative">
+          <Trilha escuro itens={[{ label: "Área de Aprendizado", href: "/cursos/" }, { label: curso.nome }]} />
           <div className="mt-6 grid items-start gap-8 lg:mt-10 lg:grid-cols-12 lg:gap-6">
             <div className="lg:col-span-7">
               <ul className="flex flex-wrap gap-2" aria-label="Modalidades">
@@ -70,16 +73,16 @@ export default async function CursoPage({ params }: Props) {
                 ))}
               </ul>
               <h1
-                className="mt-5 font-extrabold tracking-[-0.035em]"
+                className="mt-5 font-display font-extrabold tracking-[-0.035em]"
                 style={{ fontSize: "clamp(2.1rem, 1.2rem + 4vw, 4.25rem)", lineHeight: 1.03 }}
               >
                 {curso.nome}
               </h1>
-              <p className="mt-5 max-w-[620px] text-lg text-body lg:mt-7 lg:text-[1.375rem]">{curso.promessa}</p>
+              <p className="mt-5 max-w-[620px] text-lg text-white/75 lg:mt-7 lg:text-[1.375rem]">{curso.promessa}</p>
             </div>
             <aside
               aria-label="Informações do curso"
-              className="relative overflow-hidden rounded-3xl border border-line bg-white p-6 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.25)] lg:col-span-4 lg:col-start-9 lg:p-9"
+              className="relative overflow-hidden rounded-3xl border border-line bg-white p-6 text-ink shadow-[0_30px_80px_-40px_rgba(239,108,34,0.45)] lg:col-span-4 lg:col-start-9 lg:p-9"
             >
               <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[image:var(--grad-brand)]" />
               <dl className="grid grid-cols-3 gap-3">

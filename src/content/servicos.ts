@@ -78,3 +78,47 @@ export const comoFunciona = [
   { titulo: "Execução", texto: "Colocamos em prática junto com a sua equipe." },
   { titulo: "Acompanhamento", texto: "Medimos, ajustamos e mostramos a evolução." },
 ];
+
+/** Os três cards de "Nossas Soluções" na home. */
+export const solucoes = [
+  {
+    id: "trafego",
+    nome: "Gestão de Tráfego",
+    problema: "Você investe em anúncio e não sabe quanto voltou.",
+    solucao:
+      "Campanhas no Meta Ads e no Google Ads montadas para gerar venda, com custo por cliente acompanhado e relatório mensal em linguagem de negócio.",
+    entregas: ["Meta Ads e Google Ads", "Funil do anúncio à venda", "Relatório de custo por cliente"],
+    href: "/marketing/",
+    cta: "Ver como funciona",
+    mensagem: "Olá! Vim pelo site e quero um diagnóstico de tráfego pago para a minha empresa.",
+  },
+  {
+    id: "sites",
+    nome: "Criação de Sites e Portfólios",
+    problema: "Seu site não passa a confiança que a sua empresa tem.",
+    solucao:
+      "Sites institucionais, páginas de venda e portfólios rápidos, bonitos no celular e pensados para transformar visita em conversa no WhatsApp.",
+    entregas: ["Site institucional", "Página de vendas", "Portfólio profissional"],
+    href: null,
+    cta: "Quero um site",
+    mensagem: "Olá! Vim pelo site e quero um site (ou portfólio) novo para a minha empresa.",
+  },
+  {
+    id: "automacao",
+    nome: "Automação Empresarial",
+    problema: "Sua equipe perde horas com tarefa repetida.",
+    solucao:
+      "WhatsApp que responde e qualifica, sistemas que conversam entre si, CRM organizado e relatórios que se montam sozinhos.",
+    entregas: ["Atendimento no WhatsApp", "Integrações e CRM", "Relatórios automáticos"],
+    href: "/automacao/",
+    cta: "Ver exemplos",
+    mensagem: "Olá! Vim pelo site e quero mapear as tarefas manuais da minha empresa para automatizar.",
+  },
+] as const;
+
+/** Pilares de "Por que a Next Step" (seção Sobre). */
+export const diferenciais = [
+  { titulo: "Foco em venda, não em vaidade", texto: "Medimos clientes, vendas e horas economizadas. Curtida não paga boleto." },
+  { titulo: "Um parceiro, várias frentes", texto: "Tráfego, site, automação e capacitação conversando entre si, sem cinco fornecedores." },
+  { titulo: "Conhecimento que fica", texto: "Ensinamos o time a fazer junto, para a empresa não depender de ninguém." },
+];

@@ -1,7 +1,7 @@
 # Site da Next Step
 
 Site estático em Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui.
-`npm run build` gera a pasta `out`, publicada na Cloudflare Pages.
+`npm run build` gera a pasta `out`, publicada no GitHub Pages em https://marcelodomingos-dev.github.io/NextStep/.
 
 ## Rodar no computador
 
@@ -10,9 +10,9 @@ npm install
 npm run dev
 ```
 
-Abra http://localhost:3000. Se a página parecer antiga, recarregue com Ctrl+F5.
+Abra http://localhost:3000/NextStep. Se a página parecer antiga, recarregue com Ctrl+F5.
 
-Para testar a versão final (a mesma que vai ao ar):
+Para testar a versão final (a mesma que vai ao ar), em http://localhost:8080/NextStep/:
 
 ```bash
 npm run build
@@ -33,21 +33,20 @@ Tudo fica em `src/content/`. Procure por `[EDITAR]` para achar o que falta preen
 
 Todos os botões de WhatsApp usam `whatsappLink()` em `src/lib/whatsapp.ts`.
 
-## Publicar na Cloudflare Pages
+## Publicar no GitHub Pages
 
-1. Em https://dash.cloudflare.com, abra **Workers e Pages** > **Criar** > **Pages** > **Conectar ao Git**.
-2. Autorize o GitHub e escolha o repositório `MarceloDomingos-dev/NextStep`.
-3. Preencha:
+A publicação é automática: cada push nas branches `main` ou `redesign` roda o workflow
+`.github/workflows/deploy.yml`, que gera o site e publica no GitHub Pages em 1 a 3 minutos.
+Para acompanhar, abra a aba **Actions** do repositório.
 
-| Campo | Valor |
+Configuração do repositório (já feita):
+
+| Onde | Valor |
 | --- | --- |
-| Nome do projeto | `nextstepofc` (define o endereço `nextstepofc.pages.dev`) |
-| Branch de produção | `main` |
-| Framework preset | Next.js (Static HTML Export) |
-| Build command | `npm run build` |
-| Build output directory | `out` |
+| Settings > Pages > Source | GitHub Actions |
+| Settings > Environments > github-pages | branches `main` e `redesign` liberadas |
 
-4. Em **Variáveis de ambiente**, adicione as que já tiver (todas opcionais):
+Integrações (opcionais): em **Settings > Secrets and variables > Actions > Variables**, crie:
 
 | Variável | Para que serve |
 | --- | --- |
@@ -55,10 +54,9 @@ Todos os botões de WhatsApp usam `whatsappLink()` em `src/lib/whatsapp.ts`.
 | `NEXT_PUBLIC_GA4_ID` | ID do Google Analytics 4, ex.: `G-XXXXXXX` |
 | `NEXT_PUBLIC_META_PIXEL_ID` | ID do Meta Pixel |
 
-5. Clique em **Salvar e implantar**. Cada commit na branch `main` publica o site de novo. Outras branches ganham um endereço de prévia.
+Depois de criar ou mudar uma variável, rode o workflow de novo (Actions > Publicar no GitHub Pages > Run workflow).
 
-Se o nome `nextstepofc` não estiver disponível, escolha outro e atualize `siteUrl` em `src/content/site.ts` com o endereço que a Cloudflare mostrar.
-
+O endereço do site fica só em `siteUrl` (`src/content/site.ts`). O caminho dele (`/NextStep`) vira o prefixo das páginas no build.
 Domínio próprio: veja `DOMINIO.md`.
 
 ## Outros comandos

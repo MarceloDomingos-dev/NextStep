@@ -6,28 +6,66 @@
  * até a Next Step confirmar os módulos reais. [EDITAR]
  */
 
-export type Modalidade = "Online" | "In company";
+export type Modalidade = "Online" | "In company" | "Imersão Online";
 
 export type Curso = {
   slug: string;
   nome: string;
   carga: number; // horas
   modalidades: Modalidade[];
+  categoria: string; // área do conhecimento, aparece no card
   publico: string; // "Para ..."
+  /** Frase curta da transformação, usada no card da vitrine. */
+  transformacao: string;
   promessa: string;
   paraQuem: string[];
   aprender: string[];
   modulos: { titulo: string; descricao?: string }[];
   modulosConfirmados: boolean;
+  /** true = aparece primeiro e com selo "Disponível agora". */
+  destaque?: boolean;
 };
 
 export const cursos: Curso[] = [
+  {
+    slug: "primeiros-passos",
+    nome: "Primeiros Passos",
+    carga: 5, // [EDITAR] confirme a carga horária
+    modalidades: ["Online"],
+    categoria: "Empreendedorismo",
+    publico: "Para quem quer empreender ou entender como uma empresa funciona.",
+    transformacao: "Saia do zero e entenda, na prática, como uma empresa nasce, se organiza e ganha dinheiro.",
+    promessa:
+      "Entenda como uma empresa funciona por dentro: quem faz o quê, para onde ela vai e como o dinheiro circula, do jeito mais prático possível.",
+    paraQuem: [
+      "Jovens de 15 a 35 anos que querem empreender",
+      "Quem está começando a trabalhar em uma empresa",
+      "Quem tem uma ideia e não sabe por onde começar",
+    ],
+    aprender: [
+      "Como uma empresa funciona de ponta a ponta",
+      "Quem faz o quê em cada área",
+      "Como transformar uma ideia em negócio",
+      "O básico do dinheiro da empresa",
+    ],
+    modulos: [
+      { titulo: "Como uma empresa funciona" },
+      { titulo: "Quem faz o quê" },
+      { titulo: "Para onde a empresa vai" },
+      { titulo: "Da ideia ao negócio" },
+      { titulo: "O dinheiro da empresa" },
+    ],
+    modulosConfirmados: true,
+    destaque: true,
+  },
   {
     slug: "lideranca-alta-performance",
     nome: "Liderança de Alta Performance",
     carga: 16,
     modalidades: ["In company"],
+    categoria: "Liderança",
     publico: "Para gestores e novos líderes.",
+    transformacao: "Do líder que apaga incêndio ao líder que delega, cobra e bate meta com o time.",
     promessa:
       "Forme líderes que delegam, dão feedback e batem metas com a equipe, sem depender do dono para cada decisão.",
     paraQuem: ["Gestores recém-promovidos", "Líderes que vivem apagando incêndio", "Donos que querem delegar com segurança"],
@@ -50,7 +88,9 @@ export const cursos: Curso[] = [
     nome: "Vendas Consultivas e Negociação",
     carga: 12,
     modalidades: ["Online"],
+    categoria: "Vendas",
     publico: "Para times comerciais.",
+    transformacao: "Pare de dar desconto para fechar: venda valor e negocie sem perder margem.",
     promessa: "Venda valor, contorne objeções e feche mais, sem dar desconto para fechar.",
     paraQuem: ["Vendedores e representantes", "Líderes comerciais", "Donos que ainda vendem"],
     aprender: [
@@ -72,7 +112,9 @@ export const cursos: Curso[] = [
     nome: "Atendimento que Fideliza",
     carga: 8,
     modalidades: ["In company", "Online"],
+    categoria: "Atendimento",
     publico: "Para atendimento e pós-venda.",
+    transformacao: "Transforme cada atendimento em cliente que volta e indica.",
     promessa: "Um padrão de atendimento que transforma cliente em cliente que volta e indica.",
     paraQuem: ["Equipes de atendimento e recepção", "Pós-venda e suporte", "Quem atende pelo WhatsApp"],
     aprender: [
@@ -94,7 +136,9 @@ export const cursos: Curso[] = [
     nome: "Gestão do Tempo e Produtividade",
     carga: 6,
     modalidades: ["Online"],
+    categoria: "Produtividade",
     publico: "Para qualquer área.",
+    transformacao: "Recupere horas da semana focando só no que gera resultado.",
     promessa: "Organização, prioridades e foco no que gera resultado.",
     paraQuem: ["Profissionais de qualquer área", "Líderes sem tempo para gerir", "Equipes com prazos estourados"],
     aprender: [
@@ -116,7 +160,9 @@ export const cursos: Curso[] = [
     nome: "Comunicação Assertiva",
     carga: 8,
     modalidades: ["In company"],
+    categoria: "Comunicação",
     publico: "Para equipes e lideranças.",
+    transformacao: "Menos ruído entre as áreas e mais alinhamento no time.",
     promessa: "Menos ruído, menos conflito e mais alinhamento entre as áreas.",
     paraQuem: ["Equipes com ruído entre áreas", "Líderes que precisam alinhar o time", "Empresas em crescimento"],
     aprender: [
@@ -138,7 +184,9 @@ export const cursos: Curso[] = [
     nome: "Gestão por Indicadores (KPIs)",
     carga: 10,
     modalidades: ["Online", "In company"],
+    categoria: "Administração",
     publico: "Para gestores e donos.",
+    transformacao: "Troque o achismo por um painel simples que mostra para onde a empresa vai.",
     promessa: "Defina, acompanhe e use indicadores para decidir melhor.",
     paraQuem: ["Donos e diretores", "Gestores de área", "Empresas que decidem no achismo"],
     aprender: [
