@@ -5,7 +5,9 @@ import { cursos, type Modalidade } from "@/content/cursos";
 import { CourseCard, InCompanyCard } from "@/components/site/course-card";
 import { cn } from "@/lib/utils";
 
-const FILTROS: ("Todos" | Modalidade)[] = ["Todos", "Online", "In company"];
+const TODOS: Modalidade[] = ["Online", "In company", "Imersão Online"];
+/** Só mostra filtros de formatos que têm curso. */
+const FILTROS: ("Todos" | Modalidade)[] = ["Todos", ...TODOS.filter((m) => cursos.some((c) => c.modalidades.includes(m)))];
 const slug = (f: string) => f.toLowerCase().replace(/\s+/g, "-");
 
 export function Catalogo() {
@@ -25,7 +27,8 @@ export function Catalogo() {
     else url.searchParams.set("modalidade", slug(f));
     window.history.replaceState(null, "", url);
   };
-  const lista = filtro === "Todos" ? cursos : cursos.filter((c) => c.modalidades.includes(filtro));
+  const ordenados = [...cursos].sort((a, b) => Number(!!b.destaque) - Number(!!a.destaque));
+  const lista = filtro === "Todos" ? ordenados : ordenados.filter((c) => c.modalidades.includes(filtro));
 
   return (
     <>

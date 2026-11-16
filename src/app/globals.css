@@ -5,8 +5,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-archivo);
+  --font-sans: var(--font-inter);
   --font-heading: var(--font-archivo);
+  --font-display: var(--font-archivo);
+  --font-serif: var(--font-instrument);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -36,10 +38,11 @@
   --color-ink-2: #141414;
   --color-ink-line: #262626;
   --color-paper: #ffffff;
-  --color-mist: #f5f5f5;
-  --color-line: #e5e5e5;
+  --color-mist: #f6f5f2;
+  --color-bone: #f6f5f2;
+  --color-line: #e7e5e0;
   --color-body: #3a3a3a;
-  --color-subtle: #555555;
+  --color-subtle: #5f5f5f;
   --color-brand: #ef6c22;
   --color-brand-light: #ff8a1f;
   --color-brand-text: #c2410c;
@@ -111,6 +114,7 @@
   h1,
   h2,
   h3 {
+    font-family: var(--font-archivo);
     text-wrap: balance;
   }
   p {
@@ -144,6 +148,7 @@
     }
   }
   .h-section {
+    font-family: var(--font-archivo);
     font-weight: 800;
     font-stretch: 108%;
     font-size: clamp(1.85rem, 1.2rem + 2.4vw, 3rem);
@@ -151,9 +156,45 @@
     letter-spacing: -0.025em;
   }
   .eyebrow {
-    font-size: 0.9375rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8125rem;
     font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--color-brand-text);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+  .on-dark .eyebrow,
+  .eyebrow.on-dark {
+    color: var(--color-brand-light);
+  }
+  /* Destaque executivo: uma ou duas palavras em serifa itálica dentro de um título. */
+  .serif-accent {
+    font-family: var(--font-instrument), Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-stretch: 100%;
+    letter-spacing: -0.01em;
+  }
+  .font-display {
+    font-family: var(--font-archivo);
+    font-stretch: 112%;
+  }
+  /* Grade fina de fundo das seções escuras */
+  .grid-dark {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at 70% 30%, #000 20%, transparent 75%);
   }
   .glow {
     background: radial-gradient(closest-side, rgba(255, 138, 31, 0.32), rgba(255, 138, 31, 0));
@@ -239,6 +280,18 @@
 }
 .anim-glow-on {
   animation: ns-glow-on 1200ms var(--ease-step) calc(var(--intro) + 300ms) both;
+}
+.anim-rise-bar {
+  transform-origin: bottom;
+  animation: ns-bar 900ms var(--ease-step) both;
+}
+@keyframes ns-bar {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: none;
+  }
 }
 .anim-breathe {
   animation: ns-breathe 6s ease-in-out infinite;

@@ -7,7 +7,7 @@ export const site = {
   nome: "Next Step",
   slogan: "Sua jornada começa aqui.",
   descricao:
-    "Equipe preparada, marketing que vende e processos que rodam sozinhos. Cursos, marketing e automação em BH e online.",
+    "Mais vendas no digital, menos trabalho manual e uma equipe pronta para crescer. Gestão de tráfego, criação de sites, automação empresarial e cursos, em BH e online.",
 
   /**
    * [EDITAR: domínio próprio]
@@ -50,18 +50,34 @@ export const site = {
     inCompany: "Olá! Vim pelo site e quero um treinamento in company para minha equipe.",
     marketing: "Olá! Vim pelo site e quero um diagnóstico de marketing para a minha empresa.",
     automacao: "Olá! Vim pelo site e quero mapear as tarefas manuais da minha empresa para automatizar.",
+    sites: "Olá! Vim pelo site e quero um site (ou portfólio) novo para a minha empresa.",
+    especialista: "Olá! Vim pelo site da Next Step e quero falar com um especialista sobre a minha empresa.",
   },
 } as const;
 
 /**
- * Faixa de números da home. `visivel: false` esconde o item.
+ * Faixa de autoridade da home. `visivel: false` esconde o item.
  * Só entram números confirmados pela Next Step.
  */
 export const numeros = [
-  { valor: 1, prefixo: "+R$ ", sufixo: " mi", legenda: "em vendas geradas", visivel: true },
+  { valor: 70, prefixo: "+", sufixo: "", legenda: "empresas que já ajudamos a crescer", visivel: true },
   { valor: 100, prefixo: "+", sufixo: " mil", legenda: "vendas feitas no digital", visivel: true },
-  { valor: 70, prefixo: "+", sufixo: "", legenda: "empresas atendidas", visivel: true },
+  { valor: 1, prefixo: "+R$ ", sufixo: " mi", legenda: "em vendas geradas para clientes", visivel: true },
 ] as const;
+
+/**
+ * [EDITAR] Logos de clientes e parceiros (arquivos em public/imagens).
+ * Lista vazia = a faixa de logos não aparece. Só coloque logos com autorização do cliente.
+ * Exemplo: { nome: "Empresa X", src: "/imagens/cliente-empresa-x.png" }
+ */
+export const clientes: { nome: string; src: string }[] = [];
+
+/**
+ * [EDITAR] Depoimentos reais de clientes e alunos.
+ * Lista vazia = os cards de depoimento não aparecem (a seção mostra só as provas reais).
+ * Exemplo: { texto: "...", nome: "Fulana", cargo: "Sócia", empresa: "Empresa X", tipo: "Cliente" }
+ */
+export const depoimentos: { texto: string; nome: string; cargo: string; empresa: string; tipo: "Cliente" | "Aluno" }[] = [];
 
 /** Provas reais (fotos em public/imagens). Para adicionar uma foto, inclua um bloco aqui. */
 export const provas = [
@@ -75,8 +91,9 @@ export const provas = [
 ] as const;
 
 export const navegacao = [
-  { label: "Cursos", href: "/cursos/", secao: "cursos" },
-  { label: "Marketing", href: "/marketing/", secao: "marketing" },
-  { label: "Automação", href: "/automacao/", secao: "automacao" },
-  { label: "Resultados", href: "/#resultados", secao: "resultados" },
+  { label: "Home", href: "/", secao: "inicio" },
+  { label: "Sobre nós", href: "/#sobre", secao: "sobre" },
+  { label: "Soluções", href: "/#solucoes", secao: "solucoes" },
+  { label: "Área de Aprendizado", href: "/#aprendizado", secao: "aprendizado" },
+  { label: "Cases", href: "/#resultados", secao: "resultados" },
 ] as const;

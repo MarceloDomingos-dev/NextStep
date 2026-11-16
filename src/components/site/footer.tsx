@@ -16,9 +16,10 @@ export function Footer() {
           <h2 className="font-semibold text-white">Soluções</h2>
           <ul className="mt-3 flex flex-col gap-1">
             {[
-              ["Cursos", "/cursos/"],
-              ["Marketing", "/marketing/"],
-              ["Automação", "/automacao/"],
+              ["Gestão de Tráfego", "/marketing/"],
+              ["Criação de Sites", "/#solucoes"],
+              ["Automação Empresarial", "/automacao/"],
+              ["Área de Aprendizado", "/cursos/"],
               ["Diagnóstico gratuito", "/diagnostico/"],
             ].map(([label, href]) => (
               <li key={href}>

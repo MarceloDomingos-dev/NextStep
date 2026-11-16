@@ -32,7 +32,7 @@ export default function MarketingPage() {
         >
           Diagnóstico de marketing
         </WhatsAppLink>
-        <Link href="/diagnostico/" className={cn(buttonVariants({ variant: "outlineDark", size: "pill" }), "w-full sm:w-auto")}>
+        <Link href="/diagnostico/" className={cn(buttonVariants({ variant: "outlineLight", size: "pill" }), "w-full sm:w-auto")}>
           Fazer o diagnóstico gratuito
         </Link>
       </PageHero>

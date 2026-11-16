@@ -5,28 +5,36 @@ import { CtaFinal } from "@/components/site/cta-final";
 import { Trilha } from "@/components/site/trilha";
 
 export const metadata: Metadata = {
-  title: "Cursos para equipes e líderes",
+  title: "Área de Aprendizado: cursos e programas",
   description:
-    "Liderança, vendas, atendimento, produtividade, comunicação e KPIs. Online ou in company, para empresas de todo o Brasil.",
+    "Programas práticos de empreendedorismo, administração, liderança e vendas. Online, in company ou em imersão online, com certificado.",
   alternates: { canonical: absoluta("/cursos/") },
-  openGraph: { url: absoluta("/cursos/"), title: "Cursos para equipes e líderes · Next Step" },
+  openGraph: { url: absoluta("/cursos/"), title: "Área de Aprendizado · Next Step" },
 };
 
 export default function CursosPage() {
   return (
     <>
-      <section className="bg-mist pt-24 pb-16 lg:pt-32 lg:pb-24">
-        <div className="container-ns">
-          <Trilha itens={[{ label: "Cursos" }]} />
+      <section className="on-dark relative overflow-hidden bg-ink pt-24 pb-14 text-white lg:pt-32 lg:pb-20">
+        <div aria-hidden="true" className="grid-dark absolute inset-0" />
+        <div aria-hidden="true" className="glow absolute -top-40 -right-40 size-[560px]" />
+        <div className="container-ns relative">
+          <Trilha escuro itens={[{ label: "Área de Aprendizado" }]} />
+          <p className="eyebrow mt-8">Área de Aprendizado</p>
           <h1
-            className="mt-8 max-w-3xl font-extrabold tracking-[-0.03em]"
-            style={{ fontSize: "clamp(2.1rem, 1.3rem + 3.6vw, 4rem)", lineHeight: 1.04 }}
+            className="mt-4 max-w-4xl font-display font-extrabold tracking-[-0.035em]"
+            style={{ fontSize: "clamp(2.1rem, 1.3rem + 3.6vw, 4.25rem)", lineHeight: 1.03 }}
           >
-            Cursos para equipes e líderes
+            Conhecimento prático para quem constrói negócios <span className="serif-accent text-brand-light">de verdade.</span>
           </h1>
-          <p className="mt-5 mb-10 max-w-2xl text-lg text-body lg:text-xl">
-            Seis cursos práticos, online ou in company. Escolha o curso e fale com a gente no WhatsApp.
+          <p className="mt-6 max-w-2xl text-lg text-white/75 lg:text-xl">
+            Escolha o programa, veja a ementa e fale com a gente no WhatsApp para se inscrever. Online, in company ou em
+            imersão online, sempre com certificado.
           </p>
+        </div>
+      </section>
+      <section className="section bg-bone">
+        <div className="container-ns">
           <Catalogo />
         </div>
       </section>
