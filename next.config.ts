@@ -6,10 +6,11 @@ import { site } from "./src/content/site";
  * publicada no GitHub Pages pelo workflow .github/workflows/deploy.yml.
  *
  * O endereço do site fica em um lugar só: `siteUrl` em src/content/site.ts.
- * O caminho dele (hoje "/NextStep") vira o basePath. Com domínio próprio
- * (sem caminho), o basePath fica vazio sozinho.
+ * O caminho dele vira o basePath. Com domínio próprio (sem caminho), fica vazio.
+ * A cópia no GitHub Pages (marcelodomingos-dev.github.io/NextStep) define
+ * BASE_PATH=/NextStep no workflow, então as duas hospedagens funcionam.
  */
-const basePath = new URL(site.siteUrl).pathname.replace(/\/$/, "");
+const basePath = (process.env.BASE_PATH ?? new URL(site.siteUrl).pathname).replace(/\/$/, "");
 
 const nextConfig: NextConfig = {
   output: "export",

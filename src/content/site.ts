@@ -16,7 +16,7 @@ export const site = {
    * O caminho depois do domínio (/NextStep) vira o prefixo das páginas no build (next.config.ts).
    * Quando comprar o domínio, troque por "https://seudominio.com.br" (passo a passo em DOMINIO.md).
    */
-  siteUrl: "https://marcelodomingos-dev.github.io/NextStep",
+  siteUrl: "https://nextstepb2b.com.br",
 
   contato: {
     /** Só números: 55 + DDD + número. Usado por whatsappLink(). */
